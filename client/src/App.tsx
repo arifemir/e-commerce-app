@@ -1,7 +1,15 @@
-import React from 'react'
+import * as React from 'react'
+import Footer from './components/Footer'
+import Header from './components/Header'
 
 const App: React.FC = () => {
-  return <div>initial client</div>
+  return (
+    <>
+      <Header />
+      <main></main>
+      <Footer />
+    </>
+  )
 }
 
 export default App
