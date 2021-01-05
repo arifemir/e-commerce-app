@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
 
@@ -6,7 +7,11 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <main></main>
+      <main className='py-3'>
+        <Container>
+          HELLO
+        </Container>
+      </main>
       <Footer />
     </>
   )
