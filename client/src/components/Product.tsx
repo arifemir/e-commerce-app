@@ -1,11 +1,12 @@
 import * as React from 'react'
+import * as types from '../@types'
 import { Card } from 'react-bootstrap'
-import { product } from '../@types'
+import Rating from './Rating'
 
-const {Img, Body, Title, Text} = Card
+const { Img, Body, Title, Text } = Card
 
 interface Props {
-  product: product
+  product: types.product
 }
 
 const Product = (props: Props) => {
@@ -24,7 +25,7 @@ const Product = (props: Props) => {
         </a>
         <Text as='div'>
           <div className='my-3'>
-            {product.rating} from {product.numReviews} reviews
+            <Rating rating={product.rating} numReviews={product.numReviews} />
           </div>
         </Text>
         <Text as='h3'>${product.price}</Text>
