@@ -1,6 +1,6 @@
 import express from 'express'
 
-const app = express()
+const app: express.Application = express()
 
 app.get('/', req => {
   console.log('hi')
