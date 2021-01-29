@@ -4,9 +4,13 @@ import { Link, match } from 'react-router-dom'
 import Rating from '../components/Rating'
 import products from '../products'
 import * as types from '../@types'
-interface Props {
-  match?: any;
 
+interface params {
+  id: string;
+}
+
+interface Props {
+  match: match<params>;
 }
 
 const ProductPage = (props: Props) => {

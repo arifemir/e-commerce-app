@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, RouteComponentProps} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -13,7 +13,11 @@ const App: React.FC = () => {
       <main className='py-3'>
         <Container>
           <Route path='/' exact component={HomePage}/>
-          <Route path='/product/:id' exact component={ProductPage}/>
+          <Route 
+            path='/product/:id' 
+            exact 
+            render={ProductPage}
+          />
         </Container>
       </main>
       <Footer />
