@@ -2,6 +2,7 @@
 
 #folder
 dist
+dist/*
 
 # dependencies
 /node_modules

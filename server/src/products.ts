@@ -1,4 +1,6 @@
-const products = [
+import types from '../@types'
+
+const products: types.product[] = [
   {
     _id: '1',
     name: 'Airpods Wireless Bluetooth Headphones',
