@@ -1,5 +1,8 @@
 import express, { Request, Response } from 'express'
+import dotenv from 'dotenv'
 import products from './products'
+
+dotenv.config()
 
 const app: express.Application = express()
 
@@ -16,6 +19,8 @@ app.get('/api/product/:id', (req: Request, res: Response) => {
   res.json(product)
 })
 
-app.listen(5000, () => {
-  console.log('started')
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+  console.log(`Server started in ${PORT} mode= ${process.env.NODE_ENV}`)
 })
