@@ -2,8 +2,9 @@ import * as React from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { Link, match } from 'react-router-dom'
 import Rating from '../components/Rating'
-import products from '../products'
 import * as types from '../@types'
+import { useQuery } from 'react-query'
+import { toJSON } from '../helpers/fetching'
 
 interface params {
   id: string;
@@ -14,8 +15,9 @@ interface Props {
 }
 
 const ProductPage = (props: Props) => {
+
   const {match} = props;
-  const product: types.product | undefined = products.find(p => p._id === match.params.id)
+  const {isLoading, error, data: product} = useQuery<boolean, any, types.product>('product', () => fetch(`/api/product/${match.params.id}`).then(toJSON))
 
   return product ? (
     <>

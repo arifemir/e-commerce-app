@@ -12,11 +12,15 @@ const App: React.FC = () => {
       <Header />
       <main className='py-3'>
         <Container>
-          <Route path='/' exact component={HomePage}/>
+          <Route 
+            path='/' 
+            exact 
+            component={HomePage}
+          />
           <Route 
             path='/product/:id' 
             exact 
-            render={ProductPage}
+            component={ProductPage}
           />
         </Container>
       </main>
