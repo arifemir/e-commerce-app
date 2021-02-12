@@ -4,7 +4,7 @@ import { Link, match } from 'react-router-dom'
 import Rating from '../components/Rating'
 import * as types from '../@types'
 import { useQuery } from 'react-query'
-import { toJSON } from '../helpers/fetching'
+import { getProduct } from '../services/product'
 
 interface params {
   id: string;
@@ -17,7 +17,7 @@ interface Props {
 const ProductPage = (props: Props) => {
 
   const {match} = props;
-  const {isLoading, error, data: product} = useQuery<boolean, any, types.product>('product', () => fetch(`/api/product/${match.params.id}`).then(toJSON))
+  const {isLoading, error, data: product} = useQuery<Promise<Response>, TypeError, types.product>('product', () => getProduct(parseInt(match.params.id, 10)))
 
   return product ? (
     <>

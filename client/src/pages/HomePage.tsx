@@ -3,12 +3,12 @@ import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
 import * as types from '../@types';
 import { useQuery } from 'react-query';
-import { toJSON } from '../helpers/fetching';
+import { getProducts } from '../services/product';
 
 
 const HomePage = () => {
   
-  const {isLoading, error, data} = useQuery<boolean, any, types.product[]>('products', () => fetch('/api/products').then(toJSON))
+  const {isLoading, error, data} = useQuery<Promise<Response>, TypeError, types.product[]>('products', () => getProducts)
 
   if (isLoading) return (<div>'Loading...'</div>)
  
