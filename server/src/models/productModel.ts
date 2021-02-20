@@ -9,7 +9,6 @@ export interface IProduct extends Document {
   brand: string,
   category: string,
   description: string,
-  reviews: [IReview],
   rating: number,
   numReviews: number,
   price: number,
@@ -42,7 +41,6 @@ const productSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  reviews: [Review],
   rating: {
     type: Number,
     required: true,

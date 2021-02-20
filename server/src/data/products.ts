@@ -1,8 +1,9 @@
-import types from '../@types'
+import { IProduct } from '../models/productModel'
 
-const products: types.product[] = [
+const products = [
   {
-    _id: '1',
+    user: '',
+    reviews: [],
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/airpods.jpg',
     description:
@@ -15,7 +16,8 @@ const products: types.product[] = [
     numReviews: 12,
   },
   {
-    _id: '2',
+    user: '',
+    reviews: [],
     name: 'iPhone 11 Pro 256GB Memory',
     image: '/images/phone.jpg',
     description:
@@ -28,7 +30,8 @@ const products: types.product[] = [
     numReviews: 8,
   },
   {
-    _id: '3',
+    user: '',
+    reviews: [],
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/camera.jpg',
     description:
@@ -41,7 +44,8 @@ const products: types.product[] = [
     numReviews: 12,
   },
   {
-    _id: '4',
+    user: '',
+    reviews: [],
     name: 'Sony Playstation 4 Pro White Version',
     image: '/images/playstation.jpg',
     description:
@@ -54,7 +58,8 @@ const products: types.product[] = [
     numReviews: 12,
   },
   {
-    _id: '5',
+    user: '',
+    reviews: [],
     name: 'Logitech G-Series Gaming Mouse',
     image: '/images/mouse.jpg',
     description:
@@ -67,7 +72,8 @@ const products: types.product[] = [
     numReviews: 10,
   },
   {
-    _id: '6',
+    user: '',
+    reviews: [],
     name: 'Amazon Echo Dot 3rd Generation',
     image: '/images/alexa.jpg',
     description:
