@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import dbConn from './config/dbConn'
 import colors from 'colors'
 import products from './data/products'
+import routes from './routes'
 
 dotenv.config()
 colors.enable();
@@ -10,18 +11,7 @@ dbConn()
 
 const app: express.Application = express()
 
-app.get('/', req => {
-  console.log('hi')
-})
-
-app.get('/api/products', (req: Request, res: Response) => {
-  res.json(products)
-})
-
-app.get('/api/product/:id', (req: Request, res: Response) => {
-  const product = products.find(p => (p as any)._id === req.params.id)
-  res.json(product)
-})
+app.use('/api', routes)
 
 const PORT = process.env.PORT;
 

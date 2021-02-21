@@ -17,7 +17,7 @@ interface Props {
 const ProductPage = (props: Props) => {
 
   const {match} = props;
-  const {isLoading, error, data: product} = useQuery<Promise<Response>, TypeError, types.product>('product', () => getProduct(parseInt(match.params.id, 10)))
+  const {isLoading, error, data: product} = useQuery<Promise<Response>, TypeError, types.product>('product', () => getProduct(match.params.id))
 
   return product ? (
     <>
