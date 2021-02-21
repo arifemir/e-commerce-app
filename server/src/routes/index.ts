@@ -4,5 +4,4 @@ import productRoutes from './productRoutes'
 
 router.use('/products', productRoutes)
 
-
 export default router

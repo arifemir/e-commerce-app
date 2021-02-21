@@ -1,6 +1,7 @@
 import express from 'express'
 import Product from '../models/productModel'
 import h from 'express-async-handler'
+import HttpException from "../helpers/exceptions/HttpException";
 const router = express.Router()
 
 router.get('/', h(async (req, res, next) => {
@@ -13,7 +14,7 @@ router.get('/:id', h(async (req, res, next) => {
   if(product) {
     res.send(product)
   } else {
-    res.status(404).json({message: 'Product not found'})
+    next(new HttpException(404, 'Product not found'))
   }
 }))
 

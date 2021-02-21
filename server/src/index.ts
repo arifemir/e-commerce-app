@@ -1,9 +1,9 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import dotenv from 'dotenv'
 import dbConn from './config/dbConn'
 import colors from 'colors'
-import products from './data/products'
 import routes from './routes'
+import {errorHandler, notFound} from "./middleware/errorMiddleware";
 
 dotenv.config()
 colors.enable();
@@ -12,6 +12,9 @@ dbConn()
 const app: express.Application = express()
 
 app.use('/api', routes)
+
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT;
 
