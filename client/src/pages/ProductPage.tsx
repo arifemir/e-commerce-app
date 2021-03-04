@@ -1,11 +1,18 @@
 import * as React from 'react'
+import {useEffect} from "react";
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { Link, match } from 'react-router-dom'
+
+//redux
+import {RootState} from "../store";
+import {IProductDetailsState} from "../store/productDetails/types";
+import {productDetails} from "../store/productDetails/actions";
+import {useDispatch, useSelector} from "react-redux";
+
+//components
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 import Rating from '../components/Rating'
-import * as types from '../@types'
-import { useQuery } from 'react-query'
-import { getProduct } from '../services/product'
-import {product} from "../@types";
 
 interface params {
   id: string;
@@ -16,11 +23,20 @@ interface Props {
 }
 
 const ProductPage = (props: Props) => {
-
   const {match} = props;
-  const {isLoading, error, data: product} = useQuery<Promise<product>, TypeError, types.product>('product', () => getProduct(match.params.id))
 
-  return product ? (
+  const dispatch = useDispatch()
+  const {loading, error, product} = useSelector<RootState, IProductDetailsState>(state => state.productDetailsReducer)
+
+  useEffect(() => {
+    dispatch(productDetails(match.params.id))
+  },[dispatch])
+
+  if (loading) return (<Loader/>)
+
+  if (error) return (<Message variant='danger'>{error.message}</Message>)
+
+  return product && (
     <>
       <Link className='btn btn-dark my-3' to='/'>Go Back</Link>
       <Row>
@@ -76,7 +92,7 @@ const ProductPage = (props: Props) => {
         </Col>
       </Row>
     </>
-  ) : <div>not found</div>
+  )
 }
 
 export default ProductPage

@@ -1,21 +1,21 @@
 import * as React from 'react'
-import { Col, Row } from 'react-bootstrap';
 import {useEffect} from "react";
+import { Col, Row } from 'react-bootstrap';
 
 //redux
-import {useDispatch, useSelector} from "react-redux";
-import {listProducts} from "../store/products/actions";
 import {RootState} from "../store";
-import {IProductListState} from "../store/products/types";
+import {IProductListState} from "../store/productList/types";
+import {listProducts} from "../store/productList/actions";
+import {useDispatch, useSelector} from "react-redux";
 
-import * as types from '../@types';
+//components
 import Product from '../components/Product';
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const HomePage = () => {
   const dispatch = useDispatch()
-  const {loading, error, products} = useSelector<RootState, IProductListState>(state => state.productsReducer)
+  const {loading, error, products} = useSelector<RootState, IProductListState>(state => state.productListReducer)
 
   useEffect(() => {
     dispatch(listProducts())
@@ -25,13 +25,11 @@ const HomePage = () => {
 
   if (error) return (<Message variant='danger'>{error.message}</Message>)
 
-  console.log(products)
-
   return (
     <>
       <h1>Latest Products</h1>
       <Row>
-        {products && products.map((product: types.product) => (
+        {products && products.map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>

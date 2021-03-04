@@ -14,7 +14,8 @@ export interface IProductListState {
 
 //actions
 interface productListRequestAction {
-  type: typeof PRODUCT_LIST_REQUEST
+  type: typeof PRODUCT_LIST_REQUEST,
+  payload?: boolean
 }
 
 interface productListRequestSuccessAction {
