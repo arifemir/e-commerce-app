@@ -5,6 +5,7 @@ import Rating from '../components/Rating'
 import * as types from '../@types'
 import { useQuery } from 'react-query'
 import { getProduct } from '../services/product'
+import {product} from "../@types";
 
 interface params {
   id: string;
@@ -17,7 +18,7 @@ interface Props {
 const ProductPage = (props: Props) => {
 
   const {match} = props;
-  const {isLoading, error, data: product} = useQuery<Promise<Response>, TypeError, types.product>('product', () => getProduct(match.params.id))
+  const {isLoading, error, data: product} = useQuery<Promise<product>, TypeError, types.product>('product', () => getProduct(match.params.id))
 
   return product ? (
     <>
@@ -48,7 +49,7 @@ const ProductPage = (props: Props) => {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    Price: 
+                    Price:
                   </Col>
                   <Col>
                     <strong>${product.price}</strong>
@@ -58,7 +59,7 @@ const ProductPage = (props: Props) => {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    Status: 
+                    Status:
                   </Col>
                   <Col>
                     <strong>{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</strong>
