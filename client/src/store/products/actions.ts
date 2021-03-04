@@ -8,7 +8,7 @@ const listProducts = () => async (dispatch: Dispatch<productsActionTypes>) => {
     const data = await getProducts
     dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
   } catch (e) {
-    dispatch({type: PRODUCT_LIST_FAIL, payload: e})
+    dispatch({type: PRODUCT_LIST_FAIL, payload: e.response ? e.response.data : e})
   }
 }
 

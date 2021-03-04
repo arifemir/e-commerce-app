@@ -14,7 +14,7 @@ router.get('/:id', h(async (req, res, next) => {
   if(product) {
     res.send(product)
   } else {
-    next(new HttpException(404, 'Product not found'))
+    throw new HttpException(404, 'Product not found')
   }
 }))
 

@@ -1,9 +1,9 @@
-import { toJSON } from '../helpers/fetching'
+import axios from 'axios'
 import {product} from "../@types";
 
-const getProducts: Promise<product[]> = fetch('/api/products').then(toJSON)
+const getProducts: Promise<product[]> = axios.get('/api/products').then(res => res.data)
 
-const getProduct = (id: string): Promise<product> => fetch(`/api/products/${id}`).then(toJSON)
+const getProduct = (id: string): Promise<product> => axios.get(`/api/products/${id}`).then(res => res.data)
 
 export {
   getProducts,
