@@ -1,10 +1,13 @@
 import * as React from 'react'
-import {BrowserRouter as Router, Route, RouteComponentProps} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
+
+//components
 import Footer from './components/Footer'
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
+import CartPage from './pages/CartPage'
 
 const App: React.FC = () => {
   return (
@@ -12,15 +15,20 @@ const App: React.FC = () => {
       <Header />
       <main className='py-3'>
         <Container>
-          <Route 
-            path='/' 
-            exact 
+          <Route
+            path='/'
+            exact
             component={HomePage}
           />
-          <Route 
-            path='/product/:id' 
-            exact 
+          <Route
+            path='/product/:id'
+            exact
             component={ProductPage}
+          />
+          <Route
+            path='/cart/:id?'
+            exact
+            component={CartPage}
           />
         </Container>
       </main>
