@@ -22,7 +22,7 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "typescript": "^4.0.3",
+    "typescript": "4.2.0-dev.20201124",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

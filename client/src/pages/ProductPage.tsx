@@ -27,7 +27,7 @@ interface Props {
 const ProductPage = (props: Props) => {
   const {match, history} = props;
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch()
   const {loading, error, product} = useSelector<IRootState, IProductDetailsState>(state => state.productDetails)
