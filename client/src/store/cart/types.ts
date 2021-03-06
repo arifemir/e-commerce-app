@@ -15,4 +15,9 @@ interface IAddToCart {
   payload: ICartItem
 }
 
-export type ICartActionTypes = IAddToCart
+interface IRemoveToCart {
+  type: typeof CART_REMOVE_ITEM,
+  payload: ICartItem['_id']
+}
+
+export type ICartActionTypes = IAddToCart | IRemoveToCart

@@ -1,6 +1,8 @@
-import {PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, IProductsActionTypes} from "./types";
 import {getProducts} from "../../services/product";
+
+//types
 import {Dispatch} from "react";
+import {PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, IProductsActionTypes} from "./types";
 
 const listProducts = () => async (dispatch: Dispatch<IProductsActionTypes>) => {
   try {

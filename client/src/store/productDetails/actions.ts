@@ -1,6 +1,8 @@
-import {PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, IProductActionTypes} from "./types";
-import {Dispatch} from "react";
 import {getProduct} from "../../services/product";
+
+//types
+import {Dispatch} from "react";
+import {PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, IProductActionTypes} from "./types";
 
 const productDetails = (_id: string) => async (dispatch: Dispatch<IProductActionTypes>) => {
   try {
