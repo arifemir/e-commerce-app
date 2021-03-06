@@ -1,21 +1,8 @@
 import express from 'express'
-import Product from '../models/productModel'
-import h from 'express-async-handler'
-import HttpException from "../helpers/exceptions/HttpException";
+import { getAllProduct, getProductById } from '../controllers/productController'
 const router = express.Router()
 
-router.get('/', h(async (req, res, next) => {
-  const products = await Product.find({})
-  res.send(products)
-}))
-
-router.get('/:id', h(async (req, res, next) => {
-  const product = await Product.findById(req.params.id)
-  if(product) {
-    res.send(product)
-  } else {
-    throw new HttpException(404, 'Product not found')
-  }
-}))
+router.route('/').get(getAllProduct)
+router.route('/:id').get(getProductById)
 
 export default router
