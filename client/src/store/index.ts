@@ -3,8 +3,10 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 import {rootReducer} from './combineReducers'
-export type RootState = ReturnType<typeof rootReducer>
+export type IRootState = ReturnType<typeof rootReducer>
+
+const initialState = {}
 
 const middlewares = [thunk]
 
-export default createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(...middlewares)))
+export default createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)))

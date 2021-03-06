@@ -1,4 +1,4 @@
-import {product} from "../../@types";
+import {IProduct} from "../../@types";
 
 //action types
 export const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST'
@@ -7,25 +7,25 @@ export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL'
 
 //state
 export interface IProductListState {
-  products: product[],
+  products: IProduct[],
   loading: boolean,
   error: any
 }
 
 //actions
-interface productListRequestAction {
+interface IProductListRequestAction {
   type: typeof PRODUCT_LIST_REQUEST,
   payload?: boolean
 }
 
-interface productListRequestSuccessAction {
+interface IProductListRequestSuccessAction {
   type: typeof PRODUCT_LIST_SUCCESS,
-  payload: product[]
+  payload: IProduct[]
 }
 
-interface productListRequestFailedAction {
+interface IProductListRequestFailedAction {
   type: typeof PRODUCT_LIST_FAIL,
   payload: any
 }
 
-export type productsActionTypes = productListRequestAction | productListRequestSuccessAction | productListRequestFailedAction
+export type IProductsActionTypes = IProductListRequestAction | IProductListRequestSuccessAction | IProductListRequestFailedAction

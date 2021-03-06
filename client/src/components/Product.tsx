@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const { Img, Body, Title, Text } = Card
 
 interface Props {
-  product: types.product
+  product: types.IProduct
 }
 
 const Product = (props: Props) => {

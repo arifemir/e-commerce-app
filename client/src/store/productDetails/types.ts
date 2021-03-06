@@ -1,4 +1,4 @@
-import {product} from "../../@types";
+import {IProduct} from "../../@types";
 
 //action types
 export const PRODUCT_DETAILS_REQUEST = 'PRODUCT_DETAILS_REQUEST'
@@ -7,25 +7,25 @@ export const PRODUCT_DETAILS_FAIL = 'PRODUCT_DETAILS_FAIL'
 
 //state
 export interface IProductDetailsState {
-  product: product | null,
+  product: IProduct | null,
   loading: boolean,
   error: any
 }
 
 //actions
-interface productDetailsRequestAction {
+interface IProductDetailsRequestAction {
   type: typeof PRODUCT_DETAILS_REQUEST,
   payload?: boolean
 }
 
-interface productDetailsRequestSuccessAction {
+interface IProductDetailsRequestSuccessAction {
   type: typeof PRODUCT_DETAILS_SUCCESS,
-  payload: product
+  payload: IProduct
 }
 
-interface productDetailsRequestFailedAction {
+interface IProductDetailsRequestFailedAction {
   type: typeof PRODUCT_DETAILS_FAIL,
   payload: any
 }
 
-export type productActionTypes = productDetailsRequestAction | productDetailsRequestSuccessAction | productDetailsRequestFailedAction
+export type IProductActionTypes = IProductDetailsRequestAction | IProductDetailsRequestSuccessAction | IProductDetailsRequestFailedAction

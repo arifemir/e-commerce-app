@@ -1,9 +1,9 @@
 import axios from 'axios'
-import {product} from "../@types";
+import {IProduct} from "../@types";
 
-const getProducts: Promise<product[]> = axios.get('/api/products').then(res => res.data)
+const getProducts: Promise<IProduct[]> = axios.get('/api/products').then(res => res.data)
 
-const getProduct = (id: string): Promise<product> => axios.get(`/api/products/${id}`).then(res => res.data)
+const getProduct = (id: string): Promise<IProduct> => axios.get(`/api/products/${id}`).then(res => res.data)
 
 export {
   getProducts,

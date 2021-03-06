@@ -5,7 +5,7 @@ import { Link, match } from 'react-router-dom'
 import { History } from 'history'
 
 //redux
-import {RootState} from "../store"
+import {IRootState} from "../store"
 import {IProductDetailsState} from "../store/productDetails/types"
 import {productDetails} from "../store/productDetails/actions"
 import {useDispatch, useSelector} from "react-redux"
@@ -30,7 +30,7 @@ const ProductPage = (props: Props) => {
   const [quantity, setQuantity] = useState(0);
 
   const dispatch = useDispatch()
-  const {loading, error, product} = useSelector<RootState, IProductDetailsState>(state => state.productDetailsReducer)
+  const {loading, error, product} = useSelector<IRootState, IProductDetailsState>(state => state.productDetails)
 
   useEffect(() => {
     dispatch(productDetails(match.params.id))

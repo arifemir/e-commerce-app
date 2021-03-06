@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import { Col, Row } from 'react-bootstrap';
 
 //redux
-import {RootState} from "../store";
+import {IRootState} from "../store";
 import {IProductListState} from "../store/productList/types";
 import {listProducts} from "../store/productList/actions";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,7 +15,7 @@ import Message from "../components/Message";
 
 const HomePage = () => {
   const dispatch = useDispatch()
-  const {loading, error, products} = useSelector<RootState, IProductListState>(state => state.productListReducer)
+  const {loading, error, products} = useSelector<IRootState, IProductListState>(state => state.productList)
 
   useEffect(() => {
     dispatch(listProducts())
