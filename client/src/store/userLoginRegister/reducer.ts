@@ -27,7 +27,8 @@ const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes
       }
     case USER_LOGOUT:
       return {
-
+        ...state,
+        user: null
       }
     default:
       return state
