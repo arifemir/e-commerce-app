@@ -11,7 +11,8 @@ const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes
     case USER_LOGIN_REGISTER_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: false,
       }
     case USER_LOGIN_REGISTER_SUCCESS:
       return {
@@ -28,7 +29,9 @@ const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes
     case USER_LOGOUT:
       return {
         ...state,
-        user: null
+        user: null,
+        error: false,
+        loading: false,
       }
     default:
       return state

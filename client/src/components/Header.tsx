@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
 const {Brand,Toggle, Collapse} = Navbar
-
+//redux
+import { useDispatch, useSelector } from 'react-redux'
 //types
 import { IRootState } from '../store'
 import { IUserState } from '../store/userLoginRegister/types'

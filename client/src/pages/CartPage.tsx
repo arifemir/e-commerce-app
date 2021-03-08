@@ -1,15 +1,14 @@
 import * as React from 'react'
 import { useEffect } from 'react'
-import { History, Location } from 'history'
-import { Link, match } from 'react-router-dom'
 import { Col, ListGroup, Row, Image, Form, Button, Card } from 'react-bootstrap'
-
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { IRootState } from '../store'
-import { ICartState } from '../store/cart/types'
 import { addToCart, removeToCart } from '../store/cart/actions'
-
+//types
+import { Link, match } from 'react-router-dom'
+import { ICartState } from '../store/cart/types'
+import { IRootState } from '../store'
+import { History, Location } from 'history'
 //components
 import Message from '../components/Message'
 

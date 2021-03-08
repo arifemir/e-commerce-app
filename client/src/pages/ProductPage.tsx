@@ -2,14 +2,13 @@ import * as React from 'react'
 import {useEffect, useState} from "react"
 import {Button, Card, Col, Form, Image, ListGroup, Row} from 'react-bootstrap'
 import { Link, match } from 'react-router-dom'
-import { History } from 'history'
-
 //redux
-import {IRootState} from "../store"
-import {IProductDetailsState} from "../store/productDetails/types"
 import {productDetails} from "../store/productDetails/actions"
 import {useDispatch, useSelector} from "react-redux"
-
+//types
+import { History } from 'history'
+import {IRootState} from "../store"
+import {IProductDetailsState} from "../store/productDetails/types"
 //components
 import Loader from "../components/Loader";
 import Message from "../components/Message";

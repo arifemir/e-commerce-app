@@ -1,10 +1,11 @@
 import * as React from 'react'
-import * as types from '../@types'
 import { Card } from 'react-bootstrap'
-import Rating from './Rating'
 import { Link } from 'react-router-dom'
-
 const { Img, Body, Title, Text } = Card
+//types
+import * as types from '../@types'
+//components
+import Rating from './Rating'
 
 interface Props {
   product: types.IProduct
