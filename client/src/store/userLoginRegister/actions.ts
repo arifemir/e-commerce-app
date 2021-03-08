@@ -1,8 +1,6 @@
-
-
+import { login, register } from "../../services/userLoginRegister";
 //types
 import {Dispatch} from "react";
-import { login, register } from "../../services/userLoginRegister";
 import {USER_LOGIN_REGISTER_FAIL, USER_LOGIN_REGISTER_REQUEST, USER_LOGIN_REGISTER_SUCCESS, IUserActionTypes} from "./types";
 
 const userLogin = (email: string, password: string) => async (dispatch: Dispatch<IUserActionTypes>) => {

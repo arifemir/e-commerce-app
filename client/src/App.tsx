@@ -8,6 +8,7 @@ import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
+import LoginPage from './pages/LoginPage'
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,11 @@ const App: React.FC = () => {
       <Header />
       <main className='py-3'>
         <Container>
+          <Route
+            path='/login'
+            exact
+            component={LoginPage}
+          />
           <Route
             path='/'
             exact
