@@ -6,10 +6,7 @@ const notFound = ((req: Request, res: Response, next: NextFunction) => {
 })
 
 const errorHandler = ((err: IHttpException, req: Request, res: Response, next: NextFunction) => {
-  res.status(err.status).json(
-    {
-      message: err.message
-    })
+  res.status(err.status ? err.status : 500).json({ message: err.message })
 })
 
 export {
