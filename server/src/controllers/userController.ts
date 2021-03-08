@@ -4,14 +4,13 @@ import HttpException from "../helpers/exceptions/HttpException";
 import generateToken from '../helpers/token/generateToken';
 
 const authUser = a(async (req, res, next) => {
-  const { email: mail, password } = req.body
+  const { email, password } = req.body
 
-  const user: IUser = await User.findOne({ email: mail })
+  let user: IUser = await User.findOne({ email })
   
   if(user && (await user.comparePassword(password))) {
-    const { _id, name, email, isAdmin } = user;
-    const token = generateToken(_id)
-    res.json({_id, name, email, isAdmin, token})
+    const token = generateToken(user._id)
+    res.json({user, token})
   } else {
     throw new HttpException(401, 'Invalid email or password')
   }
@@ -20,10 +19,40 @@ const authUser = a(async (req, res, next) => {
 
 
 const getUserProfile = a(async (req, res, next) => {
-  res.send((req as any).user)
+  const user = (req as any).user
+  if(user) {
+    res.send(user)
+  } else {
+    throw new HttpException(404, 'User not found')
+  }
+})
+
+const registerUser = a(async (req, res, next) => {
+  const { name, email, password } = req.body
+
+  const userExist: IUser = await User.findOne({email})
+
+  if(userExist) {
+    throw new HttpException(400, 'User already exists')
+  } 
+
+  let user: IUser = await User.create({
+    name,
+    email,
+    password,
+  })
+  
+  if(user) {
+    const token = generateToken(user._id)
+    res.status(201).json({user, token})
+  } else {
+    throw new HttpException(400, 'Invalid user data')
+  }
+
 })
 
 export {
   authUser,
-  getUserProfile
+  getUserProfile,
+  registerUser,
 }
