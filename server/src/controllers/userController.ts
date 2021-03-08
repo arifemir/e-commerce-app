@@ -10,7 +10,10 @@ const authUser = a(async (req, res, next) => {
   
   if(user && (await user.comparePassword(password))) {
     const token = generateToken(user._id)
-    res.json({user, token})
+    const {_id, name, email, isAdmin} = user
+    res.json({user: {
+      _id, name, email, isAdmin
+    }, token})
   } else {
     throw new HttpException(401, 'Invalid email or password')
   }
@@ -44,7 +47,10 @@ const registerUser = a(async (req, res, next) => {
   
   if(user) {
     const token = generateToken(user._id)
-    res.status(201).json({user, token})
+    const {_id, name, email, isAdmin} = user
+    res.status(201).json({user: {
+      _id, name, email, isAdmin
+    }, token})
   } else {
     throw new HttpException(400, 'Invalid user data')
   }

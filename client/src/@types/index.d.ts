@@ -14,3 +14,10 @@ export interface IProduct {
 export interface ICartItem extends IProduct {
   quantity: number;
 }
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
