@@ -18,6 +18,12 @@ const authUser = a(async (req, res, next) => {
 
 })
 
+
+const getUserProfile = a(async (req, res, next) => {
+  res.send((req as any).user)
+})
+
 export {
-  authUser
+  authUser,
+  getUserProfile
 }
