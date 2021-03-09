@@ -5,13 +5,13 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { userLogin } from '../store/userLoginRegister/actions'
+import { userLogin } from '../store/userAuthAndChange/actions'
 import FormContainer from '../components/FormContainer'
 
 //types
 import { Location, History } from 'history'
 import { IRootState } from '../store'
-import { IUserState } from '../store/userLoginRegister/types'
+import { IUserState } from '../store/userAuthAndChange/types'
 
 interface Props {
   location: Location;
@@ -25,7 +25,7 @@ const LoginPage = (props: Props) => {
   const [password, setPassword] = useState('')
   
   const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userLoginRegister)
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 

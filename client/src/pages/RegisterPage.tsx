@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { userRegister } from '../store/userLoginRegister/actions'
+import { userRegister } from '../store/userAuthAndChange/actions'
 //types
 import { Location, History } from 'history'
 import { IRootState } from '../store'
-import { IUserState } from '../store/userLoginRegister/types'
+import { IUserState } from '../store/userAuthAndChange/types'
 //components
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -29,7 +29,7 @@ const RegisterPage = (props: Props) => {
   const [message, setMessage] = useState<string | null>(null)
 
   const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userLoginRegister)
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 

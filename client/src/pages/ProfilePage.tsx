@@ -4,17 +4,16 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails } from '../store/userDetails/actions'
-import { updateUser } from '../store/userUpdate/actions'
+import { updateUser } from '../store/userAuthAndChange/actions'
 //types
 import { History } from 'history'
 import { IRootState } from '../store'
-import { IUserState } from '../store/userLoginRegister/types'
+import { IUserState } from '../store/userAuthAndChange/types'
 import { IUserDetailsState } from '../store/userDetails/types'
 import { IUser } from '../@types'
 //components
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { IUserUpdateState } from '../store/userUpdate/types'
 
 interface Props {
   history: History
@@ -30,9 +29,8 @@ const ProfilePage = (props: Props) => {
   const [message, setMessage] = useState<string | null>(null)
 
   const dispatch = useDispatch()
-  const { user } = useSelector<IRootState, IUserState>(state => state.userLoginRegister)
+  const { user, updateSuccess } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
   const { user: userDetail, loading, error } = useSelector<IRootState, IUserDetailsState>(state => state.userDetails)
-  const { success } = useSelector<IRootState, IUserUpdateState>(state => state.userUpdateProfile)
 
   useEffect(() => {
     if(!user) {
@@ -41,11 +39,11 @@ const ProfilePage = (props: Props) => {
       if(!userDetail?.name) {
         dispatch(getUserDetails('profile'))
       } else {
-        setName(userDetail.name)
-        setEmail(userDetail.email)
+        setName(user.name)
+        setEmail(user.email)
       }
     }
-  }, [history, userDetail, dispatch])
+  }, [history, userDetail, dispatch, user])
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,7 +62,7 @@ const ProfilePage = (props: Props) => {
     <h2>User Profile</h2>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error.message}</Message>}
-      {success && <Message variant='success'>Profile Updated</Message>}
+      {updateSuccess && <Message variant='success'>Profile Updated</Message>}
       {loading && <Loader />}
       <Form onSubmit={onSubmit}>
       <Form.Group controlId='name'>

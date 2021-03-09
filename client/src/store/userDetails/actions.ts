@@ -9,7 +9,7 @@ import { IUserDetailsActionTypes, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_
 const getUserDetails = (idOrProfile: string) => async (dispatch: Dispatch<IUserDetailsActionTypes>, getState: () => IRootState) => {
   try {
     dispatch({type: USER_DETAILS_REQUEST})
-    const { userLoginRegister: { user } } = getState()
+    const { userAuthAndChange: { user } } = getState()
     axios.defaults.headers.Authorization = `Bearer ${user?.token}`
     const data = await userDetails(idOrProfile)
     dispatch({type: USER_DETAILS_SUCCESS, payload: data})

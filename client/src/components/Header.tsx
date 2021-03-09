@@ -6,12 +6,12 @@ const {Brand,Toggle, Collapse} = Navbar
 import { useDispatch, useSelector } from 'react-redux'
 //types
 import { IRootState } from '../store'
-import { IUserState } from '../store/userLoginRegister/types'
-import { userLogout } from '../store/userLoginRegister/actions'
+import { IUserState } from '../store/userAuthAndChange/types'
+import { userLogout } from '../store/userAuthAndChange/actions'
 
 const Header: React.FC = () => {
   const dispatch = useDispatch()
-  const { user } = useSelector<IRootState, IUserState>(state => state.userLoginRegister)
+  const { user } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
 
   const onLogout = () => {
     dispatch(userLogout())
