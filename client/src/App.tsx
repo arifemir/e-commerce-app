@@ -10,7 +10,8 @@ import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import ProfilePage from './pages/ProfilePage'
+import OrdersPage from './pages/OrdersPage'
+import UserUpdatePage from './pages/UserUpdatePage'
 
 const App: React.FC = () => {
   return (
@@ -34,9 +35,14 @@ const App: React.FC = () => {
             component={HomePage}
           />
           <Route
-            path='/profile'
+            path='/orders'
             exact
-            component={ProfilePage}
+            component={OrdersPage}
+          />
+          <Route
+            path='/changemyinformation'
+            exact
+            component={UserUpdatePage}
           />
           <Route
             path='/product/:id'

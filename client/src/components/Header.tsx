@@ -32,8 +32,11 @@ const Header: React.FC = () => {
               </LinkContainer>
               {user ? (
                 <NavDropdown title={user.name} id='username'>
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  <LinkContainer to='/orders'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/changemyinformation'>
+                    <NavDropdown.Item>Change user info</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={onLogout}>
                     Logout
