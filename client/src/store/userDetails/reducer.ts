@@ -1,8 +1,7 @@
-import { IUserDetailsState, IUserDetailsActionTypes, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAIL } from "./types";
+import { IUserDetailsState, IUserDetailsActionTypes, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAIL } from "./types"
 
-
-const initialState:IUserDetailsState = {
-  user: null,
+const initialState: IUserDetailsState = {
+  userDetails: null,
   loading: false,
   error: false,
 }
@@ -17,7 +16,7 @@ const userDetailsReducer = (state = initialState, action: IUserDetailsActionType
     case USER_DETAILS_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        userDetails: action.payload,
         loading: false,
       }
     case USER_DETAILS_FAIL:

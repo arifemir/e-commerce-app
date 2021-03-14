@@ -2,11 +2,12 @@ import User, { IUser } from '../models/userModel'
 import a from 'express-async-handler'
 import HttpException from "../helpers/exceptions/HttpException";
 import generateToken from '../helpers/token/generateToken';
+import Order from '../models/orderModel';
 
 const authUser = a(async (req, res, next) => {
   const { email, password } = req.body
 
-  let user: IUser = await User.findOne({ email })
+  let user: IUser | null = await User.findOne({ email })
   
   if(user && (await user.comparePassword(password))) {
     const {_id, name, email, isAdmin} = user
@@ -19,7 +20,7 @@ const authUser = a(async (req, res, next) => {
 })
 
 const getUserProfile = a(async (req, res, next) => {
-  const user = (req as any).user
+  const user: IUser = (req as any).user
   if(user) {
     res.send(user)
   } else {
@@ -30,7 +31,7 @@ const getUserProfile = a(async (req, res, next) => {
 const registerUser = a(async (req, res, next) => {
   const { name, email, password } = req.body
 
-  const userExist: IUser = await User.findOne({email})
+  const userExist: IUser | null = await User.findOne({email})
 
   if(userExist) {
     throw new HttpException(400, 'User already exists')

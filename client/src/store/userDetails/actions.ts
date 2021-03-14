@@ -1,6 +1,5 @@
 import axios from "axios";
 import { userDetails } from "../../services/userDetails";
-
 //types
 import { Dispatch } from "react";
 import { IRootState } from "..";

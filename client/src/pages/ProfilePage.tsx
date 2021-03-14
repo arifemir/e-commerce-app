@@ -30,28 +30,28 @@ const ProfilePage = (props: Props) => {
 
   const dispatch = useDispatch()
   const { user, updateSuccess } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
-  const { user: userDetail, loading, error } = useSelector<IRootState, IUserDetailsState>(state => state.userDetails)
+  const { userDetails, loading, error } = useSelector<IRootState, IUserDetailsState>(state => state.userDetails)
 
   useEffect(() => {
     if(!user) {
       history.push('/login')
     } else {
-      if(!userDetail?.name) {
+      if(!userDetails) {
         dispatch(getUserDetails('profile'))
       } else {
         setName(user.name)
         setEmail(user.email)
       }
     }
-  }, [history, userDetail, dispatch, user])
+  }, [history, userDetails, dispatch, user])
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if(password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      if(userDetail) {
-        dispatch(updateUser({_id: userDetail._id, name, email, password}))
+      if(user) {
+        dispatch(updateUser({_id: user._id, name, email, password}))
       }
     }
   }

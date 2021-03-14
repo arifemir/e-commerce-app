@@ -23,3 +23,7 @@ export interface IUser {
   isAdmin?: boolean;
   token?: string;
 }
+
+export interface IUserDetails extends IUser {
+  
+}

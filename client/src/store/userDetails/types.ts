@@ -1,4 +1,4 @@
-import { IUser } from "../../@types";
+import { IUserDetails } from "../../@types";
 
 //action types
 export const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST'
@@ -7,7 +7,7 @@ export const USER_DETAILS_FAIL = 'USER_DETAILS_FAIL'
 
 //state
 export interface IUserDetailsState {
-  user: IUser | null,
+  userDetails: IUserDetails | null,
   loading: boolean,
   error: any
 }
@@ -20,7 +20,7 @@ interface IUserDetailsRequestAction {
 
 interface IUserDetailsRequestSuccessAction {
   type: typeof USER_DETAILS_SUCCESS,
-  payload: IUser
+  payload: IUserDetails
 }
 
 interface IUserDetailsRequestFailedAction {
