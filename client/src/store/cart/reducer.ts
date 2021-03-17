@@ -1,4 +1,4 @@
-import {CART_ADD_ITEM, CART_REMOVE_ITEM, ICartActionTypes, ICartState} from "./types";
+import {CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActionTypes, ICartState} from "./types";
 
 
 const initialState: ICartState = {
@@ -21,6 +21,11 @@ const cartReducer = (state = initialState, action: ICartActionTypes) => {
       return {
         ...state,
         cartItems: state.cartItems.filter(item => item._id !== action.payload)
+      }
+    case GET_STORED_CART:
+      return {
+        ...state,
+        cartItems: action.payload
       }
     default:
       return state

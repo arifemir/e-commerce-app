@@ -1,4 +1,4 @@
-import {IUserActionTypes, IUserState, USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_LOGOUT, USER_UPDATE} from "./types";
+import {GET_STORED_USER_DATA, IUserActionTypes, IUserState, USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_LOGOUT, USER_UPDATE} from "./types";
 
 const initialState: IUserState = {
   user: null,
@@ -41,6 +41,11 @@ const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes
         error: false,
         loading: false,
         updateSuccess: true
+      }
+    case GET_STORED_USER_DATA:
+      return {
+        ...state,
+        user: action.payload
       }
     default:
       return state

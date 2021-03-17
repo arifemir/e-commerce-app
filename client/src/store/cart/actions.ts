@@ -1,9 +1,10 @@
 import {getProduct} from "../../services/product";
 
 //types
-import {CART_ADD_ITEM, CART_REMOVE_ITEM, ICartActionTypes} from "./types";
+import {CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActionTypes} from "./types";
 import {Dispatch} from "react";
 import {IRootState} from "../index";
+import { ICartItem } from "../../@types";
 
 const addToCart = (id: string, quantity: number) => async (dispatch: Dispatch<ICartActionTypes>, getState: () => IRootState) => {
   const data = await getProduct(id)
@@ -28,7 +29,17 @@ const removeToCart = (id: string) => async (dispatch: Dispatch<ICartActionTypes>
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 }
 
+const getStoredCartData = () => async (dispatch: Dispatch<ICartActionTypes>) => {
+  const storedCartItems = localStorage.getItem('cartItems')
+
+  if(storedCartItems === null) return
+
+  const cartItems: ICartItem[] = await JSON.parse(storedCartItems)
+  dispatch({type: GET_STORED_CART, payload: cartItems})
+}
+
 export {
   addToCart,
   removeToCart,
+  getStoredCartData,
 }

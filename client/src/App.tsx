@@ -1,7 +1,11 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
-
+//redux
+import { useDispatch } from 'react-redux'
+import { getStoredUserData } from './store/userAuthAndChange/actions'
+import { getStoredCartData } from './store/cart/actions'
 //components
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -13,7 +17,16 @@ import RegisterPage from './pages/RegisterPage'
 import OrdersPage from './pages/OrdersPage'
 import UserUpdatePage from './pages/UserUpdatePage'
 
-const App: React.FC = () => {
+
+const App = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getStoredUserData())
+    dispatch(getStoredCartData())
+  }, [])
+
   return (
     <Router>
       <Header />

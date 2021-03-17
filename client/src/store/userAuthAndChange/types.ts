@@ -6,6 +6,7 @@ export const USER_LOGIN_REGISTER_SUCCESS = 'USER_LOGIN_REGISTER_SUCCESS'
 export const USER_CHANGE_FAIL = 'USER_LOGIN_REGISTER_FAIL'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const USER_UPDATE = 'USER_UPDATE'
+export const GET_STORED_USER_DATA = 'GET_STORED_USER_DATA'
 
 //state
 export interface IUserState {
@@ -40,4 +41,9 @@ interface IUserUpdateRequestSuccessAction {
   payload: IUser
 }
 
-export type IUserActionTypes = IUserChangeRequestAction | IUserLoginRegisterRequestSuccessAction | IUserChangeRequestFailedAction | IUserLogout | IUserUpdateRequestSuccessAction
+interface IGetStoredUserDataAction {
+  type: typeof GET_STORED_USER_DATA,
+  payload: IUser | null
+}
+
+export type IUserActionTypes = IUserChangeRequestAction | IUserLoginRegisterRequestSuccessAction | IUserChangeRequestFailedAction | IUserLogout | IUserUpdateRequestSuccessAction | IGetStoredUserDataAction
