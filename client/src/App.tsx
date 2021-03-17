@@ -16,6 +16,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import OrdersPage from './pages/OrdersPage';
 import UserUpdatePage from './pages/UserUpdatePage';
+import ShippingPage from './pages/ShippingPage';
+import AddShippingAddressPage from './pages/AddShippingAddressPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ const App = () => {
           <Route path='/changemyinformation' exact component={UserUpdatePage} />
           <Route path='/product/:id' exact component={ProductPage} />
           <Route path='/cart/:id?' exact component={CartPage} />
+          <Route path='/shipping' exact component={ShippingPage} />
+          <Route path='/addshippingaddress' exact component={AddShippingAddressPage} />
         </Container>
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-export interface IProduct {
+interface IProduct {
   _id: string;
   name: string;
   image: string;
@@ -11,11 +11,11 @@ export interface IProduct {
   numReviews: number;
 }
 
-export interface ICartItem extends IProduct {
+interface ICartItem extends IProduct {
   quantity: number;
 }
 
-export interface IUser {
+interface IUser {
   _id: string;
   name: string;
   email: string;
@@ -24,4 +24,19 @@ export interface IUser {
   token?: string;
 }
 
-export interface IUserDetail extends IUser {}
+interface IUserDetail extends IUser {}
+
+interface IShippingLocation {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
+export type {
+  IProduct,
+  ICartItem,
+  IUser,
+  IUserDetail,
+  IShippingLocation
+}

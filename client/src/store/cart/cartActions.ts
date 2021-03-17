@@ -1,10 +1,10 @@
 import { getProduct } from '../../services/productService';
 
 //types
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActions } from './cartTypes';
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_ADD_SHIPPING_ADDRESS, GET_STORED_CART, ICartActions, ICartState } from './cartTypes';
 import { Dispatch } from 'redux';
 import { IRootState } from '../store';
-import { ICartItem } from '../../@types';
+import { ICartItem, IShippingLocation } from '../../@types';
 
 const addToCart = (id: string, quantity: number) => async (dispatch: Dispatch<ICartActions>, getState: () => IRootState) => {
   const data = await getProduct(id);
@@ -31,11 +31,33 @@ const removeToCart = (id: string) => async (dispatch: Dispatch<ICartActions>, ge
 
 const getStoredCartData = () => async (dispatch: Dispatch<ICartActions>) => {
   const storedCartItems = localStorage.getItem('cartItems');
+  const storedShipping = localStorage.getItem('shipping');
 
-  if (storedCartItems === null) return;
+  let cartItems: ICartItem[] = [];
+  let shippingLocations: IShippingLocation[] = [];
 
-  const cartItems: ICartItem[] = await JSON.parse(storedCartItems);
-  dispatch({ type: GET_STORED_CART, payload: cartItems });
+  if (storedCartItems) {
+    cartItems = await JSON.parse(storedCartItems);
+  };
+
+  if(storedShipping) {
+    shippingLocations = await JSON.parse(storedShipping);
+  };
+
+  const payload: ICartState = {
+    cartItems, shippingLocations
+  }
+
+  dispatch({ type: GET_STORED_CART, payload });
 };
 
-export { addToCart, removeToCart, getStoredCartData };
+const addShippingAddress = (data: IShippingLocation) => async (dispatch: Dispatch<ICartActions>, getState: () => IRootState) => {
+  dispatch({
+    type: CART_ADD_SHIPPING_ADDRESS,
+    payload: data,
+  })
+
+  localStorage.setItem('shipping', JSON.stringify(getState().cart.shippingLocations))
+}
+
+export { addToCart, removeToCart, getStoredCartData, addShippingAddress };
