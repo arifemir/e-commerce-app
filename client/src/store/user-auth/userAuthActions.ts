@@ -1,10 +1,18 @@
-import axios from 'axios';
-import { login, register, userUpdate } from "../../services/userAuthService";
+import axios from 'axios'
+import { login, register, userUpdate } from '../../services/userAuthService'
 //types
-import { Dispatch } from "redux";
-import { USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, IUserActions, USER_LOGOUT, USER_UPDATE, GET_STORED_USER_DATA } from "./userAuthTypes";
-import { IUser } from '../../@types';
-import { IRootState } from '../store';
+import { Dispatch } from 'redux'
+import {
+  USER_CHANGE_FAIL,
+  USER_CHANGE_REQUEST,
+  USER_LOGIN_REGISTER_SUCCESS,
+  IUserActions,
+  USER_LOGOUT,
+  USER_UPDATE,
+  GET_STORED_USER_DATA,
+} from './userAuthTypes'
+import { IUser } from '../../@types'
+import { IRootState } from '../store'
 
 const userLogin = (email: string, password: string) => async (dispatch: Dispatch<IUserActions>) => {
   try {
@@ -36,7 +44,9 @@ const userLogout = () => {
 const updateUser = (newUserData: IUser) => async (dispatch: Dispatch<IUserActions>, getState: () => IRootState) => {
   try {
     dispatch({ type: USER_CHANGE_REQUEST })
-    const { userAuth: { user } } = getState()
+    const {
+      userAuth: { user },
+    } = getState()
     axios.defaults.headers.Authorization = `Bearer ${user?.token}`
     const data = await userUpdate(newUserData)
     dispatch({ type: USER_UPDATE, payload: data })
@@ -55,10 +65,4 @@ const getStoredUserData = () => async (dispatch: Dispatch<IUserActions>) => {
   dispatch({ type: GET_STORED_USER_DATA, payload: user })
 }
 
-export {
-  userLogin,
-  userRegister,
-  userLogout,
-  updateUser,
-  getStoredUserData,
-}
+export { userLogin, userRegister, userLogout, updateUser, getStoredUserData }

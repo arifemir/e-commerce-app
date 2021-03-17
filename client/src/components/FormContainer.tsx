@@ -6,7 +6,7 @@ interface Props {
 }
 
 const FormContainer = (props: Props) => {
-  const {children} = props
+  const { children } = props
 
   return (
     <Container>

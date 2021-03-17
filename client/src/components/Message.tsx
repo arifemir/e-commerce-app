@@ -1,22 +1,18 @@
-import * as React from 'react';
-import { Alert } from 'react-bootstrap';
+import * as React from 'react'
+import { Alert } from 'react-bootstrap'
 
 interface Props {
-  variant: string,
+  variant: string
   children: React.ReactNode
 }
 
 const Message = (props: Props) => {
-  const { variant, children } = props;
-  return (
-    <Alert variant={variant}>
-      {children}
-    </Alert>
-  );
+  const { variant, children } = props
+  return <Alert variant={variant}>{children}</Alert>
 }
 
 Message.defaultProps = {
-  variant: 'info'
+  variant: 'info',
 }
 
 export default Message

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-const {Brand,Toggle, Collapse} = Navbar
+const { Brand, Toggle, Collapse } = Navbar
 //redux
 import { useDispatch, useSelector } from 'react-redux'
 //types
@@ -28,7 +28,9 @@ const Header: React.FC = () => {
           <Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
-                <Nav.Link><i className='fas fa-shopping-cart'/> Cart</Nav.Link>
+                <Nav.Link>
+                  <i className='fas fa-shopping-cart' /> Cart
+                </Nav.Link>
               </LinkContainer>
               {user ? (
                 <NavDropdown title={user.name} id='username'>
@@ -38,16 +40,13 @@ const Header: React.FC = () => {
                   <LinkContainer to='/changemyinformation'>
                     <NavDropdown.Item>Change user info</NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={onLogout}>
-                    Logout
-                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={onLogout}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
-              <LinkContainer to='/login'>
-                <Nav.Link>Sign In</Nav.Link>
-              </LinkContainer>
-              )
-              }
+                <LinkContainer to='/login'>
+                  <Nav.Link>Sign In</Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Collapse>
         </Container>

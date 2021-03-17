@@ -17,9 +17,9 @@ interface params {
 }
 
 interface Props {
-  match: match<params>;
-  history: History;
-  location: Location;
+  match: match<params>
+  history: History
+  location: Location
 }
 
 const CartPage = (props: Props) => {
@@ -32,7 +32,7 @@ const CartPage = (props: Props) => {
   const quantity: number = location.search ? Number(location.search.split('=')[1]) : 1
 
   useEffect(() => {
-    if(productId) {
+    if (productId) {
       dispatch(addToCart(productId, quantity))
     }
   }, [dispatch, productId, quantity])
@@ -46,10 +46,15 @@ const CartPage = (props: Props) => {
       <Col md={8}>
         <h1 className='mb-3'>Shopping cart</h1>
         {cartItems.length === 0 ? (
-          <Message>Your cart is empty <Link to='/'><b>Go Back</b></Link></Message>
+          <Message>
+            Your cart is empty{' '}
+            <Link to='/'>
+              <b>Go Back</b>
+            </Link>
+          </Message>
         ) : (
           <ListGroup variant='flush'>
-            {cartItems.map((item) => (
+            {cartItems.map(item => (
               <ListGroup.Item key={item._id}>
                 <Row className='align-items-center'>
                   <Col md={2}>
@@ -58,56 +63,36 @@ const CartPage = (props: Props) => {
                   <Col md={3}>
                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                   </Col>
+                  <Col md={2}>${item.price}</Col>
                   <Col md={2}>
-                    ${item.price}
+                    <Form.Control as='select' value={item.quantity} onChange={e => dispatch(addToCart(item._id, Number(e.target.value)))}>
+                      {Array.from(Array(item.countInStock), (x, i) => i + 1).map(x => (
+                        <option key={x} value={x}>
+                          {x}
+                        </option>
+                      ))}
+                    </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Form.Control
-                       as='select'
-                       value={item.quantity}
-                       onChange={
-                         (e) => dispatch(addToCart(item._id, Number(e.target.value)))
-                       }
-                     >
-                       {Array.from(Array(item.countInStock), (x, i) => i + 1).map(x => (
-                         <option key={x} value={x}>
-                           {x}
-                         </option>
-                       ))
-                       }
-                     </Form.Control>
-                  </Col>
-                  <Col md={2}>
-                    <Button
-                      type='button'
-                      variant='light'
-                      onClick={() => dispatch(removeToCart(item._id))}
-                    >
-                      <i className='fas fa-trash'/>
+                    <Button type='button' variant='light' onClick={() => dispatch(removeToCart(item._id))}>
+                      <i className='fas fa-trash' />
                     </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
-            ))
-            }
+            ))}
           </ListGroup>
-        )
-        }
+        )}
       </Col>
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) items</h2>
-              ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0).toFixed(2)}
+              <h2>Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) items</h2>$
+              {cartItems.reduce((a, c) => a + c.quantity * c.price, 0).toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button
-                type='button'
-                className='btn-block'
-                disabled={cartItems.length === 0}
-                onClick={onCheckout}
-              >
+              <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={onCheckout}>
                 Proceed to Checkout
               </Button>
             </ListGroup.Item>
@@ -115,7 +100,7 @@ const CartPage = (props: Props) => {
         </Card>
       </Col>
     </Row>
-  );
+  )
 }
 
 export default CartPage

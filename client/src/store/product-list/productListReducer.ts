@@ -1,9 +1,9 @@
-import {IProductListActions, IProductListState, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS} from "./productListTypes";
+import { IProductListActions, IProductListState, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from './productListTypes'
 
 const initialState: IProductListState = {
   products: [],
   loading: false,
-  error: false
+  error: false,
 }
 
 const productListReducer = (state = initialState, action: IProductListActions) => {
@@ -11,23 +11,23 @@ const productListReducer = (state = initialState, action: IProductListActions) =
     case PRODUCT_LIST_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       }
     case PRODUCT_LIST_SUCCESS:
       return {
         ...state,
         loading: false,
-        products: action.payload
+        products: action.payload,
       }
     case PRODUCT_LIST_FAIL:
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload,
       }
     default:
       return state
   }
 }
 
-export default productListReducer;
+export default productListReducer

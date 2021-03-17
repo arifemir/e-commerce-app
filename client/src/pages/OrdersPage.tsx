@@ -18,29 +18,29 @@ interface Props {
 }
 
 const OrdersPage = (props: Props) => {
-  const {history} = props
+  const { history } = props
 
   const dispatch = useDispatch()
   const { user } = useSelector<IRootState, IUserState>(state => state.userAuth)
   const { userDetail, loading, error } = useSelector<IRootState, IUserDetailState>(state => state.userDetail)
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       history.push('/login')
     } else {
-      if(!userDetail) {
+      if (!userDetail) {
         dispatch(getUserDetail('profile'))
       }
     }
   }, [history, userDetail, dispatch, user])
 
-  if (loading) return (<Loader/>)
+  if (loading) return <Loader />
 
-  if (error) return (<Message variant='danger'>{error.message}</Message>)
+  if (error) return <Message variant='danger'>{error.message}</Message>
 
   return (
     <Row className='justify-content-center'>
-      <Col sm={12} md={9} xl={6} >
+      <Col sm={12} md={9} xl={6}>
         <h2>My Orders</h2>
       </Col>
     </Row>

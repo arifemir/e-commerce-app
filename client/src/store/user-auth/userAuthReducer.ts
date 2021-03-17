@@ -1,10 +1,19 @@
-import {GET_STORED_USER_DATA, IUserActions, IUserState, USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_LOGOUT, USER_UPDATE} from "./userAuthTypes";
+import {
+  GET_STORED_USER_DATA,
+  IUserActions,
+  IUserState,
+  USER_CHANGE_FAIL,
+  USER_CHANGE_REQUEST,
+  USER_LOGIN_REGISTER_SUCCESS,
+  USER_LOGOUT,
+  USER_UPDATE,
+} from './userAuthTypes'
 
 const initialState: IUserState = {
   user: null,
   loading: false,
   error: false,
-  updateSuccess: false
+  updateSuccess: false,
 }
 
 const userAuthReducer = (state = initialState, action: IUserActions) => {
@@ -19,13 +28,13 @@ const userAuthReducer = (state = initialState, action: IUserActions) => {
       return {
         ...state,
         loading: false,
-        user: action.payload
+        user: action.payload,
       }
     case USER_CHANGE_FAIL:
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload,
       }
     case USER_LOGOUT:
       return {
@@ -40,12 +49,12 @@ const userAuthReducer = (state = initialState, action: IUserActions) => {
         user: action.payload,
         error: false,
         loading: false,
-        updateSuccess: true
+        updateSuccess: true,
       }
     case GET_STORED_USER_DATA:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       }
     default:
       return state

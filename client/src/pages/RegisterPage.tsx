@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 //redux
@@ -15,8 +15,8 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 
 interface Props {
-  location: Location;
-  history: History;
+  location: Location
+  history: History
 }
 
 const RegisterPage = (props: Props) => {
@@ -34,14 +34,14 @@ const RegisterPage = (props: Props) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       history.push(String(redirect))
     }
   }, [history, user, redirect])
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if(password !== confirmPassword) {
+    if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
       dispatch(userRegister(name, email, password))
@@ -55,32 +55,17 @@ const RegisterPage = (props: Props) => {
       {error && <Message variant='danger'>{error.message}</Message>}
       {loading && <Loader />}
       <Form onSubmit={onSubmit}>
-      <Form.Group controlId='name'>
+        <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
-          <Form.Control
-            value={name}
-            type='text'
-            placeholder='Enter name'
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Form.Control value={name} type='text' placeholder='Enter name' onChange={e => setName(e.target.value)} />
         </Form.Group>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            value={email}
-            type='email'
-            placeholder='Enter email'
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <Form.Control value={email} type='email' placeholder='Enter email' onChange={e => setEmail(e.target.value)} />
         </Form.Group>
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            value={password}
-            type='password'
-            placeholder='Enter password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Form.Control value={password} type='password' placeholder='Enter password' onChange={e => setPassword(e.target.value)} />
         </Form.Group>
         <Form.Group controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
@@ -88,7 +73,7 @@ const RegisterPage = (props: Props) => {
             value={confirmPassword}
             type='password'
             placeholder='Confirm password'
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
           />
         </Form.Group>
         <Button type='submit' variant='primary'>

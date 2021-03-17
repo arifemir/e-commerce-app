@@ -1,4 +1,4 @@
-import {ICartItem} from "../../@types";
+import { ICartItem } from '../../@types'
 
 // action types
 const CART_ADD_ITEM = 'CART_ADD_ITEM'
@@ -12,29 +12,22 @@ interface ICartState {
 
 // actions
 interface IAddToCart {
-  type: typeof CART_ADD_ITEM,
+  type: typeof CART_ADD_ITEM
   payload: ICartItem
 }
 
 interface IRemoveToCart {
-  type: typeof CART_REMOVE_ITEM,
+  type: typeof CART_REMOVE_ITEM
   payload: string
 }
 
 interface IGetStoredCart {
-  type: typeof GET_STORED_CART,
+  type: typeof GET_STORED_CART
   payload: ICartItem[]
 }
 
 type ICartActions = IAddToCart | IRemoveToCart | IGetStoredCart
 
-export {
-  CART_ADD_ITEM,
-  CART_REMOVE_ITEM,
-  GET_STORED_CART
-}
+export { CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART }
 
-export type {
-  ICartState,
-  ICartActions
-}
+export type { ICartState, ICartActions }

@@ -1,4 +1,4 @@
-import { IUserDetailState, IUserDetailActions, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS, USER_DETAIL_FAIL } from "./userDetailTypes"
+import { IUserDetailState, IUserDetailActions, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS, USER_DETAIL_FAIL } from './userDetailTypes'
 
 const initialState: IUserDetailState = {
   userDetail: null,
@@ -22,7 +22,7 @@ const userDetailReducer = (state = initialState, action: IUserDetailActions) => 
     case USER_DETAIL_FAIL:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
       }
     default:
       return state

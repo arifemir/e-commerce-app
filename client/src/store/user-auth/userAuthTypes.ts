@@ -1,4 +1,4 @@
-import { IUser } from "../../@types";
+import { IUser } from '../../@types'
 
 //action types
 const USER_CHANGE_REQUEST = 'USER_LOGIN_REGISTER_REQUEST'
@@ -10,25 +10,25 @@ const GET_STORED_USER_DATA = 'GET_STORED_USER_DATA'
 
 //state
 interface IUserState {
-  user: IUser | null,
-  loading: boolean,
-  error: any,
-  updateSuccess: boolean,
+  user: IUser | null
+  loading: boolean
+  error: any
+  updateSuccess: boolean
 }
 
 //actions
 interface IUserChangeRequestAction {
-  type: typeof USER_CHANGE_REQUEST,
+  type: typeof USER_CHANGE_REQUEST
   payload?: boolean
 }
 
 interface IUserLoginRegisterRequestSuccessAction {
-  type: typeof USER_LOGIN_REGISTER_SUCCESS,
+  type: typeof USER_LOGIN_REGISTER_SUCCESS
   payload: IUser
 }
 
 interface IUserChangeRequestFailedAction {
-  type: typeof USER_CHANGE_FAIL,
+  type: typeof USER_CHANGE_FAIL
   payload: any
 }
 
@@ -37,27 +37,23 @@ interface IUserLogout {
 }
 
 interface IUserUpdateRequestSuccessAction {
-  type: typeof USER_UPDATE,
+  type: typeof USER_UPDATE
   payload: IUser
 }
 
 interface IGetStoredUserDataAction {
-  type: typeof GET_STORED_USER_DATA,
+  type: typeof GET_STORED_USER_DATA
   payload: IUser | null
 }
 
-type IUserActions = IUserChangeRequestAction | IUserLoginRegisterRequestSuccessAction | IUserChangeRequestFailedAction | IUserLogout | IUserUpdateRequestSuccessAction | IGetStoredUserDataAction
+type IUserActions =
+  | IUserChangeRequestAction
+  | IUserLoginRegisterRequestSuccessAction
+  | IUserChangeRequestFailedAction
+  | IUserLogout
+  | IUserUpdateRequestSuccessAction
+  | IGetStoredUserDataAction
 
-export {
-  USER_CHANGE_REQUEST,
-  USER_LOGIN_REGISTER_SUCCESS,
-  USER_CHANGE_FAIL,
-  USER_LOGOUT,
-  USER_UPDATE,
-  GET_STORED_USER_DATA,
-}
+export { USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_CHANGE_FAIL, USER_LOGOUT, USER_UPDATE, GET_STORED_USER_DATA }
 
-export type {
-  IUserState,
-  IUserActions,
-}
+export type { IUserState, IUserActions }

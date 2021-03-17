@@ -15,8 +15,8 @@ import { IRootState } from '../store/store'
 import { IUserState } from '../store/user-auth/userAuthTypes'
 
 interface Props {
-  location: Location;
-  history: History;
+  location: Location
+  history: History
 }
 
 const LoginPage = (props: Props) => {
@@ -31,7 +31,7 @@ const LoginPage = (props: Props) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       history.push(String(redirect))
     }
   }, [history, user, redirect])
@@ -49,21 +49,11 @@ const LoginPage = (props: Props) => {
       <Form onSubmit={onSubmit}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            value={email}
-            type='email'
-            placeholder='Enter email'
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <Form.Control value={email} type='email' placeholder='Enter email' onChange={e => setEmail(e.target.value)} />
         </Form.Group>
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            value={password}
-            type='password'
-            placeholder='Enter password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Form.Control value={password} type='password' placeholder='Enter password' onChange={e => setPassword(e.target.value)} />
         </Form.Group>
         <Button type='submit' variant='primary'>
           Sign In
