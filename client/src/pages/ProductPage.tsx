@@ -1,14 +1,14 @@
 import * as React from 'react'
-import {useEffect, useState} from "react"
-import {Button, Card, Col, Form, Image, ListGroup, Row} from 'react-bootstrap'
+import { useEffect, useState } from "react"
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap'
 import { Link, match } from 'react-router-dom'
 //redux
-import {productDetails} from "../store/productDetails/actions"
-import {useDispatch, useSelector} from "react-redux"
+import { productDetail } from "../store/product-detail/productDetailActions"
+import { useDispatch, useSelector } from "react-redux"
 //types
 import { History } from 'history'
-import {IRootState} from "../store"
-import {IProductDetailsState} from "../store/productDetails/types"
+import { IRootState } from "../store/store"
+import { IProductDetailState } from "../store/product-detail/productDetailTypes"
 //components
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -29,10 +29,10 @@ const ProductPage = (props: Props) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch()
-  const {loading, error, product} = useSelector<IRootState, IProductDetailsState>(state => state.productDetails)
+  const {loading, error, product} = useSelector<IRootState, IProductDetailState>(state => state.productDetail)
 
   useEffect(() => {
-    dispatch(productDetails(match.params.id))
+    dispatch(productDetail(match.params.id))
   },[dispatch, match])
 
   const onAddToCart = () => {

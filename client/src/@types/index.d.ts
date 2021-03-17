@@ -24,6 +24,6 @@ export interface IUser {
   token?: string;
 }
 
-export interface IUserDetails extends IUser {
-  
+export interface IUserDetail extends IUser {
+
 }

@@ -3,11 +3,11 @@ import {useState, useEffect} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from '../store/userAuthAndChange/actions'
+import { updateUser } from '../store/user-auth/userAuthActions'
 //types
 import { History } from 'history'
-import { IRootState } from '../store'
-import { IUserState } from '../store/userAuthAndChange/types'
+import { IRootState } from '../store/store'
+import { IUserState } from '../store/user-auth/userAuthTypes'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
@@ -26,7 +26,7 @@ const UserUpdatePage = (props: Props) => {
   const [message, setMessage] = useState<string | null>(null)
 
   const dispatch = useDispatch()
-  const { user, updateSuccess, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
+  const { user, updateSuccess, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
 
   useEffect(() => {
     if(!user) {
@@ -60,7 +60,7 @@ const UserUpdatePage = (props: Props) => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               value={name}
-              type='text' 
+              type='text'
               placeholder='Enter name'
               onChange={(e) => setName(e.target.value)}
             />
@@ -69,7 +69,7 @@ const UserUpdatePage = (props: Props) => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               value={email}
-              type='email' 
+              type='email'
               placeholder='Enter email'
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -78,7 +78,7 @@ const UserUpdatePage = (props: Props) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               value={password}
-              type='password' 
+              type='password'
               placeholder='Enter password'
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -87,7 +87,7 @@ const UserUpdatePage = (props: Props) => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               value={confirmPassword}
-              type='password' 
+              type='password'
               placeholder='Confirm password'
               onChange={(e) => setConfirmPassword(e.target.value)}
             />

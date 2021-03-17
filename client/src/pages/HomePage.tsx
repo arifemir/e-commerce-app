@@ -1,12 +1,12 @@
 import * as React from 'react'
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { Col, Row } from 'react-bootstrap';
 //redux
-import {listProducts} from "../store/productList/actions";
-import {useDispatch, useSelector} from "react-redux";
+import { listProducts } from "../store/product-list/productListActions";
+import { useDispatch, useSelector } from "react-redux";
 //types
-import {IProductListState} from "../store/productList/types";
-import {IRootState} from "../store";
+import { IProductListState } from "../store/product-list/productListTypes";
+import { IRootState } from "../store/store";
 //components
 import Product from '../components/Product';
 import Loader from "../components/Loader";

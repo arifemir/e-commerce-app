@@ -3,11 +3,11 @@ import { useEffect } from 'react'
 import { Col, ListGroup, Row, Image, Form, Button, Card } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, removeToCart } from '../store/cart/actions'
+import { addToCart, removeToCart } from '../store/cart/cartActions'
 //types
 import { Link, match } from 'react-router-dom'
-import { ICartState } from '../store/cart/types'
-import { IRootState } from '../store'
+import { ICartState } from '../store/cart/cartTypes'
+import { IRootState } from '../store/store'
 import { History, Location } from 'history'
 //components
 import Message from '../components/Message'
@@ -23,7 +23,7 @@ interface Props {
 }
 
 const CartPage = (props: Props) => {
-  const {match, history, location} = props
+  const { match, history, location } = props
 
   const dispatch = useDispatch()
   const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart)
@@ -78,7 +78,7 @@ const CartPage = (props: Props) => {
                      </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button 
+                    <Button
                       type='button'
                       variant='light'
                       onClick={() => dispatch(removeToCart(item._id))}
@@ -103,8 +103,8 @@ const CartPage = (props: Props) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
-                type='button' 
-                className='btn-block' 
+                type='button'
+                className='btn-block'
                 disabled={cartItems.length === 0}
                 onClick={onCheckout}
               >

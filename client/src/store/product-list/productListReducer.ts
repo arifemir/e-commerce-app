@@ -1,4 +1,4 @@
-import {IProductsActionTypes, IProductListState, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS} from "./types";
+import {IProductListActions, IProductListState, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS} from "./productListTypes";
 
 const initialState: IProductListState = {
   products: [],
@@ -6,7 +6,7 @@ const initialState: IProductListState = {
   error: false
 }
 
-const productListReducer = (state = initialState, action: IProductsActionTypes) => {
+const productListReducer = (state = initialState, action: IProductListActions) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return {

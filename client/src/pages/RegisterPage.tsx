@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { userRegister } from '../store/userAuthAndChange/actions'
+import { userRegister } from '../store/user-auth/userAuthActions'
 //types
 import { Location, History } from 'history'
-import { IRootState } from '../store'
-import { IUserState } from '../store/userAuthAndChange/types'
+import { IRootState } from '../store/store'
+import { IUserState } from '../store/user-auth/userAuthTypes'
 //components
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -29,7 +29,7 @@ const RegisterPage = (props: Props) => {
   const [message, setMessage] = useState<string | null>(null)
 
   const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -59,7 +59,7 @@ const RegisterPage = (props: Props) => {
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
-            type='text' 
+            type='text'
             placeholder='Enter name'
             onChange={(e) => setName(e.target.value)}
           />
@@ -68,7 +68,7 @@ const RegisterPage = (props: Props) => {
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             value={email}
-            type='email' 
+            type='email'
             placeholder='Enter email'
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -77,7 +77,7 @@ const RegisterPage = (props: Props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
-            type='password' 
+            type='password'
             placeholder='Enter password'
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -86,7 +86,7 @@ const RegisterPage = (props: Props) => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             value={confirmPassword}
-            type='password' 
+            type='password'
             placeholder='Confirm password'
             onChange={(e) => setConfirmPassword(e.target.value)}
           />

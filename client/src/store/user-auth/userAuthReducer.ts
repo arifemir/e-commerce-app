@@ -1,4 +1,4 @@
-import {GET_STORED_USER_DATA, IUserActionTypes, IUserState, USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_LOGOUT, USER_UPDATE} from "./types";
+import {GET_STORED_USER_DATA, IUserActions, IUserState, USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_LOGOUT, USER_UPDATE} from "./userAuthTypes";
 
 const initialState: IUserState = {
   user: null,
@@ -7,7 +7,7 @@ const initialState: IUserState = {
   updateSuccess: false
 }
 
-const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes) => {
+const userAuthReducer = (state = initialState, action: IUserActions) => {
   switch (action.type) {
     case USER_CHANGE_REQUEST:
       return {
@@ -52,4 +52,4 @@ const UserLoginRegisterReducer = (state = initialState, action: IUserActionTypes
   }
 }
 
-export default UserLoginRegisterReducer;
+export default userAuthReducer

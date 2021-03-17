@@ -1,12 +1,12 @@
 import {ICartItem} from "../../@types";
 
 // action types
-export const CART_ADD_ITEM = 'CART_ADD_ITEM'
-export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
-export const GET_STORED_CART = 'GET_STORED_CART'
+const CART_ADD_ITEM = 'CART_ADD_ITEM'
+const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
+const GET_STORED_CART = 'GET_STORED_CART'
 
 // state
-export interface ICartState {
+interface ICartState {
   cartItems: ICartItem[]
 }
 
@@ -26,4 +26,15 @@ interface IGetStoredCart {
   payload: ICartItem[]
 }
 
-export type ICartActionTypes = IAddToCart | IRemoveToCart | IGetStoredCart
+type ICartActions = IAddToCart | IRemoveToCart | IGetStoredCart
+
+export {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  GET_STORED_CART
+}
+
+export type {
+  ICartState,
+  ICartActions
+}

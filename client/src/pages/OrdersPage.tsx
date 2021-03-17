@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserDetails } from '../store/userDetails/actions'
+import { getUserDetail } from '../store/user-detail/userDetailActions'
 //types
 import { History } from 'history'
-import { IRootState } from '../store'
-import { IUserState } from '../store/userAuthAndChange/types'
-import { IUserDetailsState } from '../store/userDetails/types'
+import { IRootState } from '../store/store'
+import { IUserState } from '../store/user-auth/userAuthTypes'
+import { IUserDetailState } from '../store/user-detail/userDetailTypes'
 //components
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -21,18 +21,18 @@ const OrdersPage = (props: Props) => {
   const {history} = props
 
   const dispatch = useDispatch()
-  const { user } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
-  const { userDetails, loading, error } = useSelector<IRootState, IUserDetailsState>(state => state.userDetails)
+  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth)
+  const { userDetail, loading, error } = useSelector<IRootState, IUserDetailState>(state => state.userDetail)
 
   useEffect(() => {
     if(!user) {
       history.push('/login')
     } else {
-      if(!userDetails) {
-        dispatch(getUserDetails('profile'))
+      if(!userDetail) {
+        dispatch(getUserDetail('profile'))
       }
     }
-  }, [history, userDetails, dispatch, user])
+  }, [history, userDetail, dispatch, user])
 
   if (loading) return (<Loader/>)
 

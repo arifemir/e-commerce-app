@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Message = (props: Props) => {
-  const {variant, children} = props;
+  const { variant, children } = props;
   return (
     <Alert variant={variant}>
       {children}

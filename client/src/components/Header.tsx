@@ -1,17 +1,17 @@
 import * as React from 'react'
-import {LinkContainer} from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 const {Brand,Toggle, Collapse} = Navbar
 //redux
 import { useDispatch, useSelector } from 'react-redux'
 //types
-import { IRootState } from '../store'
-import { IUserState } from '../store/userAuthAndChange/types'
-import { userLogout } from '../store/userAuthAndChange/actions'
+import { IRootState } from '../store/store'
+import { IUserState } from '../store/user-auth/userAuthTypes'
+import { userLogout } from '../store/user-auth/userAuthActions'
 
 const Header: React.FC = () => {
   const dispatch = useDispatch()
-  const { user } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
+  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth)
 
   const onLogout = () => {
     dispatch(userLogout())

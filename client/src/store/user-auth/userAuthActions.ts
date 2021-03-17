@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { login, register } from "../../services/userLoginRegister";
-import { userUpdate } from '../../services/userUpdate';
+import { login, register, userUpdate } from "../../services/userAuthService";
 //types
-import { Dispatch } from "react";
-import { USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, IUserActionTypes, USER_LOGOUT, USER_UPDATE, GET_STORED_USER_DATA } from "./types";
+import { Dispatch } from "redux";
+import { USER_CHANGE_FAIL, USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, IUserActions, USER_LOGOUT, USER_UPDATE, GET_STORED_USER_DATA } from "./userAuthTypes";
 import { IUser } from '../../@types';
-import { IRootState } from '..';
+import { IRootState } from '../store';
 
-const userLogin = (email: string, password: string) => async (dispatch: Dispatch<IUserActionTypes>) => {
+const userLogin = (email: string, password: string) => async (dispatch: Dispatch<IUserActions>) => {
   try {
     dispatch({ type: USER_CHANGE_REQUEST })
     const data = await login(email, password)
@@ -18,7 +17,7 @@ const userLogin = (email: string, password: string) => async (dispatch: Dispatch
   }
 }
 
-const userRegister = (name: string, email: string, password: string) => async (dispatch: Dispatch<IUserActionTypes>) => {
+const userRegister = (name: string, email: string, password: string) => async (dispatch: Dispatch<IUserActions>) => {
   try {
     dispatch({ type: USER_CHANGE_REQUEST })
     const data = await register(name, email, password)
@@ -34,10 +33,10 @@ const userLogout = () => {
   return { type: USER_LOGOUT }
 }
 
-const updateUser = (newUserData: IUser) => async (dispatch: Dispatch<IUserActionTypes>, getState: () => IRootState) => {
+const updateUser = (newUserData: IUser) => async (dispatch: Dispatch<IUserActions>, getState: () => IRootState) => {
   try {
     dispatch({ type: USER_CHANGE_REQUEST })
-    const { userAuthAndChange: { user } } = getState()
+    const { userAuth: { user } } = getState()
     axios.defaults.headers.Authorization = `Bearer ${user?.token}`
     const data = await userUpdate(newUserData)
     dispatch({ type: USER_UPDATE, payload: data })
@@ -47,7 +46,7 @@ const updateUser = (newUserData: IUser) => async (dispatch: Dispatch<IUserAction
   }
 }
 
-const getStoredUserData = () => async (dispatch: Dispatch<IUserActionTypes>) => {
+const getStoredUserData = () => async (dispatch: Dispatch<IUserActions>) => {
   const storedUser = localStorage.getItem('user')
 
   if (storedUser === null) return

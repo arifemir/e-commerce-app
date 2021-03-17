@@ -4,8 +4,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 //redux
 import { useDispatch } from 'react-redux'
-import { getStoredUserData } from './store/userAuthAndChange/actions'
-import { getStoredCartData } from './store/cart/actions'
+import { getStoredUserData } from './store/user-auth/userAuthActions'
+import { getStoredCartData } from './store/cart/cartActions'
 //components
 import Footer from './components/Footer'
 import Header from './components/Header'

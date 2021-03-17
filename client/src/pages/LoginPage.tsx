@@ -1,17 +1,18 @@
 import * as React from 'react'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
+//redux
 import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from '../store/user-auth/userAuthActions'
+//components
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { userLogin } from '../store/userAuthAndChange/actions'
 import FormContainer from '../components/FormContainer'
-
 //types
 import { Location, History } from 'history'
-import { IRootState } from '../store'
-import { IUserState } from '../store/userAuthAndChange/types'
+import { IRootState } from '../store/store'
+import { IUserState } from '../store/user-auth/userAuthTypes'
 
 interface Props {
   location: Location;
@@ -23,9 +24,9 @@ const LoginPage = (props: Props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  
+
   const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuthAndChange)
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -50,7 +51,7 @@ const LoginPage = (props: Props) => {
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             value={email}
-            type='email' 
+            type='email'
             placeholder='Enter email'
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -59,7 +60,7 @@ const LoginPage = (props: Props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
-            type='password' 
+            type='password'
             placeholder='Enter password'
             onChange={(e) => setPassword(e.target.value)}
           />

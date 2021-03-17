@@ -1,11 +1,10 @@
-import {CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActionTypes, ICartState} from "./types";
-
+import {CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActions, ICartState} from "./cartTypes";
 
 const initialState: ICartState = {
   cartItems: []
 }
 
-const cartReducer = (state = initialState, action: ICartActionTypes) => {
+const cartReducer = (state = initialState, action: ICartActions) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload
