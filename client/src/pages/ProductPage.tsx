@@ -1,47 +1,47 @@
-import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap'
-import { Link, match } from 'react-router-dom'
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
+import { Link, match } from 'react-router-dom';
 //redux
-import { productDetail } from '../store/product-detail/productDetailActions'
-import { useDispatch, useSelector } from 'react-redux'
+import { productDetail } from '../store/product-detail/productDetailActions';
+import { useDispatch, useSelector } from 'react-redux';
 //types
-import { History } from 'history'
-import { IRootState } from '../store/store'
-import { IProductDetailState } from '../store/product-detail/productDetailTypes'
+import { History } from 'history';
+import { IRootState } from '../store/store';
+import { IProductDetailState } from '../store/product-detail/productDetailTypes';
 //components
-import Loader from '../components/Loader'
-import Message from '../components/Message'
-import Rating from '../components/Rating'
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Rating from '../components/Rating';
 
 interface params {
-  id: string
+  id: string;
 }
 
 interface Props {
-  match: match<params>
-  history: History
+  match: match<params>;
+  history: History;
 }
 
 const ProductPage = (props: Props) => {
-  const { match, history } = props
+  const { match, history } = props;
 
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
 
-  const dispatch = useDispatch()
-  const { loading, error, product } = useSelector<IRootState, IProductDetailState>(state => state.productDetail)
+  const dispatch = useDispatch();
+  const { loading, error, product } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
 
   useEffect(() => {
-    dispatch(productDetail(match.params.id))
-  }, [dispatch, match])
+    dispatch(productDetail(match.params.id));
+  }, [dispatch, match]);
 
   const onAddToCart = () => {
-    history.push(`/cart/${match.params.id}?qty=${quantity}`)
-  }
+    history.push(`/cart/${match.params.id}?qty=${quantity}`);
+  };
 
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
 
-  if (error) return <Message variant='danger'>{error.message}</Message>
+  if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return (
     product && (
@@ -112,7 +112,7 @@ const ProductPage = (props: Props) => {
         </Row>
       </>
     )
-  )
-}
+  );
+};
 
-export default ProductPage
+export default ProductPage;

@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import * as React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const FormContainer = (props: Props) => {
-  const { children } = props
+  const { children } = props;
 
   return (
     <Container>
@@ -16,7 +16,7 @@ const FormContainer = (props: Props) => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default FormContainer
+export default FormContainer;

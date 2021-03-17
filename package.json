@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "format": "prettier --single-quote --trailing-comma all --no-semi --tab-width 2 --trailing-comma all --print-width 140 --jsx-single-quote --arrow-parens avoid -write ./server/src ./client/src",
+    "format": "prettier --config ./.prettierrc.js  --write ./server/src ./client/src",
     "watch": "tsc -w",
     "compile": "tsc",
     "server": "nodemon server/dist/index.js",

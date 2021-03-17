@@ -1,28 +1,28 @@
-import * as React from 'react'
-import { useEffect } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import * as React from 'react';
+import { useEffect } from 'react';
+import { Col, Row } from 'react-bootstrap';
 //redux
-import { listProducts } from '../store/product-list/productListActions'
-import { useDispatch, useSelector } from 'react-redux'
+import { listProducts } from '../store/product-list/productListActions';
+import { useDispatch, useSelector } from 'react-redux';
 //types
-import { IProductListState } from '../store/product-list/productListTypes'
-import { IRootState } from '../store/store'
+import { IProductListState } from '../store/product-list/productListTypes';
+import { IRootState } from '../store/store';
 //components
-import Product from '../components/Product'
-import Loader from '../components/Loader'
-import Message from '../components/Message'
+import Product from '../components/Product';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomePage = () => {
-  const dispatch = useDispatch()
-  const { loading, error, products } = useSelector<IRootState, IProductListState>(state => state.productList)
+  const dispatch = useDispatch();
+  const { loading, error, products } = useSelector<IRootState, IProductListState>(state => state.productList);
 
   useEffect(() => {
-    dispatch(listProducts())
-  }, [dispatch])
+    dispatch(listProducts());
+  }, [dispatch]);
 
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
 
-  if (error) return <Message variant='danger'>{error.message}</Message>
+  if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return (
     <>
@@ -36,7 +36,7 @@ const HomePage = () => {
           ))}
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

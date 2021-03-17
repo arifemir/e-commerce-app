@@ -1,45 +1,45 @@
-import * as React from 'react'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 //redux
-import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../store/user-auth/userAuthActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../store/user-auth/userAuthActions';
 //components
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import FormContainer from '../components/FormContainer'
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import FormContainer from '../components/FormContainer';
 //types
-import { Location, History } from 'history'
-import { IRootState } from '../store/store'
-import { IUserState } from '../store/user-auth/userAuthTypes'
+import { Location, History } from 'history';
+import { IRootState } from '../store/store';
+import { IUserState } from '../store/user-auth/userAuthTypes';
 
 interface Props {
-  location: Location
-  history: History
+  location: Location;
+  history: History;
 }
 
 const LoginPage = (props: Props) => {
-  const { location, history } = props
+  const { location, history } = props;
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
     if (user) {
-      history.push(String(redirect))
+      history.push(String(redirect));
     }
-  }, [history, user, redirect])
+  }, [history, user, redirect]);
 
   const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    dispatch(userLogin(email, password))
-  }
+    e.preventDefault();
+    dispatch(userLogin(email, password));
+  };
 
   return (
     <FormContainer>
@@ -66,7 +66,7 @@ const LoginPage = (props: Props) => {
         </Col>
       </Row>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

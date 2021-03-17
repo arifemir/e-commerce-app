@@ -1,45 +1,45 @@
-import * as React from 'react'
-import { useEffect } from 'react'
-import { Col, ListGroup, Row, Image, Form, Button, Card } from 'react-bootstrap'
+import * as React from 'react';
+import { useEffect } from 'react';
+import { Col, ListGroup, Row, Image, Form, Button, Card } from 'react-bootstrap';
 //redux
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, removeToCart } from '../store/cart/cartActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeToCart } from '../store/cart/cartActions';
 //types
-import { Link, match } from 'react-router-dom'
-import { ICartState } from '../store/cart/cartTypes'
-import { IRootState } from '../store/store'
-import { History, Location } from 'history'
+import { Link, match } from 'react-router-dom';
+import { ICartState } from '../store/cart/cartTypes';
+import { IRootState } from '../store/store';
+import { History, Location } from 'history';
 //components
-import Message from '../components/Message'
+import Message from '../components/Message';
 
 interface params {
-  id: string
+  id: string;
 }
 
 interface Props {
-  match: match<params>
-  history: History
-  location: Location
+  match: match<params>;
+  history: History;
+  location: Location;
 }
 
 const CartPage = (props: Props) => {
-  const { match, history, location } = props
+  const { match, history, location } = props;
 
-  const dispatch = useDispatch()
-  const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart)
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart);
 
-  const productId = match.params.id
-  const quantity: number = location.search ? Number(location.search.split('=')[1]) : 1
+  const productId = match.params.id;
+  const quantity: number = location.search ? Number(location.search.split('=')[1]) : 1;
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, quantity))
+      dispatch(addToCart(productId, quantity));
     }
-  }, [dispatch, productId, quantity])
+  }, [dispatch, productId, quantity]);
 
   const onCheckout = () => {
-    history.push(`/login?redirect=shipping`)
-  }
+    history.push(`/login?redirect=shipping`);
+  };
 
   return (
     <Row>
@@ -100,7 +100,7 @@ const CartPage = (props: Props) => {
         </Card>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default CartPage
+export default CartPage;

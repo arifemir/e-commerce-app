@@ -1,4 +1,4 @@
-import { IProduct } from '../models/productModel'
+import { IProduct } from '../models/productModel';
 
 const products = [
   {
@@ -85,6 +85,6 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
-]
+];
 
-export default products
+export default products;

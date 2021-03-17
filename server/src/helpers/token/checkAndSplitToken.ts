@@ -1,9 +1,5 @@
+const isBearerHave = (x: string): boolean => x.startsWith('Bearer');
 
-const isBearerHave = (x: string): boolean => x.startsWith('Bearer')
+const splitTokenFromBearer = (x: string): string => x.split(' ')[1];
 
-const splitTokenFromBearer = (x: string): string => x.split(' ')[1]
-
-export {
-  isBearerHave,
-  splitTokenFromBearer
-}
+export { isBearerHave, splitTokenFromBearer };

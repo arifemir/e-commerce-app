@@ -1,18 +1,18 @@
-import * as React from 'react'
-import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-const { Img, Body, Title, Text } = Card
+import * as React from 'react';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+const { Img, Body, Title, Text } = Card;
 //types
-import * as types from '../@types'
+import * as types from '../@types';
 //components
-import Rating from './Rating'
+import Rating from './Rating';
 
 interface Props {
-  product: types.IProduct
+  product: types.IProduct;
 }
 
 const Product = (props: Props) => {
-  const { product } = props
+  const { product } = props;
 
   return (
     <Card className='my-3 p-3 rounded'>
@@ -33,7 +33,7 @@ const Product = (props: Props) => {
         <Text as='h3'>${product.price}</Text>
       </Body>
     </Card>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

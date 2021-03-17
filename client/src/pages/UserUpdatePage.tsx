@@ -1,52 +1,52 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 //redux
-import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from '../store/user-auth/userAuthActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../store/user-auth/userAuthActions';
 //types
-import { History } from 'history'
-import { IRootState } from '../store/store'
-import { IUserState } from '../store/user-auth/userAuthTypes'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import FormContainer from '../components/FormContainer'
+import { History } from 'history';
+import { IRootState } from '../store/store';
+import { IUserState } from '../store/user-auth/userAuthTypes';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import FormContainer from '../components/FormContainer';
 
 interface Props {
-  history: History
+  history: History;
 }
 
 const UserUpdatePage = (props: Props) => {
-  const { history } = props
+  const { history } = props;
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState<string | null>(null)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState<string | null>(null);
 
-  const dispatch = useDispatch()
-  const { user, updateSuccess, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
+  const dispatch = useDispatch();
+  const { user, updateSuccess, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth);
 
   useEffect(() => {
     if (!user) {
-      history.push('/login')
+      history.push('/login');
     } else {
-      setName(user.name)
-      setEmail(user.email)
+      setName(user.name);
+      setEmail(user.email);
     }
-  }, [history, dispatch, user])
+  }, [history, dispatch, user]);
 
   const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match')
+      setMessage('Passwords do not match');
     } else {
       if (user) {
-        dispatch(updateUser({ _id: user._id, name, email, password }))
+        dispatch(updateUser({ _id: user._id, name, email, password }));
       }
     }
-  }
+  };
 
   return (
     <FormContainer>
@@ -82,7 +82,7 @@ const UserUpdatePage = (props: Props) => {
         </Button>
       </Form>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default UserUpdatePage
+export default UserUpdatePage;

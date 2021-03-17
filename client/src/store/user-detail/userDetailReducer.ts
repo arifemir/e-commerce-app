@@ -1,10 +1,10 @@
-import { IUserDetailState, IUserDetailActions, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS, USER_DETAIL_FAIL } from './userDetailTypes'
+import { IUserDetailState, IUserDetailActions, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS, USER_DETAIL_FAIL } from './userDetailTypes';
 
 const initialState: IUserDetailState = {
   userDetail: null,
   loading: false,
   error: false,
-}
+};
 
 const userDetailReducer = (state = initialState, action: IUserDetailActions) => {
   switch (action.type) {
@@ -12,21 +12,21 @@ const userDetailReducer = (state = initialState, action: IUserDetailActions) => 
       return {
         ...state,
         loading: true,
-      }
+      };
     case USER_DETAIL_SUCCESS:
       return {
         ...state,
         userDetail: action.payload,
         loading: false,
-      }
+      };
     case USER_DETAIL_FAIL:
       return {
         ...state,
         error: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default userDetailReducer
+export default userDetailReducer;

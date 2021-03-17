@@ -1,29 +1,29 @@
-import * as React from 'react'
-import { useEffect } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
+import * as React from 'react';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 //redux
-import { useDispatch } from 'react-redux'
-import { getStoredUserData } from './store/user-auth/userAuthActions'
-import { getStoredCartData } from './store/cart/cartActions'
+import { useDispatch } from 'react-redux';
+import { getStoredUserData } from './store/user-auth/userAuthActions';
+import { getStoredCartData } from './store/cart/cartActions';
 //components
-import Footer from './components/Footer'
-import Header from './components/Header'
-import HomePage from './pages/HomePage'
-import ProductPage from './pages/ProductPage'
-import CartPage from './pages/CartPage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import OrdersPage from './pages/OrdersPage'
-import UserUpdatePage from './pages/UserUpdatePage'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import OrdersPage from './pages/OrdersPage';
+import UserUpdatePage from './pages/UserUpdatePage';
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getStoredUserData())
-    dispatch(getStoredCartData())
-  }, [])
+    dispatch(getStoredUserData());
+    dispatch(getStoredCartData());
+  }, []);
 
   return (
     <Router>
@@ -41,7 +41,7 @@ const App = () => {
       </main>
       <Footer />
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;

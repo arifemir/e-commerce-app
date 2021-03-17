@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  rating: number
-  numReviews?: number
-  color?: string
+  rating: number;
+  numReviews?: number;
+  color?: string;
 }
 
 const Rating = (props: Props) => {
-  const { rating, numReviews, color } = props
+  const { rating, numReviews, color } = props;
 
   return (
     <div className='rating'>
@@ -28,11 +28,11 @@ const Rating = (props: Props) => {
       </span>
       <span className='ml-1'>{numReviews && numReviews + ' reviews'}</span>
     </div>
-  )
-}
+  );
+};
 
 Rating.defaultProps = {
   color: '#9ACD32',
-}
+};
 
-export default Rating
+export default Rating;

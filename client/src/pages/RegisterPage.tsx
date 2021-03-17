@@ -1,52 +1,52 @@
-import * as React from 'react'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 //redux
-import { useDispatch, useSelector } from 'react-redux'
-import { userRegister } from '../store/user-auth/userAuthActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { userRegister } from '../store/user-auth/userAuthActions';
 //types
-import { Location, History } from 'history'
-import { IRootState } from '../store/store'
-import { IUserState } from '../store/user-auth/userAuthTypes'
+import { Location, History } from 'history';
+import { IRootState } from '../store/store';
+import { IUserState } from '../store/user-auth/userAuthTypes';
 //components
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import FormContainer from '../components/FormContainer'
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import FormContainer from '../components/FormContainer';
 
 interface Props {
-  location: Location
-  history: History
+  location: Location;
+  history: History;
 }
 
 const RegisterPage = (props: Props) => {
-  const { location, history } = props
+  const { location, history } = props;
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState<string | null>(null)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState<string | null>(null);
 
-  const dispatch = useDispatch()
-  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth)
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
     if (user) {
-      history.push(String(redirect))
+      history.push(String(redirect));
     }
-  }, [history, user, redirect])
+  }, [history, user, redirect]);
 
   const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match')
+      setMessage('Passwords do not match');
     } else {
-      dispatch(userRegister(name, email, password))
+      dispatch(userRegister(name, email, password));
     }
-  }
+  };
 
   return (
     <FormContainer>
@@ -87,7 +87,7 @@ const RegisterPage = (props: Props) => {
         </Col>
       </Row>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;
