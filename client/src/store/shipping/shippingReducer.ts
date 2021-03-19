@@ -3,6 +3,7 @@ import { ADD_SHIPPING_LOCATION, LOADING_SHIPPING_LOCATION, IShippingActions, ISh
 const initialState: IShippingState = {
   shippingLocations: [],
   selectedShippingLocation: null,
+  selectedShippingLocationIndex: 0,
   loading: false,
   error: null
 }
@@ -41,7 +42,8 @@ const shippingReducer = (state = initialState, action: IShippingActions) => {
     case SELECT_SHIPPING_LOCATION:
       return {
         ...state,
-        selectedShippingLocation: state.shippingLocations.find(shippingLocation => shippingLocation._id === action.payload)
+        selectedShippingLocation: state.shippingLocations.find(shippingLocation => shippingLocation._id === action.payload),
+        selectedShippingLocationIndex: state.shippingLocations.findIndex(shippingLocation => shippingLocation._id === action.payload)
       }
     default:
       return state;

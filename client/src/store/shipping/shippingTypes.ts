@@ -2,8 +2,8 @@ import { IShippingLocation } from "../../@types";
 
 //action types
 const GET_SHIPPING_LOCATION = 'GET_SHIPPING_LOCATION';
-const LOADING_SHIPPING_LOCATION = 'CRUD_LOADING_FOR_SHIPPING_LOCATION';
-const ERROR_SHIPPING_LOCATION = 'CRUD_ERROR_FOR_SHIPPING_LOCATION';
+const LOADING_SHIPPING_LOCATION = 'LOADING_SHIPPING_LOCATION';
+const ERROR_SHIPPING_LOCATION = 'ERROR_SHIPPING_LOCATION';
 const ADD_SHIPPING_LOCATION = 'ADD_SHIPPING_LOCATION';
 const DELETE_SHIPPING_LOCATION = 'DELETE_SHIPPING_LOCATION';
 const UPDATE_SHIPPING_LOCATION = 'UPDATE_SHIPPING_LOCATION';
@@ -14,6 +14,7 @@ const SELECT_SHIPPING_LOCATION = 'SELECT_SHIPPING_LOCATION';
 interface IShippingState {
   shippingLocations: IShippingLocation[];
   selectedShippingLocation: IShippingLocation | null;
+  selectedShippingLocationIndex: number;
   loading: boolean;
   error: any;
 }

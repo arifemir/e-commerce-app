@@ -1,28 +1,33 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Button, Col, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllShippingLocation } from '../store/shipping/shippingActions';
 //types
-import { History } from 'history';
 import { IRootState } from '../store/store';
+import { IShippingState } from '../store/shipping/shippingTypes';
 //components
-import FormContainer from '../components/common/FormContainer';
 import ShippingLocations from '../components/shipping/ShippingLocations';
 import AddShippingAddress from '../components/shipping/AddShippingLocation';
-import { LinkContainer } from 'react-router-bootstrap';
-import { IShippingState } from '../store/shipping/shippingTypes';
+import Loader from '../components/common/Loader';
+import Message from '../components/common/Message';
 
-interface Props {
-  history: History
-}
+const ShippingPage = () => {
 
-const ShippingPage = (props: Props) => {
-  const {history} = props;
+  const dispatch = useDispatch();
+  const { loading, error, shippingLocations } = useSelector<IRootState, IShippingState>(state => state.shipping);
 
-  const { shippingLocations } = useSelector<IRootState, IShippingState>(state => state.shipping)
+  useEffect(() => {
+    dispatch(getAllShippingLocation())
+  }, [])
 
-  if(shippingLocations.length === 0) return <AddShippingAddress />
+  if (loading) return <Loader />
+
+  if (error) return <Message variant='danger'>{error.message}</Message>;
+
+  if (shippingLocations.length === 0) return <AddShippingAddress />
 
   return (
     <Row>
