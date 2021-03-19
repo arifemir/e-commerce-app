@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 //types
 import { History } from 'history';
 import { IRootState } from '../store/store';
-import { ICartState } from '../store/cart/cartTypes';
 //components
-import FormContainer from '../components/FormContainer';
-import ShippingLocations from '../components/ShippingLocations';
-import AddShippingAddress from '../components/AddShippingAddress';
+import FormContainer from '../components/common/FormContainer';
+import ShippingLocations from '../components/shipping/ShippingLocations';
+import AddShippingAddress from '../components/shipping/AddShippingLocation';
 import { LinkContainer } from 'react-router-bootstrap';
+import { IShippingState } from '../store/shipping/shippingTypes';
 
 interface Props {
   history: History
@@ -20,7 +20,7 @@ interface Props {
 const ShippingPage = (props: Props) => {
   const {history} = props;
 
-  const { shippingLocations } = useSelector<IRootState, ICartState>(state => state.cart)
+  const { shippingLocations } = useSelector<IRootState, IShippingState>(state => state.shipping)
 
   if(shippingLocations.length === 0) return <AddShippingAddress />
 

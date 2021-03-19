@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import { getStoredUserData } from './store/user-auth/userAuthActions';
 import { getStoredCartData } from './store/cart/cartActions';
 //components
-import Footer from './components/Footer';
-import Header from './components/Header';
+import Footer from './components/common/Footer';
+import Header from './components/common/Header';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';

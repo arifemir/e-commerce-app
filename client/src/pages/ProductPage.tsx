@@ -10,9 +10,9 @@ import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IProductDetailState } from '../store/product-detail/productDetailTypes';
 //components
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import Rating from '../components/Rating';
+import Loader from '../components/common/Loader';
+import Message from '../components/common/Message';
+import Rating from '../components/product/Rating';
 
 interface params {
   id: string;

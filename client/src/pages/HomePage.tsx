@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IProductListState } from '../store/product-list/productListTypes';
 import { IRootState } from '../store/store';
 //components
-import Product from '../components/Product';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import Product from '../components/product/Product';
+import Loader from '../components/common/Loader';
+import Message from '../components/common/Message';
 
 const HomePage = () => {
   const dispatch = useDispatch();

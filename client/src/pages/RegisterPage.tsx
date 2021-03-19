@@ -10,9 +10,9 @@ import { Location, History } from 'history';
 import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
 //components
-import Message from '../components/Message';
-import Loader from '../components/Loader';
-import FormContainer from '../components/FormContainer';
+import Message from '../components/common/Message';
+import Loader from '../components/common/Loader';
+import FormContainer from '../components/common/FormContainer';
 
 interface Props {
   location: Location;

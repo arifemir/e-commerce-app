@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { addShippingAddress } from '../store/cart/cartActions';
+import { addShippingLocation } from '../../store/shipping/shippingActions';
 //types
 import { History, Location } from 'history';
-import { IRootState } from '../store/store';
-import { ICartState } from '../store/cart/cartTypes';
+import { IRootState } from '../../store/store';
+import { ICartState } from '../../store/cart/cartTypes';
 //components
-import FormContainer from '../components/FormContainer';
+import FormContainer from '../common/FormContainer';
 
 interface Props {
   history?: History;
@@ -30,7 +30,7 @@ const AddShippingAddress = (props: Props) => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(addShippingAddress({address, city, postalCode, country}));
+    dispatch(addShippingLocation({address, city, postalCode, country}));
     if(history && redirect) {
       history.push(redirect);
     }

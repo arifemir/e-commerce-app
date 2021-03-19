@@ -27,6 +27,7 @@ interface IUser {
 interface IUserDetail extends IUser {}
 
 interface IShippingLocation {
+  _id?: string;
   address: string;
   city: string;
   postalCode: string;

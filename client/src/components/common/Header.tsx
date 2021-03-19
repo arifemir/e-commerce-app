@@ -5,9 +5,9 @@ const { Brand, Toggle, Collapse } = Navbar;
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 //types
-import { IRootState } from '../store/store';
-import { IUserState } from '../store/user-auth/userAuthTypes';
-import { userLogout } from '../store/user-auth/userAuthActions';
+import { IRootState } from '../../store/store';
+import { IUserState } from '../../store/user-auth/userAuthTypes';
+import { userLogout } from '../../store/user-auth/userAuthActions';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();

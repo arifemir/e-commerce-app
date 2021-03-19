@@ -1,5 +1,5 @@
 import React from 'react'
-import AddShippingAddress from '../components/AddShippingAddress'
+import AddShippingAddress from '../components/shipping/AddShippingLocation'
 
 interface Props {
   

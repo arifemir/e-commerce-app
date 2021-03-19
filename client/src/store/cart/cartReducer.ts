@@ -1,8 +1,7 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_ADD_SHIPPING_ADDRESS, GET_STORED_CART, ICartActions, ICartState } from './cartTypes';
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActions, ICartState } from './cartTypes';
 
 const initialState: ICartState = {
   cartItems: [],
-  shippingLocations: [], 
 };
 
 const cartReducer = (state = initialState, action: ICartActions) => {
@@ -27,13 +26,7 @@ const cartReducer = (state = initialState, action: ICartActions) => {
     case GET_STORED_CART:
       return {
         ...state,
-        cartItems: action.payload.cartItems,
-        shippingLocations: action.payload.shippingLocations,
-      };
-    case CART_ADD_SHIPPING_ADDRESS:
-      return {
-        ...state,
-        shippingLocations: [...state.shippingLocations, action.payload]
+        cartItems: action.payload,
       };
     default:
       return state;

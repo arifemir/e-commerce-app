@@ -10,8 +10,8 @@ import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
 import { IUserDetailState } from '../store/user-detail/userDetailTypes';
 //components
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Message from '../components/common/Message';
+import Loader from '../components/common/Loader';
 
 interface Props {
   history: History;
