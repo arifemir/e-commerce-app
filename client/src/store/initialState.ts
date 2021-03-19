@@ -1,17 +1,26 @@
 import { ICartItem, IUser } from '../@types';
-import { getLocalStorage, getLocalStorageForUser } from '../helpers/giveLocalStorage';
+import { loadStorage } from './helper/loadStorage';
+import { setAuthHeader } from './helper/setAuthHeader';
 
+let cartItems: ICartItem[] = [];
+let user: IUser | null = null;
+
+cartItems = loadStorage<ICartItem[]>('cartItems') || [];
+user = loadStorage<IUser>('user')
+
+setAuthHeader(user?.token);
 
 const initialState = {
   cart: {
-    cartItems: getLocalStorage('cartItems')
+    cartItems
   },
   userAuth: {
-    user: getLocalStorageForUser('user'),
+    user,
     loading: false,
     error: null,
     updateSuccess: false,
   }
 };
+
 
 export default initialState;
