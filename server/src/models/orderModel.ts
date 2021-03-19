@@ -1,11 +1,12 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IProduct } from './productModel';
+import { IShippingLocation } from './shippingLocationModel';
 import { IUser } from './userModel';
 
 export interface IOrder extends Document {
   user: IUser['_id'];
   orderItems: [{ name: string }, { qty: number }, { image: string }, { price: number }, { product: IProduct['_id'] }];
-  shippingAddress: { address: string; city: string; postalCode: string; country: string };
+  shippingAddress: IShippingLocation['_id'];
   paymentMethod: string;
   paymentResult: { id: string; status: string; update_time: string; email_address: string };
   taxPrice: number;
@@ -37,11 +38,10 @@ const orderSchema: Schema = new Schema(
         },
       },
     ],
-    shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+    shippingLocation: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'ShippingLocation',
     },
     paymentMethod: {
       type: String,
