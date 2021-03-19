@@ -1,12 +1,11 @@
 import { IUser } from '../../@types';
 
 //action types
-const USER_CHANGE_REQUEST = 'USER_LOGIN_REGISTER_REQUEST';
+const USER_CHANGE_REQUEST = 'USER_CHANGE_REQUEST';
 const USER_LOGIN_REGISTER_SUCCESS = 'USER_LOGIN_REGISTER_SUCCESS';
-const USER_CHANGE_FAIL = 'USER_LOGIN_REGISTER_FAIL';
+const USER_CHANGE_FAIL = 'USER_CHANGE_FAIL';
 const USER_LOGOUT = 'USER_LOGOUT';
 const USER_UPDATE = 'USER_UPDATE';
-const GET_STORED_USER_DATA = 'GET_STORED_USER_DATA';
 
 //state
 interface IUserState {
@@ -41,19 +40,12 @@ interface IUserUpdateRequestSuccessAction {
   payload: IUser;
 }
 
-interface IGetStoredUserDataAction {
-  type: typeof GET_STORED_USER_DATA;
-  payload: IUser | null;
-}
-
 type IUserActions =
   | IUserChangeRequestAction
   | IUserLoginRegisterRequestSuccessAction
   | IUserChangeRequestFailedAction
   | IUserLogout
-  | IUserUpdateRequestSuccessAction
-  | IGetStoredUserDataAction;
-
-export { USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_CHANGE_FAIL, USER_LOGOUT, USER_UPDATE, GET_STORED_USER_DATA };
+  | IUserUpdateRequestSuccessAction;
+export { USER_CHANGE_REQUEST, USER_LOGIN_REGISTER_SUCCESS, USER_CHANGE_FAIL, USER_LOGOUT, USER_UPDATE };
 
 export type { IUserState, IUserActions };

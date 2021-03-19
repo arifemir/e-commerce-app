@@ -3,10 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootReducer } from './combineReducers';
+import { saveAuthToken } from './reduxMiddlewares';
+import initialState from './initialState';
 export type IRootState = ReturnType<typeof rootReducer>;
 
-const initialState = {};
 
-const middlewares = [thunk];
+const middlewares = [thunk, saveAuthToken];
 
-export default createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)));
+const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)))
+
+export default store;

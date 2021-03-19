@@ -29,13 +29,11 @@ const UserUpdatePage = (props: Props) => {
   const { user, updateSuccess, loading, error } = useSelector<IRootState, IUserState>(state => state.userAuth);
 
   useEffect(() => {
-    if (!user) {
-      history.push('/login');
-    } else {
+    if (user) {
       setName(user.name);
       setEmail(user.email);
     }
-  }, [history, dispatch, user]);
+  }, [dispatch, user]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

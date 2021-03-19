@@ -1,7 +1,7 @@
 import { getProduct } from '../../services/productService';
 
 //types
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, GET_STORED_CART, ICartActions, ICartState } from './cartTypes';
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, ICartActions, ICartState } from './cartTypes';
 import { Dispatch } from 'redux';
 import { IRootState } from '../store';
 import { ICartItem, IShippingLocation } from '../../@types';
@@ -29,16 +29,4 @@ const removeToCart = (id: string) => async (dispatch: Dispatch<ICartActions>, ge
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 };
 
-const getStoredCartData = () => async (dispatch: Dispatch<ICartActions>) => {
-  const storedCartItems = localStorage.getItem('cartItems');
-
-  let cartItems: ICartItem[] = [];
-
-  if (storedCartItems) {
-    cartItems = await JSON.parse(storedCartItems);
-  };
-
-  dispatch({ type: GET_STORED_CART, payload: cartItems });
-};
-
-export { addToCart, removeToCart, getStoredCartData };
+export { addToCart, removeToCart };

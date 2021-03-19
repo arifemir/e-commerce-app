@@ -7,7 +7,6 @@ import { getUserDetail } from '../store/user-detail/userDetailActions';
 //types
 import { History } from 'history';
 import { IRootState } from '../store/store';
-import { IUserState } from '../store/user-auth/userAuthTypes';
 import { IUserDetailState } from '../store/user-detail/userDetailTypes';
 //components
 import Message from '../components/common/Message';
@@ -21,18 +20,13 @@ const OrdersPage = (props: Props) => {
   const { history } = props;
 
   const dispatch = useDispatch();
-  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth);
   const { userDetail, loading, error } = useSelector<IRootState, IUserDetailState>(state => state.userDetail);
 
   useEffect(() => {
-    if (!user) {
-      history.push('/login');
-    } else {
-      if (!userDetail) {
-        dispatch(getUserDetail('profile'));
-      }
+    if (!userDetail) {
+      dispatch(getUserDetail('profile'));
     }
-  }, [history, userDetail, dispatch, user]);
+  }, [history, userDetail, dispatch]);
 
   if (loading) return <Loader />;
 

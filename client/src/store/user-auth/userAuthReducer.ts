@@ -1,5 +1,4 @@
 import {
-  GET_STORED_USER_DATA,
   IUserActions,
   IUserState,
   USER_CHANGE_FAIL,
@@ -50,11 +49,6 @@ const userAuthReducer = (state = initialState, action: IUserActions) => {
         error: false,
         loading: false,
         updateSuccess: true,
-      };
-    case GET_STORED_USER_DATA:
-      return {
-        ...state,
-        user: action.payload,
       };
     default:
       return state;
