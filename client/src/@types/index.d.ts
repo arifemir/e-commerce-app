@@ -28,16 +28,11 @@ interface IUserDetail extends IUser {}
 
 interface IShippingLocation {
   _id?: string;
+  name: string;
   address: string;
   city: string;
   postalCode: string;
   country: string;
 }
 
-export type {
-  IProduct,
-  ICartItem,
-  IUser,
-  IUserDetail,
-  IShippingLocation
-}
+export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation };

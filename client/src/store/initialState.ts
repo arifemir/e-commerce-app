@@ -6,21 +6,20 @@ let cartItems: ICartItem[] = [];
 let user: IUser | null = null;
 
 cartItems = loadStorage<ICartItem[]>('cartItems') || [];
-user = loadStorage<IUser>('user')
+user = loadStorage<IUser>('user');
 
 setAuthHeader(user?.token);
 
 const initialState = {
   cart: {
-    cartItems
+    cartItems,
   },
   userAuth: {
     user,
     loading: false,
     error: null,
     updateSuccess: false,
-  }
+  },
 };
-
 
 export default initialState;

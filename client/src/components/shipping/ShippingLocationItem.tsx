@@ -1,19 +1,19 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Accordion, Card, Col, Row, Button } from 'react-bootstrap';
-import { IShippingLocation } from '../../@types'
+import { IShippingLocation } from '../../@types';
 
 interface Props extends IShippingLocation {
   index: number;
 }
 
 const ShippingLocationItem = (props: Props) => {
-  const { address, city, country, postalCode, index } = props;
+  const { name, address, city, country, postalCode, index } = props;
 
   return (
     <>
       <Card.Header>
-        <Accordion.Toggle as={Button} variant="link" eventKey={String(index)}>
-          {country}
+        <Accordion.Toggle as={Button} variant='link' eventKey={String(index)}>
+          {name}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={String(index)}>
           <Card.Body>
@@ -27,7 +27,7 @@ const ShippingLocationItem = (props: Props) => {
         </Accordion.Collapse>
       </Card.Header>
     </>
-  )
-}
+  );
+};
 
-export default ShippingLocationItem
+export default ShippingLocationItem;

@@ -6,7 +6,7 @@ const initialState: ICartState = {
 
 const cartReducer = (state = initialState, action: ICartActions) => {
   switch (action.type) {
-    case CART_ADD_ITEM: 
+    case CART_ADD_ITEM:
       const cartItem = action.payload;
       const existCartItem = state.cartItems.find(x => x._id === cartItem._id);
       return existCartItem

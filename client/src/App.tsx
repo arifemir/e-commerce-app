@@ -12,11 +12,10 @@ import RegisterPage from './pages/RegisterPage';
 import OrdersPage from './pages/OrdersPage';
 import UserUpdatePage from './pages/UserUpdatePage';
 import ShippingPage from './pages/ShippingPage';
-import AddShippingAddressPage from './pages/AddShippingAddressPage';
+import AddShippingLocationPage from './pages/AddShippingLocationPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 const App = () => {
-
   return (
     <Router>
       <Header />
@@ -30,7 +29,7 @@ const App = () => {
           <Route path='/product/:id' exact component={ProductPage} />
           <Route path='/cart/:id?' exact component={CartPage} />
           <ProtectedRoute path='/shipping' exact component={ShippingPage} />
-          <ProtectedRoute path='/addshippingaddress' exact component={AddShippingAddressPage} />
+          <ProtectedRoute path='/addshippinglocation' exact component={AddShippingLocationPage} />
         </Container>
       </main>
       <Footer />

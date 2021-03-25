@@ -7,9 +7,8 @@ import { saveAuthToken } from './reduxMiddlewares';
 import initialState from './initialState';
 export type IRootState = ReturnType<typeof rootReducer>;
 
-
 const middlewares = [thunk, saveAuthToken];
 
-const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)))
+const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)));
 
 export default store;

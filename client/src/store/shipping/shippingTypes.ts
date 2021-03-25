@@ -1,4 +1,4 @@
-import { IShippingLocation } from "../../@types";
+import { IShippingLocation } from '../../@types';
 
 //action types
 const GET_SHIPPING_LOCATION = 'GET_SHIPPING_LOCATION';
@@ -8,7 +8,6 @@ const ADD_SHIPPING_LOCATION = 'ADD_SHIPPING_LOCATION';
 const DELETE_SHIPPING_LOCATION = 'DELETE_SHIPPING_LOCATION';
 const UPDATE_SHIPPING_LOCATION = 'UPDATE_SHIPPING_LOCATION';
 const SELECT_SHIPPING_LOCATION = 'SELECT_SHIPPING_LOCATION';
-
 
 //state
 interface IShippingState {
@@ -54,7 +53,14 @@ interface ISelectShippingLocationAction {
   payload: string;
 }
 
-type IShippingActions = IGetShippingLocationAction | ILoadingShippingLocationAction | IErrorShippingLocationAction | IAddShippingLocationAction | IDeleteShippingLocationAction | IUpdateShippingLocationAction | ISelectShippingLocationAction;
+type IShippingActions =
+  | IGetShippingLocationAction
+  | ILoadingShippingLocationAction
+  | IErrorShippingLocationAction
+  | IAddShippingLocationAction
+  | IDeleteShippingLocationAction
+  | IUpdateShippingLocationAction
+  | ISelectShippingLocationAction;
 
 export {
   LOADING_SHIPPING_LOCATION,
@@ -64,9 +70,6 @@ export {
   UPDATE_SHIPPING_LOCATION,
   SELECT_SHIPPING_LOCATION,
   GET_SHIPPING_LOCATION,
-}
+};
 
-export type {
-  IShippingState,
-  IShippingActions,
-}
+export type { IShippingState, IShippingActions };

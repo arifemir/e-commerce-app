@@ -1,53 +1,56 @@
 import axios from 'axios';
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 import { IShippingLocation } from '../../@types';
 import { getShippingLocations, postShippingLocation, putShippingLocation, removeShippingLocation } from '../../services/shippingService';
 import { IRootState } from '../store';
-import { ADD_SHIPPING_LOCATION, DELETE_SHIPPING_LOCATION, ERROR_SHIPPING_LOCATION, GET_SHIPPING_LOCATION, IShippingActions, LOADING_SHIPPING_LOCATION, UPDATE_SHIPPING_LOCATION } from './shippingTypes';
+import {
+  ADD_SHIPPING_LOCATION,
+  DELETE_SHIPPING_LOCATION,
+  ERROR_SHIPPING_LOCATION,
+  GET_SHIPPING_LOCATION,
+  IShippingActions,
+  LOADING_SHIPPING_LOCATION,
+  UPDATE_SHIPPING_LOCATION,
+} from './shippingTypes';
 
 const getAllShippingLocation = () => async (dispatch: Dispatch<IShippingActions>) => {
   try {
-    dispatch({type: LOADING_SHIPPING_LOCATION})
+    dispatch({ type: LOADING_SHIPPING_LOCATION });
     const data: IShippingLocation[] = await getShippingLocations();
-    dispatch({type: GET_SHIPPING_LOCATION, payload: data})
+    dispatch({ type: GET_SHIPPING_LOCATION, payload: data });
   } catch (e) {
     dispatch({ type: ERROR_SHIPPING_LOCATION, payload: e.response ? e.response.data : e });
   }
-}
+};
 
 const addShippingLocation = (shippingLocation: IShippingLocation) => async (dispatch: Dispatch<IShippingActions>) => {
   try {
-    dispatch({type: LOADING_SHIPPING_LOCATION});
+    dispatch({ type: LOADING_SHIPPING_LOCATION });
     await postShippingLocation(shippingLocation);
-    dispatch({type: ADD_SHIPPING_LOCATION, payload: shippingLocation})
+    dispatch({ type: ADD_SHIPPING_LOCATION, payload: shippingLocation });
   } catch (e) {
     dispatch({ type: ERROR_SHIPPING_LOCATION, payload: e.response ? e.response.data : e });
   }
-}
+};
 
 const updateShippingLocation = (shippingLocation: IShippingLocation) => async (dispatch: Dispatch<IShippingActions>) => {
   try {
-    dispatch({type: LOADING_SHIPPING_LOCATION})
+    dispatch({ type: LOADING_SHIPPING_LOCATION });
     await putShippingLocation(shippingLocation);
-    dispatch({type: UPDATE_SHIPPING_LOCATION, payload: shippingLocation})
+    dispatch({ type: UPDATE_SHIPPING_LOCATION, payload: shippingLocation });
   } catch (e) {
     dispatch({ type: ERROR_SHIPPING_LOCATION, payload: e.response ? e.response.data : e });
   }
-}
+};
 
 const deleteShippingLocation = (id: string) => async (dispatch: Dispatch<IShippingActions>) => {
   try {
-    dispatch({type: LOADING_SHIPPING_LOCATION})
-    await removeShippingLocation(id)
-    dispatch({type: DELETE_SHIPPING_LOCATION, payload: id})
+    dispatch({ type: LOADING_SHIPPING_LOCATION });
+    await removeShippingLocation(id);
+    dispatch({ type: DELETE_SHIPPING_LOCATION, payload: id });
   } catch (e) {
     dispatch({ type: ERROR_SHIPPING_LOCATION, payload: e.response ? e.response.data : e });
   }
-}
+};
 
-export {
-  getAllShippingLocation,
-  addShippingLocation,
-  updateShippingLocation,
-  deleteShippingLocation,
-}
+export { getAllShippingLocation, addShippingLocation, updateShippingLocation, deleteShippingLocation };

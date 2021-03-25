@@ -7,5 +7,5 @@ import { takeTokenGiveUser } from '../middleware/tokenValidatorMiddleware';
 
 router.use('/products', productRoutes);
 router.use('/users', userRoutes);
-router.use('/shippinglocation', takeTokenGiveUser, shippingLocationRoutes)
+router.use('/shippinglocation', takeTokenGiveUser, shippingLocationRoutes);
 export default router;
