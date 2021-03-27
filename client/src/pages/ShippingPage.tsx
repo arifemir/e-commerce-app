@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ import { IShippingState } from '../store/shipping/shippingTypes';
 import ShippingLocations from '../components/shipping/ShippingLocations';
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
-import CheckoutSteps from "../components/shipping/CheckoutSteps";
+import CheckoutSteps from '../components/shipping/CheckoutSteps';
 
 const ShippingPage = () => {
   const dispatch = useDispatch();
@@ -27,21 +27,21 @@ const ShippingPage = () => {
   if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return (
-    <Col>
+    <Col lg={12} className='m-auto'>
       <Row className='justify-content-center'>
         <CheckoutSteps step1 step2 />
       </Row>
       <Row>
-        <Col>
+        <Col sm={12} md={6}>
           <ShippingLocations shippingLocations={shippingLocations} />
         </Col>
-        <Col>
-          <Row>
+        <Col sm={12} md={6}>
+          <Row className='justify-content-center justify-content-lg-start justify-content-md-start mt-2 mt-lg-0 mt-md-0'>
             <LinkContainer to='/addshippinglocation?redirect=/shipping'>
               <Button color='link'>Add new shipping address</Button>
             </LinkContainer>
           </Row>
-          <Row className='mt-2'>
+          <Row className='mt-2 justify-content-center justify-content-lg-start justify-content-md-start'>
             <LinkContainer to='/payment'>
               <Button color='link'>Continue</Button>
             </LinkContainer>

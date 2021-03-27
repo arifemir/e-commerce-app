@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {FormEventHandler, useEffect, useState} from "react";
-import {Button, Col, Form} from "react-bootstrap";
+import { FormEventHandler, useEffect, useState } from 'react';
+import { Button, Col, Form } from 'react-bootstrap';
 //redux
-import {useDispatch, useSelector} from "react-redux";
-import {savePaymentMethod} from "../store/payment/paymentActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { savePaymentMethod } from '../store/payment/paymentActions';
 //types
 import { History } from 'history';
-import {IRootState} from "../store/store";
-import {IShippingState} from "../store/shipping/shippingTypes";
+import { IRootState } from '../store/store';
+import { IShippingState } from '../store/shipping/shippingTypes';
 //components
-import FormContainer from "../components/common/FormContainer";
-import CheckoutSteps from "../components/shipping/CheckoutSteps";
-
+import FormContainer from '../components/common/FormContainer';
+import CheckoutSteps from '../components/shipping/CheckoutSteps';
 
 interface Props {
   history: History;
@@ -22,18 +21,18 @@ const PaymentPage = (props: Props) => {
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
-  const {selectedShippingLocation} = useSelector<IRootState, IShippingState>(state => state.shipping);
+  const { selectedShippingLocation } = useSelector<IRootState, IShippingState>(state => state.shipping);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(!selectedShippingLocation) history.push('/shipping')
-  },[history])
+    if (!selectedShippingLocation) history.push('/shipping');
+  }, [history]);
 
   const onSubmitPaymentMethod = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     history.push('/placeorder');
-  }
+  };
 
   return (
     <FormContainer>
@@ -69,6 +68,6 @@ const PaymentPage = (props: Props) => {
       </Form>
     </FormContainer>
   );
-}
+};
 
-export default PaymentPage
+export default PaymentPage;

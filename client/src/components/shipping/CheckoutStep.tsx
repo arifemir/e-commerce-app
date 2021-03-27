@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Nav} from "react-bootstrap";
-import {LinkContainer} from "react-router-bootstrap";
+import { Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 interface Props {
   step?: boolean;
@@ -21,6 +21,6 @@ const CheckoutStep = (props: Props) => {
       )}
     </Nav.Item>
   );
-}
+};
 
-export default CheckoutStep
+export default CheckoutStep;

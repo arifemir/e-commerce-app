@@ -11,10 +11,5 @@ interface ISavePaymentMethod {
 
 type IPaymentActions = ISavePaymentMethod;
 
-export {
-  SAVE_PAYMENT
-}
-export type {
-  IPaymentState,
-  IPaymentActions,
-}
+export { SAVE_PAYMENT };
+export type { IPaymentState, IPaymentActions };

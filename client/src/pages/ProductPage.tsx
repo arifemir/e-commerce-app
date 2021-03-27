@@ -45,9 +45,9 @@ const ProductPage = (props: Props) => {
 
   return product ? (
     <>
-      <Link className='btn btn-dark my-3' to='/'>
+      <Button className='px-0' onClick={() => history.goBack()} variant='link'>
         Go Back
-      </Link>
+      </Button>
       <Row>
         <Col md={6}>
           <Image src={product.image} alt={product.name} fluid />

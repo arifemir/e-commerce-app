@@ -14,7 +14,8 @@ import UserUpdatePage from './pages/UserUpdatePage';
 import ShippingPage from './pages/ShippingPage';
 import AddShippingLocationPage from './pages/AddShippingLocationPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
-import PaymentPage from "./pages/PaymentPage";
+import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <ProtectedRoute path='/shipping' exact component={ShippingPage} />
           <ProtectedRoute path='/addshippinglocation' exact component={AddShippingLocationPage} />
           <Route path='/payment' exact component={PaymentPage} />
+          <Route path='/placeorder' exact component={PlaceOrderPage} />
         </Container>
       </main>
       <Footer />
