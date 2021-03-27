@@ -7,7 +7,7 @@ const PRODUCT_DETAIL_FAIL = 'PRODUCT_DETAIL_FAIL';
 
 //state
 interface IProductDetailState {
-  product: IProduct | null;
+  product: IProduct | undefined;
   loading: boolean;
   error: any;
 }

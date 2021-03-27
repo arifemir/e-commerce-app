@@ -18,7 +18,7 @@ const ShippingPage = () => {
   const { loading, error, shippingLocations } = useSelector<IRootState, IShippingState>(state => state.shipping);
 
   useEffect(() => {
-    dispatch(getAllShippingLocation());
+    if (shippingLocations.length === 0) dispatch(getAllShippingLocation());
   }, []);
 
   if (loading) return <Loader />;

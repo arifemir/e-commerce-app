@@ -7,7 +7,7 @@ import {
 } from './productDetailTypes';
 
 const initialState: IProductDetailState = {
-  product: null,
+  product: undefined,
   loading: false,
   error: false,
 };

@@ -1,10 +1,7 @@
-function loadStorage<T>(item: string): T | null {
+function loadStorage<T>(item: string): T | undefined {
   const localStorageItem = localStorage.getItem(item);
-  if (!localStorageItem) return null;
-  else {
-    const data: T = JSON.parse(localStorageItem);
-    return data;
-  }
+  if (!localStorageItem) return undefined;
+  return JSON.parse(localStorageItem);
 }
 
 export { loadStorage };

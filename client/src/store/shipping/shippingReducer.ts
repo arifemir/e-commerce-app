@@ -11,7 +11,7 @@ import {
 
 const initialState: IShippingState = {
   shippingLocations: [],
-  selectedShippingLocation: null,
+  selectedShippingLocation: undefined,
   selectedShippingLocationIndex: 0,
   loading: false,
   error: null,
@@ -36,6 +36,7 @@ const shippingReducer = (state = initialState, action: IShippingActions) => {
         ...state,
         loading: false,
         shippingLocations: action.payload,
+        selectedShippingLocation: action.payload[0],
       };
     case ADD_SHIPPING_LOCATION:
       return {
@@ -52,8 +53,8 @@ const shippingReducer = (state = initialState, action: IShippingActions) => {
     case SELECT_SHIPPING_LOCATION:
       return {
         ...state,
-        selectedShippingLocation: state.shippingLocations.find(shippingLocation => shippingLocation._id === action.payload),
-        selectedShippingLocationIndex: state.shippingLocations.findIndex(shippingLocation => shippingLocation._id === action.payload),
+        selectedShippingLocation: state.shippingLocations[action.payload],
+        selectedShippingLocationIndex: action.payload,
       };
     default:
       return state;

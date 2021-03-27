@@ -1,7 +1,7 @@
 import { IUserDetailState, IUserDetailActions, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS, USER_DETAIL_FAIL } from './userDetailTypes';
 
 const initialState: IUserDetailState = {
-  userDetail: null,
+  userDetail: undefined,
   loading: false,
   error: false,
 };

@@ -9,7 +9,7 @@ import {
 } from './userAuthTypes';
 
 const initialState: IUserState = {
-  user: null,
+  user: undefined,
   loading: false,
   error: false,
   updateSuccess: false,
@@ -38,7 +38,7 @@ const userAuthReducer = (state = initialState, action: IUserActions) => {
     case USER_LOGOUT:
       return {
         ...state,
-        user: null,
+        user: undefined,
         error: false,
         loading: false,
       };

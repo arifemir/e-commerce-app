@@ -1,12 +1,11 @@
 import { ICartItem, IUser } from '../@types';
 import { loadStorage } from './helper/loadStorage';
 import { setAuthHeader } from './helper/setAuthHeader';
+import { IShippingState } from './shipping/shippingTypes';
 
-let cartItems: ICartItem[] = [];
-let user: IUser | null = null;
-
-cartItems = loadStorage<ICartItem[]>('cartItems') || [];
-user = loadStorage<IUser>('user');
+let cartItems = loadStorage<ICartItem[]>('cartItems') || [];
+let user = loadStorage<IUser>('user');
+let shipping = loadStorage<IShippingState>('shipping');
 
 setAuthHeader(user?.token);
 
@@ -20,6 +19,7 @@ const initialState = {
     error: null,
     updateSuccess: false,
   },
+  shipping,
 };
 
 export default initialState;

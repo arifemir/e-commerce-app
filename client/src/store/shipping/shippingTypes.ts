@@ -12,7 +12,7 @@ const SELECT_SHIPPING_LOCATION = 'SELECT_SHIPPING_LOCATION';
 //state
 interface IShippingState {
   shippingLocations: IShippingLocation[];
-  selectedShippingLocation: IShippingLocation | null;
+  selectedShippingLocation: IShippingLocation | undefined;
   selectedShippingLocationIndex: number;
   loading: boolean;
   error: any;
@@ -50,7 +50,7 @@ interface IUpdateShippingLocationAction {
 
 interface ISelectShippingLocationAction {
   type: typeof SELECT_SHIPPING_LOCATION;
-  payload: string;
+  payload: number;
 }
 
 type IShippingActions =

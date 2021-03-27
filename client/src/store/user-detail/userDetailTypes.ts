@@ -7,7 +7,7 @@ const USER_DETAIL_FAIL = 'USER_DETAIL_FAIL';
 
 //state
 interface IUserDetailState {
-  userDetail: IUserDetail | null;
+  userDetail: IUserDetail | undefined;
   loading: boolean;
   error: any;
 }

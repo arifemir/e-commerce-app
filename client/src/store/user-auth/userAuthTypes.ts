@@ -9,7 +9,7 @@ const USER_UPDATE = 'USER_UPDATE';
 
 //state
 interface IUserState {
-  user: IUser | null;
+  user: IUser | undefined;
   loading: boolean;
   error: any;
   updateSuccess: boolean;
