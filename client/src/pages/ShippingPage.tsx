@@ -12,6 +12,7 @@ import { IShippingState } from '../store/shipping/shippingTypes';
 import ShippingLocations from '../components/shipping/ShippingLocations';
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
+import CheckoutSteps from "../components/shipping/CheckoutSteps";
 
 const ShippingPage = () => {
   const dispatch = useDispatch();
@@ -26,16 +27,28 @@ const ShippingPage = () => {
   if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return (
-    <Row>
-      <Col>
-        <ShippingLocations shippingLocations={shippingLocations} />
-      </Col>
-      <Col>
-        <LinkContainer to='/addshippinglocation?redirect=/shipping'>
-          <Button color='link'>Add new shipping address</Button>
-        </LinkContainer>
-      </Col>
-    </Row>
+    <Col>
+      <Row className='justify-content-center'>
+        <CheckoutSteps step1 step2 />
+      </Row>
+      <Row>
+        <Col>
+          <ShippingLocations shippingLocations={shippingLocations} />
+        </Col>
+        <Col>
+          <Row>
+            <LinkContainer to='/addshippinglocation?redirect=/shipping'>
+              <Button color='link'>Add new shipping address</Button>
+            </LinkContainer>
+          </Row>
+          <Row className='mt-2'>
+            <LinkContainer to='/payment'>
+              <Button color='link'>Continue</Button>
+            </LinkContainer>
+          </Row>
+        </Col>
+      </Row>
+    </Col>
   );
 };
 
