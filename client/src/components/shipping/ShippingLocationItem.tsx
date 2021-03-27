@@ -28,10 +28,10 @@ const ShippingLocationItem = (props: Props) => {
         <Accordion.Collapse eventKey={String(index)}>
           <Card.Body>
             <Col>
-              <Row>{country}</Row>
-              <Row>{city}</Row>
-              <Row>{address}</Row>
-              <Row>{postalCode}</Row>
+              <Row><strong className='mr-1'>Country:</strong>{country}</Row>
+              <Row><strong className='mr-1'>City:</strong>{city}</Row>
+              <Row><strong className='mr-1'>Address:</strong>{address}</Row>
+              <Row><strong className='mr-1'>Postal Code:</strong>{postalCode}</Row>
             </Col>
           </Card.Body>
         </Accordion.Collapse>

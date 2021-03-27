@@ -7,6 +7,7 @@ import cart from './cart/cartReducer';
 import userAuth from './user-auth/userAuthReducer';
 import userDetail from './user-detail/userDetailReducer';
 import shipping from './shipping/shippingReducer';
+import payment from "./payment/paymentReducer";
 
 export const rootReducer = combineReducers({
   productList,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   userAuth,
   userDetail,
   shipping,
+  payment,
 });
