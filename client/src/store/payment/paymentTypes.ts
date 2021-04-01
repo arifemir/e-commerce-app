@@ -1,7 +1,7 @@
 const SAVE_PAYMENT = 'SAVE_PAYMENT';
 
 interface IPaymentState {
-  paymentMethod: undefined;
+  paymentMethod: string | undefined;
 }
 
 interface ISavePaymentMethod {

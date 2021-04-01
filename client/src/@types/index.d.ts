@@ -35,4 +35,21 @@ interface IShippingLocation {
   country: string;
 }
 
-export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation };
+export interface IOrder {
+  _id?: string;
+  user?: string;
+  orderItems: { quantity: number; product: IProduct['_id'] }[];
+  shippingLocation: IShippingLocation['_id'];
+  paymentMethod: string | undefined;
+  paymentResult?: { id: string; status: string; update_time: string; email_address: string };
+  taxPrice: number;
+  shippingPrice: number;
+  totalPrice: number;
+  itemsPrice: number;
+  isPaid?: boolean;
+  paidAt?: Date;
+  isDelivered?: boolean;
+  deliveredAt?: Date;
+}
+
+export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation, IOrder };

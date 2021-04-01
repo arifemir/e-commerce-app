@@ -5,13 +5,14 @@ import { IUser } from './userModel';
 
 export interface IOrder extends Document {
   user: IUser['_id'];
-  orderItems: [{ name: string }, { qty: number }, { image: string }, { price: number }, { product: IProduct['_id'] }];
-  shippingAddress: IShippingLocation['_id'];
+  orderItems: { quantity: number; product: IProduct['_id'] }[];
+  shippingLocation: IShippingLocation['_id'];
   paymentMethod: string;
   paymentResult: { id: string; status: string; update_time: string; email_address: string };
   taxPrice: number;
   shippingPrice: number;
   totalPrice: number;
+  itemsPrice: number;
   isPaid: boolean;
   paidAt: Date;
   isDelivered: boolean;
@@ -27,10 +28,7 @@ const orderSchema: Schema = new Schema(
     },
     orderItems: [
       {
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
+        quantity: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
@@ -68,6 +66,7 @@ const orderSchema: Schema = new Schema(
       required: true,
       default: 0.0,
     },
+    itemsPrice: { type: Number, required: true },
     isPaid: {
       type: Boolean,
       required: true,

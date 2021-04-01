@@ -8,25 +8,51 @@ import { IRootState } from '../store/store';
 import { ICartState } from '../store/cart/cartTypes';
 import { IShippingState } from '../store/shipping/shippingTypes';
 import { IPaymentState } from '../store/payment/paymentTypes';
+import { History } from 'history';
 //components
 import CheckoutSteps from '../components/shipping/CheckoutSteps';
 import Message from '../components/common/Message';
+import { createOrder } from '../store/order/orderActions';
+import { IOrderState } from '../store/order/orderTypes';
+import { useEffect } from 'react';
 
-interface Props {}
+interface Props {
+  history: History;
+}
 
-const PlaceOrderPage = () => {
+const PlaceOrderPage = (props: Props) => {
+  const { history } = props;
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart);
   const { selectedShippingLocation: location } = useSelector<IRootState, IShippingState>(state => state.shipping);
   const { paymentMethod } = useSelector<IRootState, IPaymentState>(state => state.payment);
+  const { order, success, error } = useSelector<IRootState, IOrderState>(state => state.order);
 
-  const cartItemsPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const cartItemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shippingPrice = cartItemsPrice > 100 ? 0 : 15;
   const taxPrice = Number((0.15 * cartItemsPrice).toFixed(2));
   const totalPrice = cartItemsPrice + taxPrice + shippingPrice;
 
-  const onPlaceOrder = () => {};
+  useEffect(() => {
+    if (success && order) history.push(`/order/${order?._id}`);
+  }, [history, success]);
+
+  const onPlaceOrder = () => {
+    const orderItems = cartItems.map(ci => ({ quantity: ci.quantity, product: ci._id }));
+
+    dispatch(
+      createOrder({
+        orderItems,
+        shippingLocation: location?._id,
+        paymentMethod: paymentMethod,
+        totalPrice,
+        taxPrice,
+        shippingPrice,
+        itemsPrice: cartItemsPrice,
+      }),
+    );
+  };
 
   return (
     <>
@@ -101,6 +127,7 @@ const PlaceOrderPage = () => {
                 <Col>${totalPrice}</Col>
               </Row>
             </ListGroup.Item>
+            <ListGroup.Item>{error && <Message variant='danger'>error</Message>}</ListGroup.Item>
             <ListGroup.Item>
               <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={onPlaceOrder}>
                 Place Order

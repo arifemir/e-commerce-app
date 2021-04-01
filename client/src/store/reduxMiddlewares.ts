@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Middleware } from 'redux';
 import { setAuthHeader } from './helper/setAuthHeader';
 import { USER_LOGIN_REGISTER_SUCCESS, USER_UPDATE } from './user-auth/userAuthTypes';
