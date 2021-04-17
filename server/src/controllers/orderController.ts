@@ -6,7 +6,6 @@ const addOrderItems = a(async (req, res, next) => {
   const { orderItems, shippingLocationId, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new HttpException(400, 'No order items');
-    return;
   }
   const order = new Order({
     user: (req as any).user._id,
@@ -22,4 +21,15 @@ const addOrderItems = a(async (req, res, next) => {
   res.status(201).send(createdOrder);
 });
 
-export { addOrderItems };
+const getOrderItemById = a(async (req, res, next) => {
+  const { id } = req.params;
+
+  const order = await Order.findById(id).populate('user', 'name email');
+
+  if(!order) {
+    throw new HttpException(404, 'Order not found');
+  }
+  res.json(order)
+})
+
+export { addOrderItems, getOrderItemById };
