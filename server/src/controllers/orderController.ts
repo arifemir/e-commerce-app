@@ -3,14 +3,15 @@ import Order from '../models/orderModel';
 import HttpException from '../helpers/exceptions/HttpException';
 
 const addOrderItems = a(async (req, res, next) => {
-  const { orderItems, shippingLocationId, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
+  const { orderItems, shippingLocation, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new HttpException(400, 'No order items');
   }
+
   const order = new Order({
     user: (req as any).user._id,
     orderItems,
-    shippingLocation: shippingLocationId,
+    shippingLocation,
     paymentMethod,
     itemsPrice,
     taxPrice,
@@ -24,7 +25,7 @@ const addOrderItems = a(async (req, res, next) => {
 const getOrderItemById = a(async (req, res, next) => {
   const { id } = req.params;
 
-  const order = await Order.findById(id).populate('user', 'name email');
+  const order = await Order.findById(id).populate('user', 'name email').populate('orderItems.product').populate('shippingLocation');
 
   if(!order) {
     throw new HttpException(404, 'Order not found');

@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
+import { createOrder, clearCreateOrder } from '../store/order/orderActions';
 //types
 import { IRootState } from '../store/store';
 import { ICartState } from '../store/cart/cartTypes';
 import { IShippingState } from '../store/shipping/shippingTypes';
 import { IPaymentState } from '../store/payment/paymentTypes';
+import { IOrderState } from '../store/order/orderTypes';
 import { History } from 'history';
 //components
 import CheckoutSteps from '../components/shipping/CheckoutSteps';
 import Message from '../components/common/Message';
-import { createOrder } from '../store/order/orderActions';
-import { IOrderState } from '../store/order/orderTypes';
-import { useEffect } from 'react';
 
 interface Props {
   history: History;
@@ -35,7 +35,10 @@ const PlaceOrderPage = (props: Props) => {
   const totalPrice = cartItemsPrice + taxPrice + shippingPrice;
 
   useEffect(() => {
-    if (success && order) history.push(`/order/${order?._id}`);
+    if (success && order) {
+      history.push(`/order/${order?._id}`);
+      dispatch(clearCreateOrder())
+    }
   }, [history, success]);
 
   const onPlaceOrder = () => {

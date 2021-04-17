@@ -37,7 +37,7 @@ interface IShippingLocation {
 
 export interface IOrder {
   _id?: string;
-  user?: string;
+  user?: IUser['_id'];
   orderItems: { quantity: number; product: IProduct['_id'] }[];
   shippingLocation: IShippingLocation['_id'];
   paymentMethod: string | undefined;
@@ -52,4 +52,10 @@ export interface IOrder {
   deliveredAt?: Date;
 }
 
-export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation, IOrder };
+export interface IOrderDetails extends IOrder {
+  user: IUser;
+  shippingLocation: IShippingLocation;
+  orderItems: { quantity: number; product: IProduct }[];
+}
+
+export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation, IOrder, IOrderDetails };

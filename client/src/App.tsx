@@ -16,6 +16,7 @@ import AddShippingLocationPage from './pages/AddShippingLocationPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import OrderPage from './pages/OrderPage';
 
 const App = () => {
   return (
@@ -32,8 +33,9 @@ const App = () => {
           <Route path='/cart/:id?' exact component={CartPage} />
           <ProtectedRoute path='/shipping' exact component={ShippingPage} />
           <ProtectedRoute path='/addshippinglocation' exact component={AddShippingLocationPage} />
-          <Route path='/payment' exact component={PaymentPage} />
-          <Route path='/placeorder' exact component={PlaceOrderPage} />
+          <ProtectedRoute path='/payment' exact component={PaymentPage} />
+          <ProtectedRoute path='/placeorder' exact component={PlaceOrderPage} />
+          <ProtectedRoute path='/order/:id' exact component={OrderPage} />
         </Container>
       </main>
       <Footer />

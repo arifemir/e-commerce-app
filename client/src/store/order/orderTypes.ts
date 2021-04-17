@@ -1,31 +1,42 @@
-import { IOrder } from '../../@types';
+import { IOrder, IOrderDetails } from '../../@types';
 
-const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
-const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';
-const ORDER_CREATE_FAIL = 'ORDER_CREATE_FAIL';
-
+const ORDER_REQUEST = 'ORDER_REQUEST';
+const ORDER_SUCCESS = 'ORDER_SUCCESS';
+const ORDER_FAIL = 'ORDER_FAIL';
+const CLEAR_ORDER = 'CLEAR_ORDER';
+const ORDER_DETAIL_SUCCESS = 'ORDER_DETAIL_SUCCESS';
 interface IOrderState {
   order: IOrder | undefined;
+  orderDetails: IOrderDetails | undefined;
   loading: boolean;
   error: any;
   success: boolean;
 }
 
 interface ILoadingOrderAction {
-  type: typeof ORDER_CREATE_REQUEST;
+  type: typeof ORDER_REQUEST;
 }
 
 interface IErrorOrderAction {
-  type: typeof ORDER_CREATE_FAIL;
+  type: typeof ORDER_FAIL;
   payload: any;
 }
 
 interface ICreateOrderAction {
-  type: typeof ORDER_CREATE_SUCCESS;
+  type: typeof ORDER_SUCCESS;
   payload: IOrder;
 }
 
-type IOrderActions = ILoadingOrderAction | IErrorOrderAction | ICreateOrderAction;
+interface IGetOrderDetailsAction {
+  type: typeof ORDER_DETAIL_SUCCESS;
+  payload: IOrderDetails;
+}
 
-export { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL };
+interface IClearOrderAction {
+  type: typeof CLEAR_ORDER;
+}
+
+type IOrderActions = ILoadingOrderAction | IErrorOrderAction | ICreateOrderAction | IClearOrderAction | IGetOrderDetailsAction;
+
+export { ORDER_REQUEST, ORDER_FAIL, ORDER_SUCCESS, CLEAR_ORDER, ORDER_DETAIL_SUCCESS };
 export type { IOrderState, IOrderActions };

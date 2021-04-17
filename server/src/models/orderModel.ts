@@ -39,7 +39,7 @@ const orderSchema: Schema = new Schema(
     shippingLocation: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
-      ref: 'ShippingLocation',
+      ref: 'Shipping',
     },
     paymentMethod: {
       type: String,
