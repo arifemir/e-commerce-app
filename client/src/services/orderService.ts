@@ -5,4 +5,7 @@ const postOrder = (order: IOrder): Promise<IOrder> => axios.post('/api/orders', 
 
 const getOrderById = (id: string): Promise<IOrderDetails> => axios.get(`/api/orders/${id}`).then(res => res.data);
 
-export { postOrder, getOrderById };
+const paymentOrder = (id: string, paymentResult: IOrder['paymentResult']): Promise<IOrder> =>
+  axios.put(`/api/orders/${id}/pay`, paymentResult).then(res => res.data);
+
+export { postOrder, getOrderById, paymentOrder };

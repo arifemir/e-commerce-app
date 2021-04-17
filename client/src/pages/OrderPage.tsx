@@ -31,7 +31,7 @@ const OrderPage = (props: Props) => {
 
   useEffect(() => {
     dispatch(getOrder(orderId));
-  }, []);
+  }, [dispatch, orderId]);
 
   if (loading) return <Loader />;
 

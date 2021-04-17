@@ -1,4 +1,14 @@
-import { CLEAR_ORDER, IOrderActions, IOrderState, ORDER_DETAIL_SUCCESS, ORDER_FAIL, ORDER_REQUEST, ORDER_SUCCESS } from './orderTypes';
+import {
+  CLEAR_ORDER,
+  IOrderActions,
+  IOrderState,
+  ORDER_DETAIL_SUCCESS,
+  ORDER_FAIL,
+  ORDER_PAY_RESET,
+  ORDER_PAY_SUCCESS,
+  ORDER_REQUEST,
+  ORDER_SUCCESS,
+} from './orderTypes';
 
 const initialState: IOrderState = {
   order: undefined,
@@ -36,9 +46,22 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
       };
     case CLEAR_ORDER:
       return {
+        ...state,
         order: undefined,
         loading: false,
         error: false,
+        success: false,
+      };
+    case ORDER_PAY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      };
+    case ORDER_PAY_RESET:
+      return {
+        ...state,
+        loading: false,
         success: false,
       };
     default:
