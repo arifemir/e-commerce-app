@@ -13,7 +13,7 @@ const createOrder = (order: IOrder) => async (dispatch: Dispatch<IOrderActions>)
   }
 };
 
-const clearCreateOrder = () => ({type: CLEAR_ORDER})
+const clearCreateOrder = () => ({ type: CLEAR_ORDER });
 
 const getOrder = (id: string) => async (dispatch: Dispatch<IOrderActions>) => {
   try {
@@ -24,6 +24,5 @@ const getOrder = (id: string) => async (dispatch: Dispatch<IOrderActions>) => {
     dispatch({ type: ORDER_FAIL, payload: e.response ? e.response.data : e });
   }
 };
-
 
 export { createOrder, getOrder, clearCreateOrder };

@@ -37,7 +37,7 @@ const PlaceOrderPage = (props: Props) => {
   useEffect(() => {
     if (success && order) {
       history.push(`/order/${order?._id}`);
-      dispatch(clearCreateOrder())
+      dispatch(clearCreateOrder());
     }
   }, [history, success]);
 

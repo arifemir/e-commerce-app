@@ -26,8 +26,8 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
       return {
         ...state,
         loading: false,
-        orderDetails: action.payload
-      }
+        orderDetails: action.payload,
+      };
     case ORDER_FAIL:
       return {
         ...state,
@@ -40,7 +40,7 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
         loading: false,
         error: false,
         success: false,
-      }
+      };
     default:
       return state;
   }
