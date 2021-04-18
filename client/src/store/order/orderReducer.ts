@@ -66,7 +66,12 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
         success: true,
       };
     case ORDER_RESET:
-      return {};
+      return {
+        ...state,
+        order: undefined,
+        orderDetails: undefined,
+        orders: [],
+      };
     case ORDER_ALL_SUCCESS: 
       return {
         ...state,
