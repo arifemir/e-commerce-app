@@ -35,8 +35,9 @@ const getOrderItemById = a(async (req, res, next) => {
 
 const updateOrderItemToPaid = a(async (req, res, next) => {
   const { id } = req.params;
-
-  const order: IOrder = await Order.findById(id);
+  console.log(id);
+  
+  const order: IOrder | null = await Order.findById(id);
 
   if (!order) {
     throw new HttpException(404, 'Order not found');
@@ -47,7 +48,7 @@ const updateOrderItemToPaid = a(async (req, res, next) => {
     id: req.body.id,
     status: req.body.status,
     update_time: req.body.update_time,
-    email_address: req.body.payer.email_address,
+    email_address: req.body.email_address,
   };
   const updatedOrder = await order.save();
 

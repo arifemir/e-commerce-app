@@ -35,13 +35,17 @@ interface IShippingLocation {
   country: string;
 }
 
+export interface IPaymentResult {
+  id: string; status: string; update_time: Date; email_address: string
+}
+
 export interface IOrder {
   _id?: string;
   user?: IUser['_id'];
   orderItems: { quantity: number; product: IProduct['_id'] }[];
   shippingLocation: IShippingLocation['_id'];
   paymentMethod: string | undefined;
-  paymentResult?: { id: string; status: string; update_time: string; email_address: string };
+  paymentResult?: paymentResult;
   taxPrice: number;
   shippingPrice: number;
   totalPrice: number;
@@ -58,4 +62,4 @@ export interface IOrderDetails extends IOrder {
   orderItems: { quantity: number; product: IProduct }[];
 }
 
-export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation, IOrder, IOrderDetails };
+export type { IProduct, ICartItem, IUser, IUserDetail, IShippingLocation, IOrder, IOrderDetails, IPaymentResult };

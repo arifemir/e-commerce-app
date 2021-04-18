@@ -1,7 +1,7 @@
 import { IPaymentActions, IPaymentState, SAVE_PAYMENT } from './paymentTypes';
 
 const initialState: IPaymentState = {
-  paymentMethod: undefined,
+  paymentMethod: 'Stripe',
 };
 
 const paymentReducer = (state = initialState, action: IPaymentActions) => {

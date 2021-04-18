@@ -10,7 +10,7 @@ import {
   ORDER_SUCCESS,
 } from './orderTypes';
 import { postOrder, getOrderById, paymentOrder } from '../../services/orderService';
-import { IOrder, IOrderDetails } from '../../@types';
+import { IOrder, IOrderDetails, IPaymentResult } from '../../@types';
 
 const createOrder = (order: IOrder) => async (dispatch: Dispatch<IOrderActions>) => {
   try {
@@ -34,7 +34,7 @@ const getOrder = (id: string) => async (dispatch: Dispatch<IOrderActions>) => {
   }
 };
 
-const payOrder = (id: string, paymentResult: IOrder['paymentResult']) => async (dispatch: Dispatch<IOrderActions>) => {
+const payOrder = (id: string, paymentResult: IPaymentResult) => async (dispatch: Dispatch<IOrderActions>) => {
   try {
     dispatch({ type: ORDER_REQUEST });
     const order = await paymentOrder(id, paymentResult);

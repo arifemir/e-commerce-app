@@ -55,6 +55,11 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
     case ORDER_PAY_SUCCESS:
       return {
         ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          isPaid: action.payload.isPaid,
+          paidAt: action.payload.paidAt,
+        },
         loading: false,
         success: true,
       };
