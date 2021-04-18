@@ -7,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOrder, payOrder } from '../store/order/orderActions';
 //stripe
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { addPaymentIntent } from '../services/paymentIntentService';
 //types
 import { IRootState } from '../store/store';
 import { IOrderState } from '../store/order/orderTypes';
 //components
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
-import { addPaymentIntent } from '../services/paymentIntentService';
 
 interface params {
   id: string;
