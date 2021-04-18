@@ -54,6 +54,7 @@ export interface IOrder {
   paidAt?: Date;
   isDelivered?: boolean;
   deliveredAt?: Date;
+  createdAt: Date;
 }
 
 export interface IOrderDetails extends IOrder {
