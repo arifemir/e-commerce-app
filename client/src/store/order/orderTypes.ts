@@ -7,10 +7,12 @@ const CLEAR_ORDER = 'CLEAR_ORDER';
 const ORDER_DETAIL_SUCCESS = 'ORDER_DETAIL_SUCCESS';
 const ORDER_PAY_SUCCESS = 'ORDER_PAY_SUCCESS';
 const ORDER_PAY_RESET = 'ORDER_PAY_RESET';
+const ORDER_ALL_SUCCESS = 'ORDER_ALL_SUCCESS';
 
 interface IOrderState {
   order: IOrder | undefined;
   orderDetails: IOrderDetails | undefined;
+  orders: IOrder[],
   loading: boolean;
   error: any;
   success: boolean;
@@ -48,6 +50,11 @@ interface IOrderPaymentReset {
   type: typeof ORDER_PAY_RESET;
 }
 
+interface IGetAllOrdersAction {
+  type: typeof ORDER_ALL_SUCCESS;
+  payload: IOrder[];
+}
+
 type IOrderActions =
   | ILoadingOrderAction
   | IErrorOrderAction
@@ -55,7 +62,8 @@ type IOrderActions =
   | IClearOrderAction
   | IGetOrderDetailsAction
   | IOrderPaymentAction
-  | IOrderPaymentReset;
+  | IOrderPaymentReset
+  | IGetAllOrdersAction;
 
-export { ORDER_REQUEST, ORDER_FAIL, ORDER_SUCCESS, CLEAR_ORDER, ORDER_DETAIL_SUCCESS, ORDER_PAY_SUCCESS, ORDER_PAY_RESET };
+export { ORDER_REQUEST, ORDER_FAIL, ORDER_SUCCESS, CLEAR_ORDER, ORDER_DETAIL_SUCCESS, ORDER_PAY_SUCCESS, ORDER_PAY_RESET, ORDER_ALL_SUCCESS };
 export type { IOrderState, IOrderActions };

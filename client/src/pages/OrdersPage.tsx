@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetail } from '../store/user-detail/userDetailActions';
+import { getAllOrders } from '../store/order/orderActions';
 //types
 import { History } from 'history';
+import { IOrderState } from '../store/order/orderTypes';
 import { IRootState } from '../store/store';
-import { IUserDetailState } from '../store/user-detail/userDetailTypes';
 //components
 import Message from '../components/common/Message';
 import Loader from '../components/common/Loader';
@@ -20,13 +20,13 @@ const OrdersPage = (props: Props) => {
   const { history } = props;
 
   const dispatch = useDispatch();
-  const { userDetail, loading, error } = useSelector<IRootState, IUserDetailState>(state => state.userDetail);
+  const { orders, loading, error } = useSelector<IRootState, IOrderState>(state => state.order);
 
   useEffect(() => {
-    if (!userDetail) {
-      dispatch(getUserDetail('profile'));
+    if (orders.length <= 0) {
+      dispatch(getAllOrders());
     }
-  }, [history, userDetail, dispatch]);
+  }, [history, orders, dispatch]);
 
   if (loading) return <Loader />;
 
@@ -37,6 +37,7 @@ const OrdersPage = (props: Props) => {
       <Col sm={12} md={9} xl={6}>
         <h2>My Orders</h2>
       </Col>
+      {orders.map((item) => (<div>{item.shippingLocation}</div>))}
     </Row>
   );
 };

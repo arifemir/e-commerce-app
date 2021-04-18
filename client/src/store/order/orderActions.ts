@@ -2,6 +2,7 @@ import { Dispatch } from 'react';
 import {
   CLEAR_ORDER,
   IOrderActions,
+  ORDER_ALL_SUCCESS,
   ORDER_DETAIL_SUCCESS,
   ORDER_FAIL,
   ORDER_PAY_RESET,
@@ -9,7 +10,7 @@ import {
   ORDER_REQUEST,
   ORDER_SUCCESS,
 } from './orderTypes';
-import { postOrder, getOrderById, paymentOrder } from '../../services/orderService';
+import { postOrder, getOrderById, paymentOrder, allOrders } from '../../services/orderService';
 import { IOrder, IOrderDetails, IPaymentResult } from '../../@types';
 
 const createOrder = (order: IOrder) => async (dispatch: Dispatch<IOrderActions>) => {
@@ -44,4 +45,14 @@ const payOrder = (id: string, paymentResult: IPaymentResult) => async (dispatch:
   }
 };
 
-export { createOrder, getOrder, clearCreateOrder, payOrder };
+const getAllOrders = () => async (dispatch: Dispatch<IOrderActions>) => {
+  try {
+    dispatch({ type: ORDER_REQUEST });
+    const orders = await allOrders();
+    dispatch({ type: ORDER_ALL_SUCCESS, payload: orders });
+  } catch (e) {
+    dispatch({ type: ORDER_FAIL, payload: e.response ? e.response.data : e });
+  }
+};
+
+export { createOrder, getOrder, clearCreateOrder, payOrder, getAllOrders };

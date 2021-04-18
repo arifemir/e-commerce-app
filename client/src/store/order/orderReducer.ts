@@ -2,6 +2,7 @@ import {
   CLEAR_ORDER,
   IOrderActions,
   IOrderState,
+  ORDER_ALL_SUCCESS,
   ORDER_DETAIL_SUCCESS,
   ORDER_FAIL,
   ORDER_PAY_RESET,
@@ -13,6 +14,7 @@ import {
 const initialState: IOrderState = {
   order: undefined,
   orderDetails: undefined,
+  orders: [],
   loading: false,
   error: false,
   success: false,
@@ -69,6 +71,13 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
         loading: false,
         success: false,
       };
+    case ORDER_ALL_SUCCESS: 
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        orders: action.payload,  
+      }
     default:
       return state;
   }

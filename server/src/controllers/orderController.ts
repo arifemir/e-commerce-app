@@ -1,6 +1,7 @@
 import a from 'express-async-handler';
 import Order, { IOrder } from '../models/orderModel';
 import HttpException from '../helpers/exceptions/HttpException';
+import { IUser } from '../models/userModel';
 
 const addOrderItems = a(async (req, res, next) => {
   const { orderItems, shippingLocation, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
@@ -55,4 +56,11 @@ const updateOrderItemToPaid = a(async (req, res, next) => {
   res.send(updatedOrder);
 });
 
-export { addOrderItems, getOrderItemById, updateOrderItemToPaid };
+const getOrdersForUser = a(async (req, res, next) => {
+  const user: IUser = (req as any).user;
+  const orders = await Order.find({user: user._id})
+  if(!orders) throw new HttpException(404, 'order not found')
+  res.send(orders);
+})
+
+export { addOrderItems, getOrderItemById, updateOrderItemToPaid, getOrdersForUser };
