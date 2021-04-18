@@ -19,7 +19,7 @@ interface Props {
 const PaymentPage = (props: Props) => {
   const { history } = props;
 
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('Stripe');
 
   const { selectedShippingLocation } = useSelector<IRootState, IShippingState>(state => state.shipping);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const PaymentPage = (props: Props) => {
         <Form.Group>
           <Form.Label as='legend'>Select Method</Form.Label>
           <Col>
-            <Form.Check
+            {/* <Form.Check
               type='radio'
               label='PayPal or Credit Card'
               id='PayPal'
@@ -50,7 +50,7 @@ const PaymentPage = (props: Props) => {
               value='PayPal'
               checked
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPaymentMethod(e.target.value)}
-            />
+            /> */}
             <Form.Check
               type='radio'
               label='Stripe'
