@@ -7,6 +7,7 @@ import {
   DELETE_SHIPPING_LOCATION,
   SELECT_SHIPPING_LOCATION,
   GET_SHIPPING_LOCATION,
+  RESET_SHIPPING,
 } from './shippingTypes';
 
 const initialState: IShippingState = {
@@ -56,6 +57,12 @@ const shippingReducer = (state = initialState, action: IShippingActions) => {
         selectedShippingLocation: state.shippingLocations[action.payload],
         selectedShippingLocationIndex: action.payload,
       };
+    case RESET_SHIPPING:
+      return {
+        ...state,
+        selectedShippingLocation: undefined,
+        shippingLocations: [],
+      }
     default:
       return state;
   }

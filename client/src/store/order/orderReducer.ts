@@ -5,7 +5,7 @@ import {
   ORDER_ALL_SUCCESS,
   ORDER_DETAIL_SUCCESS,
   ORDER_FAIL,
-  ORDER_PAY_RESET,
+  ORDER_RESET,
   ORDER_PAY_SUCCESS,
   ORDER_REQUEST,
   ORDER_SUCCESS,
@@ -65,12 +65,8 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
         loading: false,
         success: true,
       };
-    case ORDER_PAY_RESET:
-      return {
-        ...state,
-        loading: false,
-        success: false,
-      };
+    case ORDER_RESET:
+      return {};
     case ORDER_ALL_SUCCESS: 
       return {
         ...state,

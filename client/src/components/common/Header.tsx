@@ -4,10 +4,12 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 const { Brand, Toggle, Collapse } = Navbar;
 //redux
 import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '../../store/user-auth/userAuthActions';
+import { resetOrder } from '../../store/order/orderActions';
+import { resetShipping } from '../../store/shipping/shippingActions';
 //types
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
-import { userLogout } from '../../store/user-auth/userAuthActions';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const Header: React.FC = () => {
 
   const onLogout = () => {
     dispatch(userLogout());
+    dispatch(resetOrder());
+    dispatch(resetShipping());
   };
 
   return (

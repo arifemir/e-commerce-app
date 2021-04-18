@@ -37,7 +37,7 @@ const OrdersPage = (props: Props) => {
       <Col sm={12} md={9} xl={6}>
         <h2>My Orders</h2>
       </Col>
-      {orders.map((item) => (<div>{item.shippingLocation}</div>))}
+      {orders && orders.map((item) => (<div>{item.shippingLocation}</div>))}
     </Row>
   );
 };

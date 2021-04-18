@@ -12,6 +12,7 @@ import {
   LOADING_SHIPPING_LOCATION,
   SELECT_SHIPPING_LOCATION,
   UPDATE_SHIPPING_LOCATION,
+  RESET_SHIPPING,
 } from './shippingTypes';
 
 const getAllShippingLocation = () => async (dispatch: Dispatch<IShippingActions>, getState: () => IRootState) => {
@@ -69,4 +70,9 @@ const selectShippingLocation = (i: number) => async (dispatch: Dispatch<IShippin
   localStorage.setItem('shipping', JSON.stringify(getState().shipping));
 };
 
-export { getAllShippingLocation, addShippingLocation, updateShippingLocation, deleteShippingLocation, selectShippingLocation };
+const resetShipping = () => {
+  localStorage.setItem('shipping', '');
+  return {type: RESET_SHIPPING}
+}
+
+export { getAllShippingLocation, addShippingLocation, updateShippingLocation, deleteShippingLocation, selectShippingLocation, resetShipping };

@@ -8,6 +8,7 @@ const ADD_SHIPPING_LOCATION = 'ADD_SHIPPING_LOCATION';
 const DELETE_SHIPPING_LOCATION = 'DELETE_SHIPPING_LOCATION';
 const UPDATE_SHIPPING_LOCATION = 'UPDATE_SHIPPING_LOCATION';
 const SELECT_SHIPPING_LOCATION = 'SELECT_SHIPPING_LOCATION';
+const RESET_SHIPPING = 'RESET_SHIPPING';
 
 //state
 interface IShippingState {
@@ -53,6 +54,10 @@ interface ISelectShippingLocationAction {
   payload: number;
 }
 
+interface IResetShipping {
+  type: typeof RESET_SHIPPING,
+}
+
 type IShippingActions =
   | IGetShippingLocationAction
   | ILoadingShippingLocationAction
@@ -60,7 +65,8 @@ type IShippingActions =
   | IAddShippingLocationAction
   | IDeleteShippingLocationAction
   | IUpdateShippingLocationAction
-  | ISelectShippingLocationAction;
+  | ISelectShippingLocationAction
+  | IResetShipping;
 
 export {
   LOADING_SHIPPING_LOCATION,
@@ -70,6 +76,7 @@ export {
   UPDATE_SHIPPING_LOCATION,
   SELECT_SHIPPING_LOCATION,
   GET_SHIPPING_LOCATION,
+  RESET_SHIPPING,
 };
 
 export type { IShippingState, IShippingActions };

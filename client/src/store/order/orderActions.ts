@@ -5,7 +5,7 @@ import {
   ORDER_ALL_SUCCESS,
   ORDER_DETAIL_SUCCESS,
   ORDER_FAIL,
-  ORDER_PAY_RESET,
+  ORDER_RESET,
   ORDER_PAY_SUCCESS,
   ORDER_REQUEST,
   ORDER_SUCCESS,
@@ -55,4 +55,6 @@ const getAllOrders = () => async (dispatch: Dispatch<IOrderActions>) => {
   }
 };
 
-export { createOrder, getOrder, clearCreateOrder, payOrder, getAllOrders };
+const resetOrder = () => ({type: ORDER_RESET})
+
+export { createOrder, getOrder, clearCreateOrder, payOrder, getAllOrders, resetOrder };
