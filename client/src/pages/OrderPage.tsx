@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { Link, match } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrder } from '../store/order/orderActions';
+import { getOrder, payOrder } from '../store/order/orderActions';
 //stripe
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 //types
@@ -57,11 +56,12 @@ const OrderPage = (props: Props) => {
       };
 
       const cardElement = elements.getElement("card");
-
+      
       try {
         const clientSecret = await addPaymentIntent(orderDetails.totalPrice);
-        let paymentMethodReq = undefined;
         
+        let paymentMethodReq = undefined;
+
         if(cardElement) {
           paymentMethodReq = await stripe.createPaymentMethod({
             type: "card",
@@ -84,8 +84,14 @@ const OrderPage = (props: Props) => {
             setCheckoutError(error.message);
             return;
           }
+
+          dispatch(payOrder(orderId, {
+            id: paymentMethodReq.paymentMethod.id,
+            status: "success",
+            email_address: billingDetails.email,
+            update_time: new Date(),
+          }))
         }
-        // onSuccessfulCheckout();
       } catch (err) {
         setCheckoutError(err.message);
       }
@@ -191,13 +197,17 @@ const OrderPage = (props: Props) => {
                 <Col className='text-right' >${orderDetails.totalPrice}</Col>
               </Row>
             </ListGroup.Item>
-            <ListGroup.Item>
-              <CardElement />
-            </ListGroup.Item>
-            <ListGroup.Item>
-              {checkoutError && <Message variant='danger'>checkoutError</Message>}
-              <Button variant='primary' onClick={onPayment} >Payment</Button>
-            </ListGroup.Item>
+            {!orderDetails.isPaid &&
+              <>
+                <ListGroup.Item>
+                  <CardElement />
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  {checkoutError && <Message variant='danger'>checkoutError</Message>}
+                  <Button variant='primary' onClick={onPayment} >Payment</Button>
+                </ListGroup.Item>
+              </>
+            }
           </Card>
         </Col>
       </Row>

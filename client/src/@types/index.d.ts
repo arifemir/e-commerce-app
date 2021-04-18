@@ -36,7 +36,7 @@ interface IShippingLocation {
 }
 
 export interface IPaymentResult {
-  id: string; status: string; update_time: string; email_address: string
+  id: string; status: string; update_time: Date; email_address: string
 }
 
 export interface IOrder {
