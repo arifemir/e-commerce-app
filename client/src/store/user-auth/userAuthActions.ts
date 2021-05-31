@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { login, register, userUpdate } from '../../services/userAuthService';
 //types
 import { Dispatch } from 'redux';
