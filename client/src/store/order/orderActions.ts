@@ -11,7 +11,7 @@ import {
   ORDER_SUCCESS,
 } from './orderTypes';
 import { postOrder, getOrderById, paymentOrder, allOrders } from '../../services/orderService';
-import { IOrder, IOrderDetails, IPaymentResult } from '../../@types';
+import { IOrder, IPaymentResult } from '../../@types';
 
 const createOrder = (order: IOrder) => async (dispatch: Dispatch<IOrderActions>) => {
   try {
