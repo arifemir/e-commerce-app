@@ -70,4 +70,9 @@ const updateUserProfile = a(async (req, res, next) => {
   }
 });
 
-export { authUser, getUserProfile, registerUser, updateUserProfile };
+const getAllUser = a(async (req, res, next) => {
+  const allUsers = User.find({});
+  res.send(allUsers);
+})
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getAllUser };
