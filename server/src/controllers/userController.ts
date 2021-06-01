@@ -71,7 +71,7 @@ const updateUserProfile = a(async (req, res, next) => {
 });
 
 const getAllUser = a(async (req, res, next) => {
-  const allUsers = User.find({});
+  const allUsers = await User.find({});
   res.send(allUsers);
 })
 
