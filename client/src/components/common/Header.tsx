@@ -51,6 +51,20 @@ const Header: React.FC = () => {
                   <Nav.Link>Sign In</Nav.Link>
                 </LinkContainer>
               )}
+              {user?.isAdmin && (
+                <NavDropdown title='admin' id='adminmenu'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderList'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )
+              }
             </Nav>
           </Collapse>
         </Container>
