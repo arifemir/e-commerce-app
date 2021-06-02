@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../../store/user-auth/userAuthActions';
 import { resetOrder } from '../../store/order/orderActions';
 import { resetShipping } from '../../store/shipping/shippingActions';
+import { resetUsers } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
@@ -19,6 +20,7 @@ const Header: React.FC = () => {
     dispatch(userLogout());
     dispatch(resetOrder());
     dispatch(resetShipping());
+    if(user?.isAdmin) dispatch(resetUsers());
   };
 
   return (

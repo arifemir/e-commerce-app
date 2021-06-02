@@ -4,6 +4,7 @@ import { IUser } from "../../../@types";
 const GET_ALL_USER_REQUEST = 'GET_ALL_USER_REQUEST';
 const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
 const GET_ALL_USER_FAIL = 'GET_ALL_USER_FAIL';
+const RESET_ALL_USER = 'RESET_ALL_USER';
 
 // state
 interface IAdminUserState {
@@ -27,9 +28,13 @@ interface IAdminGetAllUserFail {
   payload: any;
 }
 
-type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail;
+interface IResetAllUser {
+  type: typeof RESET_ALL_USER;
+}
 
-export { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, GET_ALL_USER_FAIL }
+type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser;
+
+export { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, GET_ALL_USER_FAIL, RESET_ALL_USER }
 
 export type {
   IAdminUserState,

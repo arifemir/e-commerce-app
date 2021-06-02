@@ -1,4 +1,11 @@
-import { GET_ALL_USER_FAIL, GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, IAdminUserActions, IAdminUserState } from './adminUserTypes';
+import {
+  GET_ALL_USER_FAIL,
+  GET_ALL_USER_REQUEST,
+  GET_ALL_USER_SUCCESS,
+  IAdminUserActions,
+  IAdminUserState,
+  RESET_ALL_USER,
+} from './adminUserTypes';
 
 const initialState: IAdminUserState = {
   users: [],
@@ -26,6 +33,13 @@ const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
         loading: false,
         error: action.payload,
       };
+    case RESET_ALL_USER:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        users: [],
+      }
     default:
       return state;
   }

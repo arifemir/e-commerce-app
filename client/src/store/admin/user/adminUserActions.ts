@@ -1,6 +1,12 @@
 import { Dispatch } from "redux"
 import { getAllUser } from "../../../services/admin/adminUserService";
-import { GET_ALL_USER_FAIL, GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, IAdminUserActions } from "./adminUserTypes"
+import {
+  GET_ALL_USER_FAIL,
+  GET_ALL_USER_REQUEST,
+  GET_ALL_USER_SUCCESS,
+  RESET_ALL_USER,
+  IAdminUserActions,
+} from './adminUserTypes';
 
 const allUsers = () => async (dispatch: Dispatch<IAdminUserActions>) => {
   dispatch({type: GET_ALL_USER_REQUEST});
@@ -12,6 +18,9 @@ const allUsers = () => async (dispatch: Dispatch<IAdminUserActions>) => {
   }
 }
 
+const resetUsers = () => ({ type: RESET_ALL_USER})
+
 export {
-  allUsers
+  allUsers,
+  resetUsers
 }
