@@ -2,7 +2,6 @@ import User, { IUser } from '../models/userModel';
 import a from 'express-async-handler';
 import HttpException from '../helpers/exceptions/HttpException';
 import generateToken from '../helpers/token/generateToken';
-import Order from '../models/orderModel';
 
 const authUser = a(async (req, res, next) => {
   const { email, password } = req.body;
@@ -75,8 +74,17 @@ const getAllUser = a(async (req, res, next) => {
   res.send(allUsers);
 })
 
-const deleteUser = a(async (req, res, next) => {
+const getUserById = a(async (req, res, next) => {
   const user = await User.findById(req.params.id);
+  if(user) {
+    res.json(user);
+  } else {
+    throw new HttpException(404, 'User not found');
+  }
+})
+
+const deleteUser = a(async (req, res, next) => {
+  const user = await User.findById(req.params.id).select('-password');
   if(user) {
     await user.remove();
     res.json({ message: 'User removed' });
@@ -85,4 +93,25 @@ const deleteUser = a(async (req, res, next) => {
   }
 })
 
-export { authUser, getUserProfile, registerUser, updateUserProfile, getAllUser, deleteUser };
+const updateUser = a(async (req, res, next) => {
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+    const { name: nameFromBody, email: emailFromBody, password, isAdminFromBody } = req.body;
+    user.name = nameFromBody || user.name;
+    user.email = emailFromBody || user.email;
+    user.isAdmin = isAdminFromBody;
+
+    if (password) {
+      user.password = password;
+    }
+    const updatedUser = await user.save();
+
+    const { _id, name, email, isAdmin } = updatedUser;
+    res.status(201).json({ _id, name, email, isAdmin });
+  } else {
+    throw new HttpException(404, 'User not found');
+  }
+});
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getAllUser, deleteUser, getUserById, updateUser };
