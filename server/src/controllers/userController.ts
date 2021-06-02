@@ -75,4 +75,14 @@ const getAllUser = a(async (req, res, next) => {
   res.send(allUsers);
 })
 
-export { authUser, getUserProfile, registerUser, updateUserProfile, getAllUser };
+const deleteUser = a(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if(user) {
+    await user.remove();
+    res.json({ message: 'User removed' });
+  } else {
+    throw new HttpException(404, 'User not found');
+  }
+})
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getAllUser, deleteUser };

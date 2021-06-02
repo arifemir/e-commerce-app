@@ -1,28 +1,41 @@
 import React, { useEffect } from 'react'
 import { Table, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap';
+//redux
+import { useDispatch, useSelector } from 'react-redux'
+import { allUsers, deleteUser } from '../../store/admin/user/adminUserActions';
+//types
+import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
+//hooks
+import useAlertify from '../../hooks/useAlertify';
+//components
+import { IRootState } from '../../store/store';
 import Loader from '../../components/common/Loader';
 import Message from '../../components/common/Message';
-import { allUsers } from '../../store/admin/user/adminUserActions';
-import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
-import { IRootState } from '../../store/store';
 
 interface Props {
-  
+
 }
 
 const UserListPage = (props: Props) => {
-  
+
   const dispatch = useDispatch();
   const {users, error, loading} = useSelector<IRootState, IAdminUserState>(state => state.adminUser)
+  const {confirm, success: alertSuccess, error: alertError} = useAlertify()
 
   useEffect(() => {
-    dispatch(allUsers());  
+    dispatch(allUsers());
   }, [dispatch])
 
   const deleteHandler = (userId: string) => {
-
+    confirm('Are you sure you want to delete this user',
+      function(){
+        dispatch(deleteUser(userId))
+        alertSuccess('Delete is success');
+      },
+      function(){
+        alertError('Cancel');
+      });
   }
 
   if (loading) return <Loader />;
@@ -55,9 +68,9 @@ const UserListPage = (props: Props) => {
                     <i className='fas fa-edit'/>
                   </Button>
                 </LinkContainer>
-                <Button 
-                  variant='danger' 
-                  className='btn-sm' 
+                <Button
+                  variant='danger'
+                  className='btn-sm'
                   onClick={() => deleteHandler(_id)}
                 >
                   <i className='fas fa-trash'/>
@@ -67,7 +80,7 @@ const UserListPage = (props: Props) => {
           ))}
         </tbody>
       </Table>
-      
+
     </>
   )
 }

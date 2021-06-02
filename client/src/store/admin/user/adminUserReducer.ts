@@ -1,9 +1,10 @@
 import {
-  GET_ALL_USER_FAIL,
-  GET_ALL_USER_REQUEST,
+  ADMIN_USER_FAIL,
+  ADMIN_USER_REQUEST,
   GET_ALL_USER_SUCCESS,
   IAdminUserActions,
   IAdminUserState,
+  REMOVE_USER_SUCCESS,
   RESET_ALL_USER,
 } from './adminUserTypes';
 
@@ -15,7 +16,7 @@ const initialState: IAdminUserState = {
 
 const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
   switch (action.type) {
-    case GET_ALL_USER_REQUEST:
+    case ADMIN_USER_REQUEST:
       return {
         ...state,
         loading: true,
@@ -27,7 +28,7 @@ const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
         loading: false,
         users: action.payload,
       };
-    case GET_ALL_USER_FAIL:
+    case ADMIN_USER_FAIL:
       return {
         ...state,
         loading: false,
@@ -39,6 +40,12 @@ const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
         loading: false,
         error: false,
         users: [],
+      }
+    case REMOVE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload,
       }
     default:
       return state;

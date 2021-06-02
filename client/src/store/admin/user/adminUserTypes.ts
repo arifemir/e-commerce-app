@@ -1,10 +1,11 @@
 import { IUser } from "../../../@types";
 
 // action types
-const GET_ALL_USER_REQUEST = 'GET_ALL_USER_REQUEST';
+const ADMIN_USER_REQUEST = 'GET_ALL_USER_REQUEST';
 const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
-const GET_ALL_USER_FAIL = 'GET_ALL_USER_FAIL';
+const ADMIN_USER_FAIL = 'GET_ALL_USER_FAIL';
 const RESET_ALL_USER = 'RESET_ALL_USER';
+const REMOVE_USER_SUCCESS = 'REMOVE_USER_SUCCESS';
 
 // state
 interface IAdminUserState {
@@ -15,7 +16,7 @@ interface IAdminUserState {
 
 // actions
 interface IAdminGetAllUserRequest {
-  type: typeof GET_ALL_USER_REQUEST;
+  type: typeof ADMIN_USER_REQUEST;
 }
 
 interface IAdminGetAllUserSuccess {
@@ -24,7 +25,7 @@ interface IAdminGetAllUserSuccess {
 }
 
 interface IAdminGetAllUserFail {
-  type: typeof GET_ALL_USER_FAIL;
+  type: typeof ADMIN_USER_FAIL;
   payload: any;
 }
 
@@ -32,9 +33,14 @@ interface IResetAllUser {
   type: typeof RESET_ALL_USER;
 }
 
-type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser;
+interface IRemoveUser {
+  type: typeof REMOVE_USER_SUCCESS;
+  payload: IUser[];
+}
 
-export { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, GET_ALL_USER_FAIL, RESET_ALL_USER }
+type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser | IRemoveUser;
+
+export { ADMIN_USER_REQUEST, GET_ALL_USER_SUCCESS, ADMIN_USER_FAIL, RESET_ALL_USER, REMOVE_USER_SUCCESS }
 
 export type {
   IAdminUserState,
