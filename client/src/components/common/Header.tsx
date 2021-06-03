@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../../store/user-auth/userAuthActions';
 import { resetOrder } from '../../store/order/orderActions';
 import { resetShipping } from '../../store/shipping/shippingActions';
+import { resetUsers } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
@@ -19,6 +20,7 @@ const Header: React.FC = () => {
     dispatch(userLogout());
     dispatch(resetOrder());
     dispatch(resetShipping());
+    if(user?.isAdmin) dispatch(resetUsers());
   };
 
   return (
@@ -51,6 +53,20 @@ const Header: React.FC = () => {
                   <Nav.Link>Sign In</Nav.Link>
                 </LinkContainer>
               )}
+              {user?.isAdmin && (
+                <NavDropdown title='admin' id='adminmenu'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderList'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )
+              }
             </Nav>
           </Collapse>
         </Container>
