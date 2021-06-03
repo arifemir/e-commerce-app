@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails } from '../../store/admin/user/adminUserActions';
+import { deleteUser, editUser, getUserDetails } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
@@ -13,6 +13,8 @@ import { match } from 'react-router-dom';
 import Message from '../../components/common/Message';
 import Loader from '../../components/common/Loader';
 import FormContainer from '../../components/common/FormContainer';
+import { editUserDetail } from '../../services/admin/adminUserService';
+import useAlertify from '../../hooks/useAlertify';
 
 interface params {
   id: string;
@@ -28,10 +30,11 @@ const UserEditPage = (props: Props) => {
 
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector<IRootState, IAdminUserState>(state => state.adminUser);
+  const {confirm, success: alertSuccess, error: alertError} = useAlertify()
 
-  const [name, setName] = useState(user?.name);
-  const [email, setEmail] = useState(user?.email);
-  const [isAdmin, setIsAdmin] = useState(user?.isAdmin);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if(user?._id !== userId || !user)
@@ -39,14 +42,20 @@ const UserEditPage = (props: Props) => {
     else {
       setName(user?.name)
       setEmail(user?.email)
-      setIsAdmin(user?.isAdmin)
+      setIsAdmin(!!user?.isAdmin)
     }
   }, [userId, dispatch, user]);
 
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    if (user)
+      confirm('Are you sure you want to update this user',
+        () => {
+          dispatch(editUser(userId, {...user, name, email, isAdmin}))
+          alertSuccess('Update is success');
+        }, () => alertError('Cancel')
+      );
   };
 
   return (

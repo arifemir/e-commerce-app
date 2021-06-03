@@ -29,13 +29,11 @@ const UserListPage = (props: Props) => {
 
   const deleteHandler = (userId: string) => {
     confirm('Are you sure you want to delete this user',
-      function(){
+      () => {
         dispatch(deleteUser(userId))
         alertSuccess('Delete is success');
-      },
-      function(){
-        alertError('Cancel');
-      });
+      }, () => alertError('Cancel')
+    );
   }
 
   if (loading) return <Loader />;

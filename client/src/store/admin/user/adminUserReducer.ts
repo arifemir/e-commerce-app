@@ -7,6 +7,7 @@ import {
   IAdminUserState,
   REMOVE_USER_SUCCESS,
   RESET_ALL_USER,
+  USER_UPDATE_SUCCESS,
 } from './adminUserTypes';
 
 const initialState: IAdminUserState = {
@@ -50,6 +51,12 @@ const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
         users: action.payload,
       }
     case GET_USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
+      }
+    case USER_UPDATE_SUCCESS:
       return {
         ...state,
         loading: false,

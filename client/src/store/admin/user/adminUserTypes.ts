@@ -7,6 +7,7 @@ const ADMIN_USER_FAIL = 'GET_ALL_USER_FAIL';
 const RESET_ALL_USER = 'RESET_ALL_USER';
 const REMOVE_USER_SUCCESS = 'REMOVE_USER_SUCCESS';
 const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
+const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS';
 
 // state
 interface IAdminUserState {
@@ -45,9 +46,13 @@ interface IGetUserDetailsSuccess {
   payload: IUser;
 }
 
-type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser | IRemoveUser | IGetUserDetailsSuccess;
+interface IUserUpdateSuccess {
+  type: typeof USER_UPDATE_SUCCESS;
+  payload: IUser;
+}
+type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser | IRemoveUser | IGetUserDetailsSuccess | IUserUpdateSuccess;
 
-export { ADMIN_USER_REQUEST, GET_ALL_USER_SUCCESS, ADMIN_USER_FAIL, RESET_ALL_USER, REMOVE_USER_SUCCESS, GET_USER_DETAILS_SUCCESS }
+export { ADMIN_USER_REQUEST, GET_ALL_USER_SUCCESS, ADMIN_USER_FAIL, RESET_ALL_USER, REMOVE_USER_SUCCESS, GET_USER_DETAILS_SUCCESS, USER_UPDATE_SUCCESS }
 
 export type {
   IAdminUserState,

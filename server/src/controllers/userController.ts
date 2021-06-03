@@ -97,18 +97,15 @@ const updateUser = a(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
 
   if (user) {
-    const { name: nameFromBody, email: emailFromBody, password, isAdminFromBody } = req.body;
-    user.name = nameFromBody || user.name;
-    user.email = emailFromBody || user.email;
-    user.isAdmin = isAdminFromBody;
+    const { editedUser } = req.body;
 
-    if (password) {
-      user.password = password;
-    }
+    user.name = editedUser.name || user.name;
+    user.email = editedUser.email || user.email;
+    user.isAdmin = editedUser.isAdmin;
+
     const updatedUser = await user.save();
 
-    const { _id, name, email, isAdmin } = updatedUser;
-    res.status(201).json({ _id, name, email, isAdmin });
+    res.status(200).json(updatedUser);
   } else {
     throw new HttpException(404, 'User not found');
   }

@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { getAllUser, getUserDetail, removeUser } from '../../../services/admin/adminUserService';
+import { editUserDetail, getAllUser, getUserDetail, removeUser } from '../../../services/admin/adminUserService';
 import {
   ADMIN_USER_FAIL,
   ADMIN_USER_REQUEST,
@@ -8,8 +8,10 @@ import {
   IAdminUserActions,
   REMOVE_USER_SUCCESS,
   RESET_ALL_USER,
+  USER_UPDATE_SUCCESS,
 } from './adminUserTypes';
 import { IRootState } from '../../store';
+import IUser from '../../../models/IUser';
 
 const allUsers = () => async (dispatch: Dispatch<IAdminUserActions>) => {
   dispatch({type: ADMIN_USER_REQUEST});
@@ -38,7 +40,17 @@ const getUserDetails = (id: string) => async (dispatch: Dispatch<IAdminUserActio
   dispatch({type: ADMIN_USER_REQUEST})
   try {
     const user = await getUserDetail(id);
-    dispatch({ type: GET_USER_DETAILS_SUCCESS,  payload: user})
+    dispatch({ type: GET_USER_DETAILS_SUCCESS, payload: user})
+  } catch (e) {
+    dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
+  }
+}
+
+const editUser = (id: string, editedUser: IUser) => async (dispatch: Dispatch<IAdminUserActions>) => {
+  dispatch({type: ADMIN_USER_REQUEST})
+  try {
+    const user = await editUserDetail(id, editedUser);
+    dispatch({ type: USER_UPDATE_SUCCESS, payload: user})
   } catch (e) {
     dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
   }
@@ -49,4 +61,5 @@ export {
   resetUsers,
   deleteUser,
   getUserDetails,
+  editUser,
 }
