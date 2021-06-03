@@ -2,6 +2,7 @@ import {
   ADMIN_USER_FAIL,
   ADMIN_USER_REQUEST,
   GET_ALL_USER_SUCCESS,
+  GET_USER_DETAILS_SUCCESS,
   IAdminUserActions,
   IAdminUserState,
   REMOVE_USER_SUCCESS,
@@ -12,6 +13,7 @@ const initialState: IAdminUserState = {
   users: [],
   loading: false,
   error: false,
+  user: undefined,
 };
 
 const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
@@ -46,6 +48,12 @@ const adminUserReducer = (state = initialState, action: IAdminUserActions) => {
         ...state,
         loading: false,
         users: action.payload,
+      }
+    case GET_USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
       }
     default:
       return state;

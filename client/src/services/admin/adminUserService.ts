@@ -5,4 +5,6 @@ const getAllUser = (): Promise<IUser[]> => axios.get('/api/users').then((res) =>
 
 const removeUser = (id: string) => axios.delete(`/api/users/${id}`).then((res) => res.data);
 
-export { getAllUser, removeUser }
+const getUserDetail = (id: string) => axios.get(`/api/users/${id}`).then((res) => res.data);
+
+export { getAllUser, removeUser, getUserDetail }
