@@ -13,6 +13,8 @@ import useAlertify from '../../hooks/useAlertify';
 //components
 import Loader from '../../components/common/Loader';
 import Message from '../../components/common/Message';
+import { deleteProduct } from '../../store/admin/product/adminProductActions';
+import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
 
 interface Props {
 
@@ -22,16 +24,17 @@ const ProductListPage = (props: Props) => {
 
   const dispatch = useDispatch();
   const {products, error, loading} = useSelector<IRootState, IProductListState>(state => state.productList)
+  const {processSuccess} = useSelector<IRootState, IAdminProductState>(state => state.adminProduct)
   const {confirm, success: alertSuccess, error: alertError} = useAlertify()
 
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch])
+  }, [dispatch, processSuccess])
 
   const deleteHandler = (productId: string) => {
     confirm('Are you sure you want to delete this product',
       () => {
-        // dispatch(deleteUser(userId))
+        dispatch(deleteProduct(productId))
         alertSuccess('Delete is success');
       }, () => alertError('Cancel')
     );
@@ -57,7 +60,6 @@ const ProductListPage = (props: Props) => {
           </Button>
         </Col>
       </Row>
-      <h1>Users</h1>
       <Table striped bordered hover responsive className='table-sm'>
         <thead>
           <tr>

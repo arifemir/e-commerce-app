@@ -9,6 +9,7 @@ import shipping from './shipping/shippingReducer';
 import payment from './payment/paymentReducer';
 import order from './order/orderReducer';
 import adminUser from './admin/user/adminUserReducer';
+import adminProduct from './admin/product/adminProductReducer';
 
 export const rootReducer = combineReducers({
   productList,
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
   payment,
   order,
   adminUser,
+  adminProduct,
 });
