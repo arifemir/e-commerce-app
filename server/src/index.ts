@@ -4,6 +4,7 @@ import dbConn from './config/dbConn';
 import colors from 'colors';
 import routes from './routes';
 import { errorHandler, notFound } from './middleware/errorMiddleware';
+import path from 'path';
 
 dotenv.config();
 colors.enable();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use('/api', routes);
 
+app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')))
 app.use(notFound);
 app.use(errorHandler);
 

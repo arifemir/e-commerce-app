@@ -21,6 +21,8 @@ import OrderPage from './pages/OrderPage';
 import AdminRoute from './components/common/AdminRoute';
 import UserListPage from './pages/admin/UserListPage';
 import UserEditPage from './pages/admin/UserEditPage';
+import ProductListPage from './pages/admin/ProductListPage';
+import ProductEditPage from './pages/admin/ProductEditPage';
 
 const App = () => {
   return (
@@ -42,6 +44,8 @@ const App = () => {
           <ProtectedRoute path='/order/:id' exact component={OrderPage} />
           <AdminRoute path='/admin/userlist' exact component={UserListPage} />
           <AdminRoute path='/admin/user/:id/edit' exact component={UserEditPage} />
+          <AdminRoute path='/admin/productlist' exact component={ProductListPage} />
+          <AdminRoute path='/admin/product/:id/edit' exact component={ProductEditPage} />
         </Container>
       </main>
       <Footer />
