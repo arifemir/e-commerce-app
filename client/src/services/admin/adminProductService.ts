@@ -7,8 +7,13 @@ const removeProduct = (id: string) => axios.delete(`/api/products/${id}`).then((
 
 const editProductDetail = (id: string, editedProduct: IProduct): Promise<IProduct> => axios.put(`/api/products/${id}`, { editedProduct }).then((res) => res.data);
 
+const uploadProductImg = (formData: FormData) => axios.post('/api/upload', formData, {
+  headers: { 'Content-type': 'multipart/form-data' }
+  }).then(res => res.data);
+
 export {
   createProduct,
   removeProduct,
   editProductDetail,
+  uploadProductImg,
 }

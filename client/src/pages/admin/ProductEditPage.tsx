@@ -1,25 +1,22 @@
 import * as React from 'react';
-import { useState, useEffect, useReducer } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Form, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, editUser, getUserDetails } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
-import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
 import { match } from 'react-router-dom';
 //components
 import Message from '../../components/common/Message';
 import Loader from '../../components/common/Loader';
 import FormContainer from '../../components/common/FormContainer';
-import { editUserDetail } from '../../services/admin/adminUserService';
 import useAlertify from '../../hooks/useAlertify';
-import { getProduct } from '../../services/productService';
 import { IProductDetailState } from '../../store/product-detail/productDetailTypes';
 import { productDetail } from '../../store/product-detail/productDetailActions';
 import { editProduct } from '../../store/admin/product/adminProductActions';
 import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
+import { uploadProductImg } from '../../services/admin/adminProductService';
 
 interface params {
   id: string;
@@ -45,6 +42,7 @@ const ProductEditPage = (props: Props) => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
 
   useEffect(() => {
     if(!processLoading)
@@ -68,11 +66,44 @@ const ProductEditPage = (props: Props) => {
     if (product)
       confirm('Are you sure you want to update this product',
         () => {
-          dispatch(editProduct(productId, {...product, name, price, image, brand, category, countInStock, description}))
+          dispatch(
+            editProduct(productId, {
+              ...product,
+              name,
+              price,
+              image,
+              brand,
+              category,
+              countInStock,
+              description
+            })
+          )
           if(updateSuccess) alertSuccess('Update is success');
         }, () => alertError('Cancel')
       );
   };
+
+  const uploadFileHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files && e.target.files[0];
+    const formData = new FormData();
+
+    if(file) {
+      setSelectedFile(URL.createObjectURL(file))
+      formData.append('image', file);
+      await completeFileUpload(formData);
+    }
+}
+
+  const completeFileUpload = async (formData: FormData) => {
+    try {
+      const path = await uploadProductImg(formData);
+      setImage(path);
+    } catch (e) {
+      console.log(error);
+    } finally {
+      setSelectedFile('');
+    }
+  }
 
   return (
     <>
@@ -116,7 +147,8 @@ const ProductEditPage = (props: Props) => {
 
           <Form.Group controlId='image'>
             <Form.Label>Image</Form.Label>
-            <Form.Control value={image} type='text' placeholder='Enter image url' onChange={e => setImage(e.target.value)} />
+            <Image fluid rounded className='d-block mb-1' src={selectedFile ? selectedFile : image} />
+            <Form.File id='image-file' label='Choose file' custom onChange={uploadFileHandler}/>
           </Form.Group>
 
           <Button type='submit' variant='primary'>
