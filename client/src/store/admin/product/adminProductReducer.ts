@@ -1,8 +1,11 @@
 import {
   ADMIN_PRODUCT_FAIL,
-  ADMIN_PRODUCT_REQUEST, IAdminProductActions,
-  IAdminProductState, PRODUCT_CREATE_SUCCESS,
-  PRODUCT_DELETE_SUCCESS, PRODUCT_UPDATE_SUCCESS,
+  ADMIN_PRODUCT_REQUEST,
+  IAdminProductActions,
+  IAdminProductState,
+  PRODUCT_CREATE_SUCCESS,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_UPDATE_SUCCESS,
 } from './adminProductTypes';
 
 const initialState: IAdminProductState = {
@@ -11,7 +14,7 @@ const initialState: IAdminProductState = {
   deleteSuccess: false,
   createSuccess: false,
   updateSuccess: false,
-}
+};
 
 const adminProductReducer = (state = initialState, action: IAdminProductActions) => {
   switch (action.type) {
@@ -22,7 +25,7 @@ const adminProductReducer = (state = initialState, action: IAdminProductActions)
         deleteSuccess: false,
         createSuccess: false,
         updateSuccess: false,
-      }
+      };
     case ADMIN_PRODUCT_FAIL:
       return {
         ...state,
@@ -31,28 +34,28 @@ const adminProductReducer = (state = initialState, action: IAdminProductActions)
         deleteSuccess: false,
         createSuccess: false,
         updateSuccess: false,
-      }
+      };
     case PRODUCT_DELETE_SUCCESS:
       return {
         ...state,
         deleteSuccess: true,
         loading: false,
-      }
+      };
     case PRODUCT_UPDATE_SUCCESS:
       return {
         ...state,
         updateSuccess: true,
         loading: false,
-      }
+      };
     case PRODUCT_CREATE_SUCCESS:
       return {
         ...state,
         createSuccess: true,
         loading: false,
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 export default adminProductReducer;

@@ -6,15 +6,15 @@ dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2020-08-27',
-})
+});
 
-const createPaymentIntent = a(async (req,res,next) => {
+const createPaymentIntent = a(async (req, res, next) => {
   try {
     const { amount } = req.body;
-    
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: "usd",
+      currency: 'usd',
       payment_method_types: ['card'],
     });
 
@@ -22,6 +22,6 @@ const createPaymentIntent = a(async (req,res,next) => {
   } catch (err) {
     throw new HttpException(500, err.message);
   }
-})
+});
 
-export { createPaymentIntent }
+export { createPaymentIntent };

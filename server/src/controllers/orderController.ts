@@ -37,7 +37,7 @@ const getOrderItemById = a(async (req, res, next) => {
 const updateOrderItemToPaid = a(async (req, res, next) => {
   const { id } = req.params;
   console.log(id);
-  
+
   const order: IOrder | null = await Order.findById(id);
 
   if (!order) {
@@ -58,9 +58,9 @@ const updateOrderItemToPaid = a(async (req, res, next) => {
 
 const getOrdersForUser = a(async (req, res, next) => {
   const user: IUser = (req as any).user;
-  const orders = await Order.find({user: user._id})
-  if(!orders) throw new HttpException(404, 'order not found')
+  const orders = await Order.find({ user: user._id });
+  if (!orders) throw new HttpException(404, 'order not found');
   res.send(orders);
-})
+});
 
 export { addOrderItems, getOrderItemById, updateOrderItemToPaid, getOrdersForUser };

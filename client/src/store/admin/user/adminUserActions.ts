@@ -14,52 +14,46 @@ import { IRootState } from '../../store';
 import IUser from '../../../models/IUser';
 
 const allUsers = () => async (dispatch: Dispatch<IAdminUserActions>) => {
-  dispatch({type: ADMIN_USER_REQUEST});
+  dispatch({ type: ADMIN_USER_REQUEST });
   try {
     const allUsers = await getAllUser();
-    dispatch({type: GET_ALL_USER_SUCCESS, payload: allUsers})
-  } catch(e) {
+    dispatch({ type: GET_ALL_USER_SUCCESS, payload: allUsers });
+  } catch (e) {
     dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
   }
-}
+};
 
-const resetUsers = () => ({ type: RESET_ALL_USER })
+const resetUsers = () => ({ type: RESET_ALL_USER });
 
 const deleteUser = (id: string) => async (dispatch: Dispatch<IAdminUserActions>, getState: () => IRootState) => {
-  dispatch({type: ADMIN_USER_REQUEST})
+  dispatch({ type: ADMIN_USER_REQUEST });
   try {
-    await removeUser(id)
+    await removeUser(id);
     const users = getState().adminUser.users.filter(user => user._id !== id);
-    dispatch({ type: REMOVE_USER_SUCCESS, payload: users })
+    dispatch({ type: REMOVE_USER_SUCCESS, payload: users });
   } catch (e) {
     dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
   }
-}
+};
 
 const getUserDetails = (id: string) => async (dispatch: Dispatch<IAdminUserActions>) => {
-  dispatch({type: ADMIN_USER_REQUEST})
+  dispatch({ type: ADMIN_USER_REQUEST });
   try {
     const user = await getUserDetail(id);
-    dispatch({ type: GET_USER_DETAILS_SUCCESS, payload: user})
+    dispatch({ type: GET_USER_DETAILS_SUCCESS, payload: user });
   } catch (e) {
     dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
   }
-}
+};
 
 const editUser = (id: string, editedUser: IUser) => async (dispatch: Dispatch<IAdminUserActions>) => {
-  dispatch({type: ADMIN_USER_REQUEST})
+  dispatch({ type: ADMIN_USER_REQUEST });
   try {
     const user = await editUserDetail(id, editedUser);
-    dispatch({ type: USER_UPDATE_SUCCESS, payload: user})
+    dispatch({ type: USER_UPDATE_SUCCESS, payload: user });
   } catch (e) {
     dispatch({ type: ADMIN_USER_FAIL, payload: e.response ? e.response.data : e });
   }
-}
+};
 
-export {
-  allUsers,
-  resetUsers,
-  deleteUser,
-  getUserDetails,
-  editUser,
-}
+export { allUsers, resetUsers, deleteUser, getUserDetails, editUser };

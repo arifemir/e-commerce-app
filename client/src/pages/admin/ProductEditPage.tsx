@@ -23,17 +23,19 @@ interface params {
 }
 
 interface Props {
-  match: match<params>
+  match: match<params>;
 }
 
 const ProductEditPage = (props: Props) => {
-  const {match} = props;
-  const productId = match.params.id
+  const { match } = props;
+  const productId = match.params.id;
 
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
-  const { updateSuccess, loading: processLoading, error: processError } = useSelector<IRootState, IAdminProductState>(state => state.adminProduct);
-  const { confirm, success: alertSuccess, error: alertError } = useAlertify()
+  const { updateSuccess, loading: processLoading, error: processError } = useSelector<IRootState, IAdminProductState>(
+    state => state.adminProduct,
+  );
+  const { confirm, success: alertSuccess, error: alertError } = useAlertify();
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
@@ -45,26 +47,26 @@ const ProductEditPage = (props: Props) => {
   const [selectedFile, setSelectedFile] = useState('');
 
   useEffect(() => {
-    if(!processLoading)
-      dispatch(productDetail(productId))
+    if (!processLoading) dispatch(productDetail(productId));
   }, [updateSuccess]);
 
   useEffect(() => {
-    if(product) {
-      setName(product.name)
-      setPrice(product.price)
-      setImage(product.image)
-      setBrand(product.brand)
-      setCategory(product.category)
-      setCountInStock(product.countInStock)
-      setDescription(product.description)
+    if (product) {
+      setName(product.name);
+      setPrice(product.price);
+      setImage(product.image);
+      setBrand(product.brand);
+      setCategory(product.category);
+      setCountInStock(product.countInStock);
+      setDescription(product.description);
     }
   }, [product]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (product)
-      confirm('Are you sure you want to update this product',
+      confirm(
+        'Are you sure you want to update this product',
         () => {
           dispatch(
             editProduct(productId, {
@@ -75,11 +77,12 @@ const ProductEditPage = (props: Props) => {
               brand,
               category,
               countInStock,
-              description
-            })
-          )
-          if(updateSuccess) alertSuccess('Update is success');
-        }, () => alertError('Cancel')
+              description,
+            }),
+          );
+          if (updateSuccess) alertSuccess('Update is success');
+        },
+        () => alertError('Cancel'),
       );
   };
 
@@ -87,12 +90,12 @@ const ProductEditPage = (props: Props) => {
     const file = e.target?.files && e.target.files[0];
     const formData = new FormData();
 
-    if(file) {
-      setSelectedFile(URL.createObjectURL(file))
+    if (file) {
+      setSelectedFile(URL.createObjectURL(file));
       formData.append('image', file);
       await completeFileUpload(formData);
     }
-}
+  };
 
   const completeFileUpload = async (formData: FormData) => {
     try {
@@ -103,7 +106,7 @@ const ProductEditPage = (props: Props) => {
     } finally {
       setSelectedFile('');
     }
-  }
+  };
 
   return (
     <>
@@ -132,7 +135,12 @@ const ProductEditPage = (props: Props) => {
 
           <Form.Group controlId='category'>
             <Form.Label>Count in stock</Form.Label>
-            <Form.Control value={countInStock} type='number' placeholder='Enter count in stock' onChange={e => setCountInStock(Number(e.target.value))} />
+            <Form.Control
+              value={countInStock}
+              type='number'
+              placeholder='Enter count in stock'
+              onChange={e => setCountInStock(Number(e.target.value))}
+            />
           </Form.Group>
 
           <Form.Group controlId='brand'>
@@ -148,7 +156,7 @@ const ProductEditPage = (props: Props) => {
           <Form.Group controlId='image'>
             <Form.Label>Image</Form.Label>
             <Image fluid rounded className='d-block mb-1' src={selectedFile ? selectedFile : image} />
-            <Form.File id='image-file' label='Choose file' custom onChange={uploadFileHandler}/>
+            <Form.File id='image-file' label='Choose file' custom onChange={uploadFileHandler} />
           </Form.Group>
 
           <Button type='submit' variant='primary'>

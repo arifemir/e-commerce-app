@@ -62,7 +62,7 @@ const shippingReducer = (state = initialState, action: IShippingActions) => {
         ...state,
         selectedShippingLocation: undefined,
         shippingLocations: [],
-      }
+      };
     default:
       return state;
   }

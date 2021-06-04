@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrder, payOrder } from '../store/order/orderActions';
 //stripe
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { addPaymentIntent } from '../services/paymentIntentService';
 //types
 import { IRootState } from '../store/store';
@@ -43,7 +43,6 @@ const OrderPage = (props: Props) => {
 
   const onPayment = async () => {
     if (orderDetails?.totalPrice && stripe && elements) {
-
       const billingDetails = {
         name: orderDetails.user.name,
         email: orderDetails.user.email,
@@ -51,33 +50,33 @@ const OrderPage = (props: Props) => {
           city: orderDetails.shippingLocation.city,
           line1: orderDetails.shippingLocation.address,
           state: orderDetails.shippingLocation.country,
-          postal_code: orderDetails.shippingLocation.postalCode
-        }
+          postal_code: orderDetails.shippingLocation.postalCode,
+        },
       };
 
-      const cardElement = elements.getElement("card");
-      
+      const cardElement = elements.getElement('card');
+
       try {
         const clientSecret = await addPaymentIntent(orderDetails.totalPrice);
-        
+
         let paymentMethodReq = undefined;
 
-        if(cardElement) {
+        if (cardElement) {
           paymentMethodReq = await stripe.createPaymentMethod({
-            type: "card",
+            type: 'card',
             card: cardElement,
-            billing_details: billingDetails
+            billing_details: billingDetails,
           });
         }
 
-        if(paymentMethodReq) {
+        if (paymentMethodReq) {
           if (paymentMethodReq.error) {
             setCheckoutError(paymentMethodReq.error.message);
             return;
           }
 
           const { error } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: paymentMethodReq.paymentMethod.id
+            payment_method: paymentMethodReq.paymentMethod.id,
           });
 
           if (error) {
@@ -85,18 +84,20 @@ const OrderPage = (props: Props) => {
             return;
           }
 
-          dispatch(payOrder(orderId, {
-            id: paymentMethodReq.paymentMethod.id,
-            status: "success",
-            email_address: billingDetails.email,
-            update_time: new Date(),
-          }))
+          dispatch(
+            payOrder(orderId, {
+              id: paymentMethodReq.paymentMethod.id,
+              status: 'success',
+              email_address: billingDetails.email,
+              update_time: new Date(),
+            }),
+          );
         }
       } catch (err) {
         setCheckoutError(err.message);
       }
     }
-  }
+  };
 
   if (loading) return <Loader />;
 
@@ -176,38 +177,40 @@ const OrderPage = (props: Props) => {
             <ListGroup.Item>
               <Row>
                 <Col>Items</Col>
-                <Col className='text-right' >${orderDetails.itemsPrice}</Col>
+                <Col className='text-right'>${orderDetails.itemsPrice}</Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Row>
                 <Col>Shipping</Col>
-                <Col className='text-right' >${orderDetails.shippingPrice}</Col>
+                <Col className='text-right'>${orderDetails.shippingPrice}</Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Row>
                 <Col>Tax</Col>
-                <Col className='text-right' >${orderDetails.taxPrice}</Col>
+                <Col className='text-right'>${orderDetails.taxPrice}</Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Row>
                 <Col>Total</Col>
-                <Col className='text-right' >${orderDetails.totalPrice}</Col>
+                <Col className='text-right'>${orderDetails.totalPrice}</Col>
               </Row>
             </ListGroup.Item>
-            {!orderDetails.isPaid &&
+            {!orderDetails.isPaid && (
               <>
                 <ListGroup.Item>
                   <CardElement />
                 </ListGroup.Item>
                 <ListGroup.Item>
                   {checkoutError && <Message variant='danger'>checkoutError</Message>}
-                  <Button variant='primary' onClick={onPayment} >Payment</Button>
+                  <Button variant='primary' onClick={onPayment}>
+                    Payment
+                  </Button>
                 </ListGroup.Item>
               </>
-            }
+            )}
           </Card>
         </Col>
       </Row>

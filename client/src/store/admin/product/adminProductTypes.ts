@@ -34,11 +34,13 @@ interface IAdminProductCreateSuccess {
   type: typeof PRODUCT_CREATE_SUCCESS;
 }
 
-type IAdminProductActions = IAdminProductRequest | IAdminProductFail | IAdminProductDeleteSuccess | IAdminProductUpdateFail | IAdminProductCreateSuccess;
+type IAdminProductActions =
+  | IAdminProductRequest
+  | IAdminProductFail
+  | IAdminProductDeleteSuccess
+  | IAdminProductUpdateFail
+  | IAdminProductCreateSuccess;
 
-export { ADMIN_PRODUCT_FAIL, ADMIN_PRODUCT_REQUEST,  PRODUCT_DELETE_SUCCESS, PRODUCT_UPDATE_SUCCESS, PRODUCT_CREATE_SUCCESS }
+export { ADMIN_PRODUCT_FAIL, ADMIN_PRODUCT_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_UPDATE_SUCCESS, PRODUCT_CREATE_SUCCESS };
 
-export type {
-  IAdminProductState,
-  IAdminProductActions,
-}
+export type { IAdminProductState, IAdminProductActions };

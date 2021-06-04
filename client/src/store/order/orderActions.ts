@@ -55,6 +55,6 @@ const getAllOrders = () => async (dispatch: Dispatch<IOrderActions>) => {
   }
 };
 
-const resetOrder = () => ({type: ORDER_RESET})
+const resetOrder = () => ({ type: ORDER_RESET });
 
 export { createOrder, getOrder, clearCreateOrder, payOrder, getAllOrders, resetOrder };

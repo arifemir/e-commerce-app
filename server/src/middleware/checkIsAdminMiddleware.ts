@@ -4,8 +4,8 @@ import HttpException from '../helpers/exceptions/HttpException';
 
 const checkIsAdmin = a((req, res, next) => {
   const user: IUser = (req as any).user;
-  if(user && user.isAdmin) next();
-  else new HttpException(401, 'Not authorized as an admin')
-})
+  if (user && user.isAdmin) next();
+  else new HttpException(401, 'Not authorized as an admin');
+});
 
-export { checkIsAdmin }
+export { checkIsAdmin };

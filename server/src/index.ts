@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use('/api', routes);
 
-app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')))
+app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')));
 app.use(notFound);
 app.use(errorHandler);
 

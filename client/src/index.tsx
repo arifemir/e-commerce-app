@@ -10,10 +10,10 @@ import store from './store/store';
 //stripe
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY))
+const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY));
 
 ReactDOM.render(
-  <Elements stripe={stripePromise} >
+  <Elements stripe={stripePromise}>
     <Provider store={store}>
       <App />
     </Provider>

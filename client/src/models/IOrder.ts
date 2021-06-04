@@ -1,4 +1,4 @@
-import {IUser, IShippingLocation, IProduct, IPaymentResult} from '../@types';
+import { IUser, IShippingLocation, IProduct, IPaymentResult } from '../@types';
 
 export default interface IOrder {
   _id?: string;

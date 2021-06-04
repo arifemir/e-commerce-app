@@ -1,6 +1,6 @@
 // @ts-ignore
 import * as alertify from 'alertifyjs';
 
-const useAlertify = () => alertify
+const useAlertify = () => alertify;
 
 export default useAlertify;

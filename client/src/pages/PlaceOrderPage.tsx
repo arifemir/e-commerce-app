@@ -53,7 +53,7 @@ const PlaceOrderPage = (props: Props) => {
         taxPrice,
         shippingPrice,
         itemsPrice: cartItemsPrice,
-        createdAt: new Date()
+        createdAt: new Date(),
       }),
     );
   };

@@ -1,4 +1,4 @@
-import { IUser } from "../../../@types";
+import { IUser } from '../../../@types';
 
 // action types
 const ADMIN_USER_REQUEST = 'GET_ALL_USER_REQUEST';
@@ -50,11 +50,23 @@ interface IUserUpdateSuccess {
   type: typeof USER_UPDATE_SUCCESS;
   payload: IUser;
 }
-type IAdminUserActions = IAdminGetAllUserRequest | IAdminGetAllUserSuccess | IAdminGetAllUserFail | IResetAllUser | IRemoveUser | IGetUserDetailsSuccess | IUserUpdateSuccess;
+type IAdminUserActions =
+  | IAdminGetAllUserRequest
+  | IAdminGetAllUserSuccess
+  | IAdminGetAllUserFail
+  | IResetAllUser
+  | IRemoveUser
+  | IGetUserDetailsSuccess
+  | IUserUpdateSuccess;
 
-export { ADMIN_USER_REQUEST, GET_ALL_USER_SUCCESS, ADMIN_USER_FAIL, RESET_ALL_USER, REMOVE_USER_SUCCESS, GET_USER_DETAILS_SUCCESS, USER_UPDATE_SUCCESS }
+export {
+  ADMIN_USER_REQUEST,
+  GET_ALL_USER_SUCCESS,
+  ADMIN_USER_FAIL,
+  RESET_ALL_USER,
+  REMOVE_USER_SUCCESS,
+  GET_USER_DETAILS_SUCCESS,
+  USER_UPDATE_SUCCESS,
+};
 
-export type {
-  IAdminUserState,
-  IAdminUserActions
-}
+export type { IAdminUserState, IAdminUserActions };

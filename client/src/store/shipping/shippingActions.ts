@@ -72,7 +72,14 @@ const selectShippingLocation = (i: number) => async (dispatch: Dispatch<IShippin
 
 const resetShipping = () => {
   localStorage.setItem('shipping', '');
-  return {type: RESET_SHIPPING}
-}
+  return { type: RESET_SHIPPING };
+};
 
-export { getAllShippingLocation, addShippingLocation, updateShippingLocation, deleteShippingLocation, selectShippingLocation, resetShipping };
+export {
+  getAllShippingLocation,
+  addShippingLocation,
+  updateShippingLocation,
+  deleteShippingLocation,
+  selectShippingLocation,
+  resetShipping,
+};

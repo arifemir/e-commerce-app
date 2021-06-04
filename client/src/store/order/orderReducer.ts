@@ -72,13 +72,13 @@ const orderReducer = (state = initialState, action: IOrderActions) => {
         orderDetails: undefined,
         orders: [],
       };
-    case ORDER_ALL_SUCCESS: 
+    case ORDER_ALL_SUCCESS:
       return {
         ...state,
         loading: false,
         error: false,
-        orders: action.payload,  
-      }
+        orders: action.payload,
+      };
     default:
       return state;
   }

@@ -12,7 +12,7 @@ const ORDER_ALL_SUCCESS = 'ORDER_ALL_SUCCESS';
 interface IOrderState {
   order: IOrder | undefined;
   orderDetails: IOrderDetails | undefined;
-  orders: IOrder[],
+  orders: IOrder[];
   loading: boolean;
   error: any;
   success: boolean;

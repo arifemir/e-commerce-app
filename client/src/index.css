@@ -10,7 +10,8 @@ h3 {
   padding: 1rem 0;
 }
 
-.table-cell-align > td, th {
+.table-cell-align > td,
+th {
   text-align: center;
   vertical-align: middle;
 }

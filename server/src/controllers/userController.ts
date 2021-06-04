@@ -72,26 +72,26 @@ const updateUserProfile = a(async (req, res, next) => {
 const getAllUser = a(async (req, res, next) => {
   const allUsers = await User.find({});
   res.send(allUsers);
-})
+});
 
 const getUserById = a(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-  if(user) {
+  if (user) {
     res.json(user);
   } else {
     throw new HttpException(404, 'User not found');
   }
-})
+});
 
 const deleteUser = a(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
-  if(user) {
+  if (user) {
     await user.remove();
     res.json({ message: 'User removed' });
   } else {
     throw new HttpException(404, 'User not found');
   }
-})
+});
 
 const updateUser = a(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');

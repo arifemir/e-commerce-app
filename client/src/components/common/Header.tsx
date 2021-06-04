@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     dispatch(userLogout());
     dispatch(resetOrder());
     dispatch(resetShipping());
-    if(user?.isAdmin) dispatch(resetUsers());
+    if (user?.isAdmin) dispatch(resetUsers());
   };
 
   return (
@@ -65,8 +65,7 @@ const Header: React.FC = () => {
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
-              )
-              }
+              )}
             </Nav>
           </Collapse>
         </Container>

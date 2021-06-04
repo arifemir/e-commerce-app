@@ -13,7 +13,7 @@ const AdminRoute = (props: Props) => {
 
   const { user } = useSelector<IRootState, IUserState>(state => state.userAuth);
 
-  if(!user) return <Redirect to='/login' />;
+  if (!user) return <Redirect to='/login' />;
 
   return user.isAdmin ? <Route {...rest} component={component} /> : <Redirect to='/' />;
 };

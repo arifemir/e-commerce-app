@@ -21,40 +21,40 @@ interface params {
 }
 
 interface Props {
-  match: match<params>
+  match: match<params>;
 }
 
 const UserEditPage = (props: Props) => {
-  const {match} = props;
-  const userId = match.params.id
+  const { match } = props;
+  const userId = match.params.id;
 
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector<IRootState, IAdminUserState>(state => state.adminUser);
-  const {confirm, success: alertSuccess, error: alertError} = useAlertify()
+  const { confirm, success: alertSuccess, error: alertError } = useAlertify();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if(user?._id !== userId || !user)
-      dispatch(getUserDetails(userId))
+    if (user?._id !== userId || !user) dispatch(getUserDetails(userId));
     else {
-      setName(user?.name)
-      setEmail(user?.email)
-      setIsAdmin(!!user?.isAdmin)
+      setName(user?.name);
+      setEmail(user?.email);
+      setIsAdmin(!!user?.isAdmin);
     }
   }, [userId, dispatch, user]);
-
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (user)
-      confirm('Are you sure you want to update this user',
+      confirm(
+        'Are you sure you want to update this user',
         () => {
-          dispatch(editUser(userId, {...user, name, email, isAdmin}))
+          dispatch(editUser(userId, { ...user, name, email, isAdmin }));
           alertSuccess('Update is success');
-        }, () => alertError('Cancel')
+        },
+        () => alertError('Cancel'),
       );
   };
 
@@ -78,7 +78,12 @@ const UserEditPage = (props: Props) => {
           </Form.Group>
           <Form.Group controlId='isadmin'>
             <Form.Label>Password</Form.Label>
-            <Form.Check checked={isAdmin} type='checkbox' placeholder='Enter is admin' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsAdmin(e.target.checked)} />
+            <Form.Check
+              checked={isAdmin}
+              type='checkbox'
+              placeholder='Enter is admin'
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsAdmin(e.target.checked)}
+            />
           </Form.Group>
           <Button type='submit' variant='primary'>
             Update

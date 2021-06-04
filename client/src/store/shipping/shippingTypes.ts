@@ -55,7 +55,7 @@ interface ISelectShippingLocationAction {
 }
 
 interface IResetShipping {
-  type: typeof RESET_SHIPPING,
+  type: typeof RESET_SHIPPING;
 }
 
 type IShippingActions =
