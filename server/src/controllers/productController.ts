@@ -27,7 +27,7 @@ const deleteProduct = a(async (req, res, next) => {
 });
 
 const updateProduct = a(async (req, res, next) => {
-  const { name, price, description, image, brand, category, countInStock, } = (req.body.updatedProduct as IProduct)
+  const { name, price, description, image, brand, category, countInStock, } = (req.body.editedProduct as IProduct)
   const product = await Product.findById(req.params.id);
   if (product) {
     product.name = name

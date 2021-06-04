@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IProduct } from '../../@types';
 
-const createProduct = (newProduct: IProduct): Promise<IProduct> => axios.post('/api/products', {newProduct}).then((res) => res.data);
+const createProduct = (): Promise<IProduct> => axios.post('/api/products').then((res) => res.data);
 
 const removeProduct = (id: string) => axios.delete(`/api/products/${id}`).then((res) => res.data);
 

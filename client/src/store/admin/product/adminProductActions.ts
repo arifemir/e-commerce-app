@@ -7,13 +7,13 @@ import {
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_UPDATE_SUCCESS,
 } from './adminProductTypes';
-import { editProductDetail, removeProduct } from '../../../services/admin/adminProductService';
+import { createProduct, editProductDetail, removeProduct } from '../../../services/admin/adminProductService';
 import IProduct from '../../../models/IProduct';
 
-const createNewProduct = (newProduct: IProduct) => async (dispatch: Dispatch<IAdminProductActions>) => {
+const createNewProduct = () => async (dispatch: Dispatch<IAdminProductActions>) => {
   dispatch({type: ADMIN_PRODUCT_REQUEST});
   try {
-    await createNewProduct(newProduct);
+    await createProduct();
     dispatch({type: PRODUCT_CREATE_SUCCESS});
   } catch (e) {
     dispatch({ type: ADMIN_PRODUCT_FAIL, payload: e.response ? e.response.data : e });

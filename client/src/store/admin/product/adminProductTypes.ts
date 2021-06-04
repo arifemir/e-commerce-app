@@ -8,7 +8,9 @@ const PRODUCT_CREATE_SUCCESS = 'PRODUCT_CREATE_SUCCESS';
 interface IAdminProductState {
   loading: boolean;
   error: any;
-  processSuccess: boolean;
+  deleteSuccess: boolean;
+  createSuccess: boolean;
+  updateSuccess: boolean;
 }
 
 interface IAdminProductRequest {

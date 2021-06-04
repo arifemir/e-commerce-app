@@ -4,17 +4,16 @@ import { LinkContainer } from 'react-router-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../../store/product-list/productListActions';
+import { createNewProduct, deleteProduct } from '../../store/admin/product/adminProductActions';
 //types
-import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
 import { IProductListState } from '../../store/product-list/productListTypes';
+import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
 import { IRootState } from '../../store/store';
 //hooks
 import useAlertify from '../../hooks/useAlertify';
 //components
 import Loader from '../../components/common/Loader';
 import Message from '../../components/common/Message';
-import { deleteProduct } from '../../store/admin/product/adminProductActions';
-import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
 
 interface Props {
 
@@ -24,12 +23,13 @@ const ProductListPage = (props: Props) => {
 
   const dispatch = useDispatch();
   const {products, error, loading} = useSelector<IRootState, IProductListState>(state => state.productList)
-  const {processSuccess} = useSelector<IRootState, IAdminProductState>(state => state.adminProduct)
+  const {deleteSuccess, createSuccess, loading: processLoading} = useSelector<IRootState, IAdminProductState>(state => state.adminProduct)
   const {confirm, success: alertSuccess, error: alertError} = useAlertify()
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch, processSuccess])
+    if(!processLoading)
+      dispatch(listProducts());
+  }, [dispatch, deleteSuccess, createSuccess])
 
   const deleteHandler = (productId: string) => {
     confirm('Are you sure you want to delete this product',
@@ -41,7 +41,7 @@ const ProductListPage = (props: Props) => {
   }
 
   const createProductHandler = () => {
-
+    dispatch(createNewProduct())
   }
 
   if (loading) return <Loader />;

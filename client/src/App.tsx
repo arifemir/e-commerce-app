@@ -43,7 +43,7 @@ const App = () => {
           <ProtectedRoute path='/placeorder' exact component={PlaceOrderPage} />
           <ProtectedRoute path='/order/:id' exact component={OrderPage} />
           <AdminRoute path='/admin/userlist' exact component={UserListPage} />
-          <AdminRoute path='/admin/product/:id/edit' exact component={UserEditPage} />
+          <AdminRoute path='/admin/user/:id/edit' exact component={UserEditPage} />
           <AdminRoute path='/admin/productlist' exact component={ProductListPage} />
           <AdminRoute path='/admin/product/:id/edit' exact component={ProductEditPage} />
         </Container>

@@ -8,7 +8,9 @@ import {
 const initialState: IAdminProductState = {
   loading: false,
   error: false,
-  processSuccess: false,
+  deleteSuccess: false,
+  createSuccess: false,
+  updateSuccess: false,
 }
 
 const adminProductReducer = (state = initialState, action: IAdminProductActions) => {
@@ -17,31 +19,35 @@ const adminProductReducer = (state = initialState, action: IAdminProductActions)
       return {
         ...state,
         loading: true,
-        processSuccess: false,
+        deleteSuccess: false,
+        createSuccess: false,
+        updateSuccess: false,
       }
     case ADMIN_PRODUCT_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
-        processSuccess: false,
+        deleteSuccess: false,
+        createSuccess: false,
+        updateSuccess: false,
       }
     case PRODUCT_DELETE_SUCCESS:
       return {
         ...state,
-        processSuccess: true,
+        deleteSuccess: true,
         loading: false,
       }
     case PRODUCT_UPDATE_SUCCESS:
       return {
         ...state,
-        processSuccess: true,
+        updateSuccess: true,
         loading: false,
       }
     case PRODUCT_CREATE_SUCCESS:
       return {
         ...state,
-        processSuccess: true,
+        createSuccess: true,
         loading: false,
       }
     default:
