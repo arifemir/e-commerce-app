@@ -10,6 +10,7 @@ import payment from './payment/paymentReducer';
 import order from './order/orderReducer';
 import adminUser from './admin/user/adminUserReducer';
 import adminProduct from './admin/product/adminProductReducer';
+import adminOrder from './admin/order/adminOrderReducer';
 
 export const rootReducer = combineReducers({
   productList,
@@ -21,4 +22,5 @@ export const rootReducer = combineReducers({
   order,
   adminUser,
   adminProduct,
+  adminOrder,
 });
