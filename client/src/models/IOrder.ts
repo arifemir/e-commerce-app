@@ -2,7 +2,7 @@ import { IUser, IShippingLocation, IProduct, IPaymentResult } from '../@types';
 
 export default interface IOrder {
   _id?: string;
-  user?: IUser['_id'];
+  user?: IUser['_id'] | IUser;
   orderItems: { quantity: number; product: IProduct['_id'] }[];
   shippingLocation: IShippingLocation['_id'];
   paymentMethod: string | undefined;

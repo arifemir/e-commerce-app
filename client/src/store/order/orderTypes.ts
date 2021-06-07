@@ -50,7 +50,7 @@ interface IOrderPaymentReset {
   type: typeof ORDER_RESET;
 }
 
-interface IGetAllOrdersAction {
+interface IGetAllMyOrderAction {
   type: typeof ORDER_ALL_SUCCESS;
   payload: IOrder[];
 }
@@ -63,7 +63,7 @@ type IOrderActions =
   | IGetOrderDetailsAction
   | IOrderPaymentAction
   | IOrderPaymentReset
-  | IGetAllOrdersAction;
+  | IGetAllMyOrderAction;
 
 export { ORDER_REQUEST, ORDER_FAIL, ORDER_SUCCESS, CLEAR_ORDER, ORDER_DETAIL_SUCCESS, ORDER_PAY_SUCCESS, ORDER_RESET, ORDER_ALL_SUCCESS };
 export type { IOrderState, IOrderActions };

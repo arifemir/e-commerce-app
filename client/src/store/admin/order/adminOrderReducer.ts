@@ -22,6 +22,7 @@ const adminOrderReducer = (state = initialState, action: IAdminOrderActions) => 
     case GET_ALL_ORDER_SUCCESS:
       return {
         ...state,
+        loading: false,
         orders: action.payload
       };
     default:

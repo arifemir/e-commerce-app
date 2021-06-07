@@ -63,7 +63,7 @@ const getOrdersForUser = a(async (req, res, next) => {
   res.send(orders);
 });
 
-const getAllOrder = a(async (req, res) => {
+const getAllOrder = a(async (req, res) => {  
   const orders = await Order.find({}).populate('user', 'id name')
   res.json(orders)
 })

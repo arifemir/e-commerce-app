@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrders } from '../store/order/orderActions';
+import { getAllMyOrder } from '../store/order/orderActions';
 //types
 import { History } from 'history';
 import { IOrderState } from '../store/order/orderTypes';
@@ -24,7 +24,7 @@ const OrdersPage = (props: Props) => {
   const { orders, loading, error } = useSelector<IRootState, IOrderState>(state => state.order);
 
   useEffect(() => {
-    dispatch(getAllOrders());
+    dispatch(getAllMyOrder());
   }, [history]);
 
   if (loading) return <Loader />;
