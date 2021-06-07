@@ -5,6 +5,7 @@ const PRODUCT_DELETE_SUCCESS = 'ADMIN_PRODUCT_DELETE';
 const PRODUCT_UPDATE_SUCCESS = 'PRODUCT_UPDATE_SUCCESS';
 const PRODUCT_CREATE_SUCCESS = 'PRODUCT_CREATE_SUCCESS';
 
+//state
 interface IAdminProductState {
   loading: boolean;
   error: any;
@@ -13,6 +14,7 @@ interface IAdminProductState {
   updateSuccess: boolean;
 }
 
+//actions
 interface IAdminProductRequest {
   type: typeof ADMIN_PRODUCT_REQUEST;
 }

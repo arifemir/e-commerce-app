@@ -10,7 +10,7 @@ import {
   ORDER_REQUEST,
   ORDER_SUCCESS,
 } from './orderTypes';
-import { postOrder, getOrderById, paymentOrder, allOrders } from '../../services/orderService';
+import { postOrder, getOrderById, paymentOrder, allMyOrder } from '../../services/orderService';
 import { IOrder, IPaymentResult } from '../../@types';
 
 const createOrder = (order: IOrder) => async (dispatch: Dispatch<IOrderActions>) => {
@@ -45,10 +45,10 @@ const payOrder = (id: string, paymentResult: IPaymentResult) => async (dispatch:
   }
 };
 
-const getAllOrders = () => async (dispatch: Dispatch<IOrderActions>) => {
+const getAllMyOrder = () => async (dispatch: Dispatch<IOrderActions>) => {
   try {
     dispatch({ type: ORDER_REQUEST });
-    const orders = await allOrders();
+    const orders = await allMyOrder();
     dispatch({ type: ORDER_ALL_SUCCESS, payload: orders });
   } catch (e) {
     dispatch({ type: ORDER_FAIL, payload: e.response ? e.response.data : e });
@@ -57,4 +57,4 @@ const getAllOrders = () => async (dispatch: Dispatch<IOrderActions>) => {
 
 const resetOrder = () => ({ type: ORDER_RESET });
 
-export { createOrder, getOrder, clearCreateOrder, payOrder, getAllOrders, resetOrder };
+export { createOrder, getOrder, clearCreateOrder, payOrder, getAllMyOrder, resetOrder };

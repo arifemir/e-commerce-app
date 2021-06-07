@@ -14,6 +14,9 @@ import { IOrderState } from '../store/order/orderTypes';
 //components
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
+import { IAdminOrderState } from '../store/admin/order/adminOrderTypes';
+import { orderDelivered } from '../store/admin/order/adminOrderActions';
+import { IUserState } from '../store/user-auth/userAuthTypes';
 
 interface params {
   id: string;
@@ -32,14 +35,16 @@ const OrderPage = (props: Props) => {
   const elements = useElements();
 
   const [checkoutError, setCheckoutError] = useState<string | undefined>();
-
+  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth)
   const { orderDetails, loading, error } = useSelector<IRootState, IOrderState>(state => state.order);
+  const { deliverChange, loading: adminOrderLoading } = useSelector<IRootState, IAdminOrderState>(state => state.adminOrder);
 
   let shippingLocation = orderDetails?.shippingLocation;
 
   useEffect(() => {
-    dispatch(getOrder(orderId));
-  }, [dispatch, orderId]);
+    if(!adminOrderLoading)
+      dispatch(getOrder(orderId));
+  }, [dispatch, orderId, deliverChange]);
 
   const onPayment = async () => {
     if (orderDetails?.totalPrice && stripe && elements) {
@@ -98,6 +103,10 @@ const OrderPage = (props: Props) => {
       }
     }
   };
+
+  const deliverHandler = () => {
+    dispatch(orderDelivered(orderId))
+  }
 
   if (loading) return <Loader />;
 
@@ -198,6 +207,11 @@ const OrderPage = (props: Props) => {
                 <Col className='text-right'>${orderDetails.totalPrice}</Col>
               </Row>
             </ListGroup.Item>
+            {user?.isAdmin && orderDetails.isPaid && !orderDetails.isDelivered && (
+              <Button variant='primary' onClick={deliverHandler}>
+                Mark As Delivered
+              </Button>
+            )}
             {!orderDetails.isPaid && (
               <>
                 <ListGroup.Item>
