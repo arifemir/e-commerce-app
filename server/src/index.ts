@@ -5,12 +5,17 @@ import colors from 'colors';
 import routes from './routes';
 import { errorHandler, notFound } from './middleware/errorMiddleware';
 import path from 'path';
+import morgan from 'morgan'
 
 dotenv.config();
 colors.enable();
 dbConn();
 
 const app: express.Application = express();
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
 app.use(express.json());
 
