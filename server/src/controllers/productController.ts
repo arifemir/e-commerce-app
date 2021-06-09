@@ -96,6 +96,14 @@ const getTopProducts = a(async (req, res) => {
   res.json(products)
 })
 
+const getProductIncludeReview = a(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  const reviews = await Review.find({product: req.params.id});
+  if (product) {
+    res.send({ product, reviews });
+  } else {
+    throw new HttpException(404, 'Product not found');
+  }
+});
 
-
-export { getAllProduct, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts };
+export { getAllProduct, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts, getProductIncludeReview };

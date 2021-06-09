@@ -3,7 +3,7 @@ import {
   createProduct, createProductReview,
   deleteProduct,
   getAllProduct,
-  getProductById,
+  getProductById, getProductIncludeReview,
   getTopProducts,
   updateProduct,
 } from '../controllers/productController';
@@ -18,5 +18,6 @@ router
   .put(takeTokenGiveUser, checkIsAdmin, updateProduct)
   .delete(takeTokenGiveUser, checkIsAdmin, deleteProduct);
 router.get('/top', getTopProducts);
+router.get('/include-review/:id', getProductIncludeReview);
 router.route('/:id/reviews').post(takeTokenGiveUser, createProductReview);
 export default router;

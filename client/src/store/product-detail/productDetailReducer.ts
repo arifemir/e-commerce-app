@@ -27,7 +27,8 @@ const productDetailReducer = (state = initialState, action: IProductDetailAction
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        product: action.payload.product,
+        reviews: action.payload.reviews,
       };
     case PRODUCT_DETAIL_FAIL:
       return {

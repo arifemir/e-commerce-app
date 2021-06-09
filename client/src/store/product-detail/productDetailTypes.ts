@@ -21,7 +21,7 @@ interface IProductDetailRequestAction {
 
 interface IProductDetailRequestSuccessAction {
   type: typeof PRODUCT_DETAIL_SUCCESS;
-  payload: IProduct;
+  payload: { product: IProduct, reviews: IReview[] };
 }
 
 interface IProductDetailRequestFailedAction {

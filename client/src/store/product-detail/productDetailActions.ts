@@ -1,4 +1,4 @@
-import { createNewReview, getProduct } from '../../services/productService';
+import { createNewReview, getProductIncludeReviews } from '../../services/productService';
 
 //types
 import { Dispatch } from 'redux';
@@ -14,7 +14,7 @@ import {
 const productDetail = (_id: string) => async (dispatch: Dispatch<IProductDetailActions>) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
-    const data = await getProduct(_id);
+    const data = await getProductIncludeReviews(_id);
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: PRODUCT_DETAIL_FAIL, payload: e.response ? e.response.data : e });
