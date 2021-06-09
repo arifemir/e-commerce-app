@@ -1,5 +1,4 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import Review, { IReview } from './reviewModel';
 import { IUser } from './userModel';
 
 export interface IProduct extends Document {

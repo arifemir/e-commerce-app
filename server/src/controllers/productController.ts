@@ -76,7 +76,7 @@ const createProductReview = a(async (req, res) => {
 
     const reviews = await Review.find({ product: req.params.id });
 
-    const reviewCountForProduct = reviews.length + 1;
+    const reviewCountForProduct = reviews.length;
     const reviewRateForProduct = (reviews.reduce((a, b) => a + b.rating, 0) / reviewCountForProduct).toFixed(2);
 
     await Product.findByIdAndUpdate(req.params.id, {
@@ -98,7 +98,7 @@ const getTopProducts = a(async (req, res) => {
 
 const getProductIncludeReview = a(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
-  const reviews = await Review.find({product: req.params.id});
+  const reviews = await Review.find({product: req.params.id}).populate('user', 'name');
   if (product) {
     res.send({ product, reviews });
   } else {
