@@ -6,9 +6,7 @@ import products from './data/products';
 import users from './data/users';
 import Order from './models/orderModel';
 import Product from './models/productModel';
-import Review from './models/reviewModel';
 import User from './models/userModel';
-import reviews from './data/reviews';
 
 colors.enable();
 dotenv.config();
@@ -19,15 +17,13 @@ const importData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
-    await Review.deleteMany();
     //@ts-ignore
     const createdUsers = await User.insertMany(users);
     const adminUser = createdUsers[0]._id;
     const sampleProducts = products.map((product, i) => ({ ...product, user: adminUser }));
 
-    const createdProducts = await Product.insertMany(sampleProducts);
-    const sampleReviews = reviews.map((review, i) => ({ ...review, product: createdProducts[i]._id }));
-    await Review.insertMany(sampleReviews);
+    await Product.insertMany(sampleProducts);
+
     console.log('Data imported'.green);
     process.exit();
   } catch (e) {
@@ -40,7 +36,6 @@ const destroyData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
-    await Review.deleteMany();
 
     console.log('Data destroyed'.yellow);
     process.exit();

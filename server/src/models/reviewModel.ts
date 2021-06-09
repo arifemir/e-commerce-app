@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IProduct } from './productModel';
+import { IUser } from './userModel';
 
 export interface IReview extends Document {
   product: IProduct['_id'];
-  name: string;
+  user: IUser['_id'];
   rating: number;
   comment: string;
 }
@@ -15,9 +16,10 @@ const reviewSchema: Schema = new Schema(
       required: true,
       ref: 'Product',
     },
-    name: {
-      type: String,
+    user: {
+      type: mongoose.Types.ObjectId,
       required: true,
+      ref: 'User',
     },
     rating: {
       type: Number,

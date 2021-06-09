@@ -1,6 +1,8 @@
 import Product, { IProduct } from '../models/productModel';
 import a from 'express-async-handler';
 import HttpException from '../helpers/exceptions/HttpException';
+import Review from '../models/reviewModel';
+import { IUser } from '../models/userModel';
 
 const getAllProduct = a(async (req, res, next) => {
   const products = await Product.find({});
@@ -61,4 +63,47 @@ const createProduct = a(async (req, res, next) => {
   res.status(201).json(createdProduct);
 });
 
-export { getAllProduct, getProductById, deleteProduct, updateProduct, createProduct };
+const createProductReview = a(async (req, res) => {
+  const { rating, comment } = req.body;
+  const user: IUser = (req as any).user
+  try {
+    await Review.create({
+      product: req.params.id,
+      comment,
+      rating,
+      user: user._id,
+    });
+
+    const reviews = await Review.find({ product: req.params.id });
+
+    const reviewCountForProduct = reviews.length;
+    const reviewRateForProduct = (reviews.reduce((a, b) => a + b.rating, 0) / reviewCountForProduct).toFixed(2);
+
+    await Product.findByIdAndUpdate(req.params.id, {
+      rating: Number(reviewRateForProduct),
+      numReviews: reviewCountForProduct
+    });
+
+    res.status(201).json({ message: 'Review added' })
+  } catch (e) {
+    throw new HttpException(500, e.message);
+  }
+})
+
+const getTopProducts = a(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+
+  res.json(products)
+})
+
+const getProductIncludeReview = a(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  const reviews = await Review.find({product: req.params.id}).populate('user', 'name');
+  if (product) {
+    res.send({ product, reviews });
+  } else {
+    throw new HttpException(404, 'Product not found');
+  }
+});
+
+export { getAllProduct, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts, getProductIncludeReview };

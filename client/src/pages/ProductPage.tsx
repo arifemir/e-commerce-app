@@ -13,6 +13,7 @@ import { IProductDetailState } from '../store/product-detail/productDetailTypes'
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
 import Rating from '../components/product/Rating';
+import Reviews from '../components/product/Reviews';
 
 interface params {
   id: string;
@@ -29,22 +30,22 @@ const ProductPage = (props: Props) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const { loading, error, product } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
+  const { loading, error, product, reviews, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
 
   useEffect(() => {
-    dispatch(productDetail(match.params.id));
-  }, [dispatch, match]);
+    if (!loading)
+      dispatch(productDetail(match.params.id));
+  }, [dispatch, match, createReviewSuccess]);
 
   const onAddToCart = () => {
     history.push(`/cart/${match.params.id}?qty=${quantity}`);
   };
 
-  if (loading) return <Loader />;
-
   if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return product ? (
     <>
+      {loading && <Loader />}
       <Button className='px-0' onClick={() => history.goBack()} variant='link'>
         Go Back
       </Button>
@@ -107,6 +108,11 @@ const ProductPage = (props: Props) => {
               </ListGroup.Item>
             </ListGroup>
           </Card>
+        </Col>
+      </Row>
+      <Row className='flex-row-reverse'>
+        <Col md={6}>
+          <Reviews match={match} />
         </Col>
       </Row>
     </>

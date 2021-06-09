@@ -1,4 +1,4 @@
-import { getProduct } from '../../services/productService';
+import { getOnlyProduct } from '../../services/productService';
 
 //types
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, ICartActions, ICartState } from './cartTypes';
@@ -7,7 +7,7 @@ import { IRootState } from '../store';
 import { ICartItem, IShippingLocation } from '../../@types';
 
 const addToCart = (id: string, quantity: number) => async (dispatch: Dispatch<ICartActions>, getState: () => IRootState) => {
-  const data = await getProduct(id);
+  const data = await getOnlyProduct(id);
 
   dispatch({
     type: CART_ADD_ITEM,
