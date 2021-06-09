@@ -110,7 +110,11 @@ const ProductPage = (props: Props) => {
           </Card>
         </Col>
       </Row>
-      <Reviews match={match} />
+      <Row className='flex-row-reverse'>
+        <Col md={6}>
+          <Reviews match={match} />
+        </Col>
+      </Row>
     </>
   ) : null;
 };
