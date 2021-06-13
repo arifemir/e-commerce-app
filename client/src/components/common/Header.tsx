@@ -11,6 +11,8 @@ import { resetUsers } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
+//components
+import SearchBox from '../product/SearchBox';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ const Header: React.FC = () => {
           </LinkContainer>
           <Toggle aria-controls='basic-navbar-nav' />
           <Collapse id='basic-navbar-nav'>
+            <SearchBox />
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>

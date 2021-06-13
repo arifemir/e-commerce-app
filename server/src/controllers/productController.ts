@@ -5,7 +5,17 @@ import Review from '../models/reviewModel';
 import { IUser } from '../models/userModel';
 
 const getAllProduct = a(async (req, res, next) => {
-  const products = await Product.find({});
+  let filter = {};
+
+  if (req.query.search)
+    filter = {
+      name: {
+        $regex: req.query.search,
+        $options: 'i',
+      },
+    };
+
+  const products = await Product.find(filter);
   res.send(products);
 });
 
@@ -65,7 +75,7 @@ const createProduct = a(async (req, res, next) => {
 
 const createProductReview = a(async (req, res) => {
   const { rating, comment } = req.body;
-  const user: IUser = (req as any).user
+  const user: IUser = (req as any).user;
   try {
     await Review.create({
       product: req.params.id,
@@ -81,24 +91,24 @@ const createProductReview = a(async (req, res) => {
 
     await Product.findByIdAndUpdate(req.params.id, {
       rating: Number(reviewRateForProduct),
-      numReviews: reviewCountForProduct
+      numReviews: reviewCountForProduct,
     });
 
-    res.status(201).json({ message: 'Review added' })
+    res.status(201).json({ message: 'Review added' });
   } catch (e) {
     throw new HttpException(500, e.message);
   }
-})
+});
 
 const getTopProducts = a(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
 
-  res.json(products)
-})
+  res.json(products);
+});
 
 const getProductIncludeReview = a(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
-  const reviews = await Review.find({product: req.params.id}).populate('user', 'name');
+  const reviews = await Review.find({ product: req.params.id }).populate('user', 'name');
   if (product) {
     res.send({ product, reviews });
   } else {
@@ -106,4 +116,13 @@ const getProductIncludeReview = a(async (req, res, next) => {
   }
 });
 
-export { getAllProduct, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts, getProductIncludeReview };
+export {
+  getAllProduct,
+  getProductById,
+  deleteProduct,
+  updateProduct,
+  createProduct,
+  createProductReview,
+  getTopProducts,
+  getProductIncludeReview,
+};
