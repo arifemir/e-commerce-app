@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 //redux
 import { listProducts } from '../store/product-list/productListActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,11 +14,12 @@ import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
 
 const HomePage = () => {
+  const { keyword } = useParams<{ keyword: string }>();
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector<IRootState, IProductListState>(state => state.productList);
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProducts(keyword));
   }, [dispatch]);
 
   if (loading) return <Loader />;
