@@ -10,6 +10,8 @@ interface IProductListState {
   products: IProduct[];
   loading: boolean;
   error: any;
+  page: number;
+  pages: number;
 }
 
 //actions
@@ -20,7 +22,7 @@ interface IProductListRequestAction {
 
 interface IProductListRequestSuccessAction {
   type: typeof PRODUCT_LIST_SUCCESS;
-  payload: IProduct[];
+  payload: { products: IProduct[]; page: number; pages: number };
 }
 
 interface IProductListRequestFailedAction {
