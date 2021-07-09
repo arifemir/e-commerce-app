@@ -1,6 +1,6 @@
 import * as React from 'react';
-import EmptyBox from '../icons/EmptyBox';
 import { Col, Row } from 'react-bootstrap';
+import EmptyBox from '../icons/EmptyBox';
 
 interface Props {
   title: string;

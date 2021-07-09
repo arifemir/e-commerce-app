@@ -35,15 +35,14 @@ const OrderPage = (props: Props) => {
   const elements = useElements();
 
   const [checkoutError, setCheckoutError] = useState<string | undefined>();
-  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth)
+  const { user } = useSelector<IRootState, IUserState>(state => state.userAuth);
   const { orderDetails, loading, error } = useSelector<IRootState, IOrderState>(state => state.order);
   const { deliverChange, loading: adminOrderLoading } = useSelector<IRootState, IAdminOrderState>(state => state.adminOrder);
 
   let shippingLocation = orderDetails?.shippingLocation;
 
   useEffect(() => {
-    if(!adminOrderLoading)
-      dispatch(getOrder(orderId));
+    if (!adminOrderLoading) dispatch(getOrder(orderId));
   }, [dispatch, orderId, deliverChange]);
 
   const onPayment = async () => {
@@ -105,17 +104,16 @@ const OrderPage = (props: Props) => {
   };
 
   const deliverHandler = () => {
-    dispatch(orderDelivered(orderId))
-  }
+    dispatch(orderDelivered(orderId));
+  };
 
   if (loading) return <Loader />;
-
-  if (error) return <Message variant='danger'>{error.message}</Message>;
 
   return !orderDetails ? (
     <></>
   ) : (
     <>
+      {error && <Message variant='danger'>{error.message}</Message>}
       <h1>Order {orderDetails._id}</h1>
       <Row>
         <Col md={8}>

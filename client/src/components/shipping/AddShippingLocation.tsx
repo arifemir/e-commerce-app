@@ -6,8 +6,6 @@ import { useDispatch } from 'react-redux';
 import { addShippingLocation } from '../../store/shipping/shippingActions';
 //types
 import { History, Location } from 'history';
-import { IRootState } from '../../store/store';
-import { ICartState } from '../../store/cart/cartTypes';
 //components
 import FormContainer from '../common/FormContainer';
 

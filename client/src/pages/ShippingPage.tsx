@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,10 +24,9 @@ const ShippingPage = () => {
 
   if (loading) return <Loader />;
 
-  if (error) return <Message variant='danger'>{error.message}</Message>;
-
   return (
     <Col lg={12} className='m-auto'>
+      {error && <Message variant='danger'>{error.message}</Message>}
       <Row className='justify-content-center'>
         <CheckoutSteps step1 step2 />
       </Row>

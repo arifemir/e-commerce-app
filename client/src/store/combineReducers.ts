@@ -11,10 +11,12 @@ import order from './order/orderReducer';
 import adminUser from './admin/user/adminUserReducer';
 import adminProduct from './admin/product/adminProductReducer';
 import adminOrder from './admin/order/adminOrderReducer';
+import productTop from './product-top/productTopReducer';
 
 export const rootReducer = combineReducers({
   productList,
   productDetail,
+  productTop,
   cart,
   userAuth,
   shipping,

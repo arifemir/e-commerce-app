@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
-import { Link, match } from 'react-router-dom';
+import { match } from 'react-router-dom';
 //redux
 import { productDetail } from '../store/product-detail/productDetailActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,22 +30,22 @@ const ProductPage = (props: Props) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const { loading, error, product, reviews, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
+  const { loading, error, product, reviews, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(
+    state => state.productDetail,
+  );
 
   useEffect(() => {
-    if (!loading)
-      dispatch(productDetail(match.params.id));
+    if (!loading) dispatch(productDetail(match.params.id));
   }, [dispatch, match, createReviewSuccess]);
 
   const onAddToCart = () => {
     history.push(`/cart/${match.params.id}?qty=${quantity}`);
   };
 
-  if (error) return <Message variant='danger'>{error.message}</Message>;
-
   return product ? (
     <>
       {loading && <Loader />}
+      {error && <Message variant='danger'>{error.message}</Message>}
       <Button className='px-0' onClick={() => history.goBack()} variant='link'>
         Go Back
       </Button>

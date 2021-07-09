@@ -13,6 +13,7 @@ import Product from '../components/product/Product';
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
 import Paginate from '../components/common/Paginate';
+import ProductCarousel from '../components/product/ProductCarousel';
 
 const HomePage = () => {
   const { keyword, pageNumber } = useParams<{ keyword: string; pageNumber: string }>();
@@ -25,10 +26,10 @@ const HomePage = () => {
 
   if (loading) return <Loader />;
 
-  if (error) return <Message variant='danger'>{error.message}</Message>;
-
   return (
     <>
+      {error && <Message variant='danger'>{error.message}</Message>}
+      {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
       <Row>
         {products &&
