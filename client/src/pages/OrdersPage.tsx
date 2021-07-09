@@ -29,10 +29,9 @@ const OrdersPage = (props: Props) => {
 
   if (loading) return <Loader />;
 
-  if (error) return <Message variant='danger'>{error.message}</Message>;
-
   return (
     <Row className='px-3'>
+      {error && <Message variant='danger'>{error.message}</Message>}
       <h2>My Orders</h2>
       <Table striped bordered hover responsive className='table-sm'>
         <thead>

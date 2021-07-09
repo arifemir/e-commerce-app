@@ -1,24 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../store/user-auth/userAuthActions';
 //types
-import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
 import Message from '../components/common/Message';
 import Loader from '../components/common/Loader';
 import FormContainer from '../components/common/FormContainer';
 
-interface Props {
-  history: History;
-}
-
-const UserUpdatePage = (props: Props) => {
-  const { history } = props;
-
+const UserUpdatePage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

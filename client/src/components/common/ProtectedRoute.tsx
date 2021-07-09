@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 //type
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
-//components
-import Loader from './Loader';
-import Message from './Message';
 
 interface Props extends RouteProps {}
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { Accordion } from 'react-bootstrap';
 //react-redux
 import { useSelector } from 'react-redux';

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { FormControlProps } from 'react-bootstrap';
-import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, Form, ListGroup } from 'react-bootstrap';
 import { Link, match } from 'react-router-dom';
+//redux
+import { useDispatch, useSelector } from 'react-redux';
 import { createReview } from '../../store/product-detail/productDetailActions';
+//types
 import { IProductDetailState } from '../../store/product-detail/productDetailTypes';
 import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
-import Loader from '../common/Loader';
+//components
 import Message from '../common/Message';
 import Rating from './Rating';
 
