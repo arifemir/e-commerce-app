@@ -12,4 +12,6 @@ const getOnlyProduct = (id: string): Promise<IProduct> => axios.get(`/api/produc
 
 const createNewReview = (id: string, review: IReview) => axios.post(`/api/products/${id}/reviews`, { ...review }).then(res => res.data);
 
-export { getProducts, getProductIncludeReviews, createNewReview, getOnlyProduct };
+const getProductTopThree = (): Promise<IProduct[]> => axios.get('/api/products/top').then(res => res.data);
+
+export { getProducts, getProductIncludeReviews, createNewReview, getOnlyProduct, getProductTopThree };
