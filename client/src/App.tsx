@@ -49,6 +49,7 @@ const App = () => {
           <AdminRoute path='/admin/userlist' exact component={UserListPage} />
           <AdminRoute path='/admin/user/:id/edit' exact component={UserEditPage} />
           <AdminRoute path='/admin/productlist' exact component={ProductListPage} />
+          <AdminRoute path='/admin/productlist/:pageNumber' exact component={ProductListPage} />
           <AdminRoute path='/admin/orderlist' exact component={OrderListPage} />
         </Container>
       </main>
