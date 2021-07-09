@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 //components
 import ProtectedRoute from './components/common/ProtectedRoute';
-//pages
 import Footer from './components/common/Footer';
 import Header from './components/common/Header';
+import Meta from './components/common/Meta';
+//pages
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
@@ -28,6 +29,7 @@ import OrderListPage from './pages/admin/OrderListPage';
 const App = () => {
   return (
     <Router>
+      <Meta />
       <Header />
       <main className='py-3'>
         <Container>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //redux
 import { listProducts } from '../store/product-list/productListActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +30,13 @@ const HomePage = () => {
   return (
     <>
       {error && <Message variant='danger'>{error.message}</Message>}
-      {!keyword && <ProductCarousel />}
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go back
+        </Link>
+      )}
       <h1>Latest Products</h1>
       <Row>
         {products &&
