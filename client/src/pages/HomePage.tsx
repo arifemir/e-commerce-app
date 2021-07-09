@@ -12,15 +12,16 @@ import { IRootState } from '../store/store';
 import Product from '../components/product/Product';
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
+import Paginate from '../components/common/Paginate';
 
 const HomePage = () => {
-  const { keyword } = useParams<{ keyword: string }>();
+  const { keyword, pageNumber } = useParams<{ keyword: string; pageNumber: string }>();
   const dispatch = useDispatch();
-  const { loading, error, products } = useSelector<IRootState, IProductListState>(state => state.productList);
+  const { loading, error, products, page, pages } = useSelector<IRootState, IProductListState>(state => state.productList);
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch]);
+    dispatch(listProducts(keyword, Number(pageNumber)));
+  }, [dispatch, keyword, pageNumber]);
 
   if (loading) return <Loader />;
 
@@ -37,6 +38,7 @@ const HomePage = () => {
             </Col>
           ))}
       </Row>
+      <Paginate page={page} pages={pages} keyword={keyword} />
     </>
   );
 };
