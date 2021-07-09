@@ -11,23 +11,26 @@ import { IAdminProductState } from '../../store/admin/product/adminProductTypes'
 import { IRootState } from '../../store/store';
 //hooks
 import useAlertify from '../../hooks/useAlertify';
+import { useParams } from 'react-router-dom';
 //components
 import Loader from '../../components/common/Loader';
 import Message from '../../components/common/Message';
+import Paginate from '../../components/common/Paginate';
 
 interface Props {}
 
 const ProductListPage = (props: Props) => {
+  const { pageNumber } = useParams<{ pageNumber: string }>();
   const dispatch = useDispatch();
-  const { products, error, loading } = useSelector<IRootState, IProductListState>(state => state.productList);
+  const { products, error, loading, page, pages } = useSelector<IRootState, IProductListState>(state => state.productList);
   const { deleteSuccess, createSuccess, loading: processLoading } = useSelector<IRootState, IAdminProductState>(
     state => state.adminProduct,
   );
   const { confirm, success: alertSuccess, error: alertError } = useAlertify();
 
   useEffect(() => {
-    if (!processLoading) dispatch(listProducts());
-  }, [dispatch, deleteSuccess, createSuccess]);
+    if (!processLoading) dispatch(listProducts('', Number(pageNumber)));
+  }, [dispatch, deleteSuccess, createSuccess, pageNumber]);
 
   const deleteHandler = (productId: string) => {
     confirm(
@@ -92,6 +95,7 @@ const ProductListPage = (props: Props) => {
           ))}
         </tbody>
       </Table>
+      <Paginate pages={pages} page={page} isAdmin />
     </>
   );
 };
