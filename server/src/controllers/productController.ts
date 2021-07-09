@@ -6,6 +6,8 @@ import { IUser } from '../models/userModel';
 
 const getAllProduct = a(async (req, res, next) => {
   let filter = {};
+  const pageSize = 2;
+  const page = Number(req.query.pageNumber) || 1;
 
   if (req.query.search)
     filter = {
@@ -15,8 +17,11 @@ const getAllProduct = a(async (req, res, next) => {
       },
     };
 
-  const products = await Product.find(filter);
-  res.send(products);
+  const count = await Product.countDocuments(filter);
+  const products = await Product.find(filter)
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.send({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 const getProductById = a(async (req, res, next) => {

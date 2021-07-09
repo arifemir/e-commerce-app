@@ -4,6 +4,8 @@ const initialState: IProductListState = {
   products: [],
   loading: false,
   error: false,
+  page: 1,
+  pages: 1,
 };
 
 const productListReducer = (state = initialState, action: IProductListActions) => {
@@ -17,7 +19,9 @@ const productListReducer = (state = initialState, action: IProductListActions) =
       return {
         ...state,
         loading: false,
-        products: action.payload,
+        products: action.payload.products,
+        page: action.payload.page,
+        pages: action.payload.pages,
       };
     case PRODUCT_LIST_FAIL:
       return {
