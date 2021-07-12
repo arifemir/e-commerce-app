@@ -6,19 +6,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMyOrder } from '../store/order/orderActions';
 //types
-import { History } from 'history';
 import { IOrderState } from '../store/order/orderTypes';
 import { IRootState } from '../store/store';
 //components
 import { Message, Loader } from '../components';
+import { useHistory } from 'react-router-dom';
 
-interface Props {
-  history: History;
-}
-
-const OrdersPage = (props: Props) => {
-  const { history } = props;
-
+const OrdersPage = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { orders, loading, error } = useSelector<IRootState, IOrderState>(state => state.order);
 

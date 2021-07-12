@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControlProps } from 'react-bootstrap';
 import { Button, Form, ListGroup } from 'react-bootstrap';
-import { Link, match } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { createReview } from '../../store/product-detail/productDetailActions';
@@ -13,12 +13,9 @@ import { IUserState } from '../../store/user-auth/userAuthTypes';
 import Message from '../common/Message';
 import Rating from './Rating';
 
-interface Props {
-  match: match<{ id: string }>;
-}
+const Reviews = () => {
+  const { id } = useParams<{ id: string }>();
 
-const Reviews = (props: Props) => {
-  const { match } = props;
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -31,7 +28,7 @@ const Reviews = (props: Props) => {
   const submitHandler = (e: React.FormEvent<FormControlProps>) => {
     e.preventDefault();
     dispatch(
-      createReview(match.params.id, {
+      createReview(id, {
         rating,
         comment,
       }),

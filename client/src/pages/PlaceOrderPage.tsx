@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,16 +11,11 @@ import { ICartState } from '../store/cart/cartTypes';
 import { IShippingState } from '../store/shipping/shippingTypes';
 import { IPaymentState } from '../store/payment/paymentTypes';
 import { IOrderState } from '../store/order/orderTypes';
-import { History } from 'history';
 //components
 import { CheckoutSteps, Message } from '../components';
 
-interface Props {
-  history: History;
-}
-
-const PlaceOrderPage = (props: Props) => {
-  const { history } = props;
+const PlaceOrderPage = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart);

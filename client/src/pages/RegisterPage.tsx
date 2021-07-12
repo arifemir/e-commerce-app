@@ -1,24 +1,19 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../store/user-auth/userAuthActions';
 //types
-import { Location, History } from 'history';
 import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
 //components
 import { Message, Loader, FormContainer } from '../components';
 
-interface Props {
-  location: Location;
-  history: History;
-}
-
-const RegisterPage = (props: Props) => {
-  const { location, history } = props;
+const RegisterPage = () => {
+  const history = useHistory();
+  const location = useLocation();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

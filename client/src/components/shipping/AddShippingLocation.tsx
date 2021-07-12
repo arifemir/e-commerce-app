@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 //redux
 import { useDispatch } from 'react-redux';
 import { addShippingLocation } from '../../store/shipping/shippingActions';
-//types
-import { History, Location } from 'history';
 //components
 import FormContainer from '../common/FormContainer';
 
-interface Props {
-  history: History;
-  location: Location;
-}
-
-const AddShippingLocation = (props: Props) => {
-  const { history, location } = props;
-
+const AddShippingLocation = () => {
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');

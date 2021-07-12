@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
-import { Link, match } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,18 +17,8 @@ import { IUserState } from '../store/user-auth/userAuthTypes';
 //components
 import { Loader, Message } from '../components';
 
-interface params {
-  id: string;
-}
-
-interface Props {
-  match: match<params>;
-}
-
-const OrderPage = (props: Props) => {
-  const { match } = props;
-  const orderId = match.params.id;
-
+const OrderPage = () => {
+  const { id: orderId } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();

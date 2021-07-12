@@ -1,30 +1,20 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser, getUserDetails } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
-import { match } from 'react-router-dom';
 //hooks
 import useAlertify from '../../hooks/useAlertify';
 //components
 import { Message, Loader, FormContainer } from '../../components';
 
-interface params {
-  id: string;
-}
-
-interface Props {
-  match: match<params>;
-}
-
-const UserEditPage = (props: Props) => {
-  const { match } = props;
-  const userId = match.params.id;
+const UserEditPage = () => {
+  const { id: userId } = useParams<{ id: string }>();
 
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector<IRootState, IAdminUserState>(state => state.adminUser);

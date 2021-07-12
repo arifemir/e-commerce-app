@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,18 +8,12 @@ import { userLogin } from '../store/user-auth/userAuthActions';
 //components
 import { Message, Loader, FormContainer } from '../components';
 //types
-import { Location, History } from 'history';
 import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
 
-interface Props {
-  location: Location;
-  history: History;
-}
-
-const LoginPage = (props: Props) => {
-  const { location, history } = props;
-
+const LoginPage = () => {
+  const history = useHistory();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Form, Button, Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { productDetail } from '../../store/product-detail/productDetailActions';
@@ -9,7 +9,6 @@ import { editProduct } from '../../store/admin/product/adminProductActions';
 import { uploadProductImg } from '../../services/admin/adminProductService';
 //types
 import { IRootState } from '../../store/store';
-import { match } from 'react-router-dom';
 import { IProductDetailState } from '../../store/product-detail/productDetailTypes';
 import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
 //hooks
@@ -17,17 +16,8 @@ import useAlertify from '../../hooks/useAlertify';
 //components
 import { Message, Loader, FormContainer } from '../../components';
 
-interface params {
-  id: string;
-}
-
-interface Props {
-  match: match<params>;
-}
-
-const ProductEditPage = (props: Props) => {
-  const { match } = props;
-  const productId = match.params.id;
+const ProductEditPage = () => {
+  const { id: productId } = useParams<{ id: string }>();
 
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);

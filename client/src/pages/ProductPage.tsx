@@ -1,28 +1,19 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
-import { match } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 //redux
 import { productDetail } from '../store/product-detail/productDetailActions';
 import { useDispatch, useSelector } from 'react-redux';
 //types
-import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IProductDetailState } from '../store/product-detail/productDetailTypes';
 //components
 import { Loader, Message, Rating, Reviews } from '../components';
 
-interface params {
-  id: string;
-}
-
-interface Props {
-  match: match<params>;
-  history: History;
-}
-
-const ProductPage = (props: Props) => {
-  const { match, history } = props;
+const ProductPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -30,11 +21,11 @@ const ProductPage = (props: Props) => {
   const { loading, error, product, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
 
   useEffect(() => {
-    if (!loading) dispatch(productDetail(match.params.id));
-  }, [dispatch, match, createReviewSuccess]);
+    if (!loading) dispatch(productDetail(id));
+  }, [dispatch, id, createReviewSuccess]);
 
   const onAddToCart = () => {
-    history.push(`/cart/${match.params.id}?qty=${quantity}`);
+    history.push(`/cart/${id}?qty=${quantity}`);
   };
 
   return product ? (
@@ -107,7 +98,7 @@ const ProductPage = (props: Props) => {
       </Row>
       <Row className='flex-row-reverse'>
         <Col md={6}>
-          <Reviews match={match} />
+          <Reviews />
         </Col>
       </Row>
     </>

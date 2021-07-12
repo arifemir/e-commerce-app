@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { savePaymentMethod } from '../store/payment/paymentActions';
 //types
-import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IShippingState } from '../store/shipping/shippingTypes';
 //components
 import { FormContainer, CheckoutSteps } from '../components';
 
-interface Props {
-  history: History;
-}
-
-const PaymentPage = (props: Props) => {
-  const { history } = props;
+const PaymentPage = () => {
+  const history = useHistory();
 
   const [paymentMethod, setPaymentMethod] = useState('Stripe');
 

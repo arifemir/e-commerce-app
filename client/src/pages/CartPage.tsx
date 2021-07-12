@@ -5,30 +5,20 @@ import { Col, ListGroup, Row, Image, Form, Button, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeToCart } from '../store/cart/cartActions';
 //types
-import { Link, match } from 'react-router-dom';
+import { Link, useParams, useLocation, useHistory } from 'react-router-dom';
 import { ICartState } from '../store/cart/cartTypes';
 import { IRootState } from '../store/store';
-import { History, Location } from 'history';
 //components
 import { Message } from '../components';
 
-interface params {
-  id: string;
-}
-
-interface Props {
-  match: match<params>;
-  history: History;
-  location: Location;
-}
-
-const CartPage = (props: Props) => {
-  const { match, history, location } = props;
-
+const CartPage = () => {
+  const { id: productId } = useParams<{ id: string }>();
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
+
   const { cartItems } = useSelector<IRootState, ICartState>(state => state.cart);
 
-  const productId = match.params.id;
   const quantity: number = location.search ? Number(location.search.split('=')[1]) : 1;
 
   useEffect(() => {
