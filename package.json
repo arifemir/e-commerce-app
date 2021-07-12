@@ -15,7 +15,7 @@
     "data:import": "node server/dist/seeder",
     "data:destroy": "node server/dist/seeder -d",
     "prepare": "husky install",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm run compile"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",
