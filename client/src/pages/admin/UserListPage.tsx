@@ -6,16 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allUsers, deleteUser } from '../../store/admin/user/adminUserActions';
 //types
 import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
+import { IRootState } from '../../store/store';
 //hooks
 import useAlertify from '../../hooks/useAlertify';
 //components
-import { IRootState } from '../../store/store';
-import Loader from '../../components/common/Loader';
-import Message from '../../components/common/Message';
+import { Loader, Message } from '../../components';
 
-interface Props {}
-
-const UserListPage = (props: Props) => {
+const UserListPage = () => {
   const dispatch = useDispatch();
   const { users, error, loading } = useSelector<IRootState, IAdminUserState>(state => state.adminUser);
   const { confirm, success: alertSuccess, error: alertError } = useAlertify();
@@ -49,7 +46,7 @@ const UserListPage = (props: Props) => {
             <th>NAME</th>
             <th>EMAIL</th>
             <th>ADMIN</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>

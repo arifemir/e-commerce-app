@@ -13,13 +13,9 @@ import { IRootState } from '../../store/store';
 import useAlertify from '../../hooks/useAlertify';
 import { useParams } from 'react-router-dom';
 //components
-import Loader from '../../components/common/Loader';
-import Message from '../../components/common/Message';
-import Paginate from '../../components/common/Paginate';
+import { Loader, Message, Paginate } from '../../components';
 
-interface Props {}
-
-const ProductListPage = (props: Props) => {
+const ProductListPage = () => {
   const { pageNumber } = useParams<{ pageNumber: string }>();
   const dispatch = useDispatch();
   const { products, error, loading, page, pages } = useSelector<IRootState, IProductListState>(state => state.productList);
@@ -74,7 +70,7 @@ const ProductListPage = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ _id, brand, category, countInStock, description, image, name, numReviews, price, rating }) => (
+          {products.map(({ _id, brand, category, name, price }) => (
             <tr key={_id}>
               <td>{_id}</td>
               <td>{name}</td>

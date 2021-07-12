@@ -10,11 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IProductListState } from '../store/product-list/productListTypes';
 import { IRootState } from '../store/store';
 //components
-import Product from '../components/product/Product';
-import Loader from '../components/common/Loader';
-import Message from '../components/common/Message';
-import Paginate from '../components/common/Paginate';
-import ProductCarousel from '../components/product/ProductCarousel';
+import { Product, Loader, Message, Paginate, ProductCarousel } from '../components';
 
 const HomePage = () => {
   const { keyword, pageNumber } = useParams<{ keyword: string; pageNumber: string }>();

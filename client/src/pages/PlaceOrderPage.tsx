@@ -13,8 +13,7 @@ import { IPaymentState } from '../store/payment/paymentTypes';
 import { IOrderState } from '../store/order/orderTypes';
 import { History } from 'history';
 //components
-import CheckoutSteps from '../components/shipping/CheckoutSteps';
-import Message from '../components/common/Message';
+import { CheckoutSteps, Message } from '../components';
 
 interface Props {
   history: History;

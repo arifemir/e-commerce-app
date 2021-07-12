@@ -4,17 +4,15 @@ import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, editUser, getUserDetails } from '../../store/admin/user/adminUserActions';
+import { editUser, getUserDetails } from '../../store/admin/user/adminUserActions';
 //types
 import { IRootState } from '../../store/store';
 import { IAdminUserState } from '../../store/admin/user/adminUserTypes';
 import { match } from 'react-router-dom';
-//components
-import Message from '../../components/common/Message';
-import Loader from '../../components/common/Loader';
-import FormContainer from '../../components/common/FormContainer';
-import { editUserDetail } from '../../services/admin/adminUserService';
+//hooks
 import useAlertify from '../../hooks/useAlertify';
+//components
+import { Message, Loader, FormContainer } from '../../components';
 
 interface params {
   id: string;

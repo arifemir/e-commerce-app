@@ -9,8 +9,7 @@ import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IShippingState } from '../store/shipping/shippingTypes';
 //components
-import FormContainer from '../components/common/FormContainer';
-import CheckoutSteps from '../components/shipping/CheckoutSteps';
+import { FormContainer, CheckoutSteps } from '../components';
 
 interface Props {
   history: History;

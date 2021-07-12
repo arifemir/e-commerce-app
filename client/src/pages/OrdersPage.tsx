@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import { Row, Table, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMyOrder } from '../store/order/orderActions';
@@ -9,9 +10,7 @@ import { History } from 'history';
 import { IOrderState } from '../store/order/orderTypes';
 import { IRootState } from '../store/store';
 //components
-import Message from '../components/common/Message';
-import Loader from '../components/common/Loader';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Message, Loader } from '../components';
 
 interface Props {
   history: History;
@@ -41,7 +40,7 @@ const OrdersPage = (props: Props) => {
             <th>TOTAL</th>
             <th>PAID</th>
             <th>DELIVERED</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>

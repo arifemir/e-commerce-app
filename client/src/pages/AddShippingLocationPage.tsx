@@ -3,28 +3,18 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 //types
 import { IRootState } from '../store/store';
-import { History, Location } from 'history';
 import { IShippingState } from '../store/shipping/shippingTypes';
 //components
-import Loader from '../components/common/Loader';
-import Message from '../components/common/Message';
-import AddShippingLocation from '../components/shipping/AddShippingLocation';
+import { Loader, Message, AddShippingLocation } from '../components';
 
-interface Props {
-  history: History;
-  location: Location;
-}
-
-const AddShippingLocationPage = (props: Props) => {
-  const { history, location } = props;
-
+const AddShippingLocationPage = () => {
   const { loading, error } = useSelector<IRootState, IShippingState>(state => state.shipping);
 
   return (
     <>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error.message}</Message>}
-      <AddShippingLocation {...props} />
+      <AddShippingLocation />
     </>
   );
 };

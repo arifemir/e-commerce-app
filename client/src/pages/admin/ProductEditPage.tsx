@@ -4,19 +4,18 @@ import { Form, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
+import { productDetail } from '../../store/product-detail/productDetailActions';
+import { editProduct } from '../../store/admin/product/adminProductActions';
+import { uploadProductImg } from '../../services/admin/adminProductService';
 //types
 import { IRootState } from '../../store/store';
 import { match } from 'react-router-dom';
-//components
-import Message from '../../components/common/Message';
-import Loader from '../../components/common/Loader';
-import FormContainer from '../../components/common/FormContainer';
-import useAlertify from '../../hooks/useAlertify';
 import { IProductDetailState } from '../../store/product-detail/productDetailTypes';
-import { productDetail } from '../../store/product-detail/productDetailActions';
-import { editProduct } from '../../store/admin/product/adminProductActions';
 import { IAdminProductState } from '../../store/admin/product/adminProductTypes';
-import { uploadProductImg } from '../../services/admin/adminProductService';
+//hooks
+import useAlertify from '../../hooks/useAlertify';
+//components
+import { Message, Loader, FormContainer } from '../../components';
 
 interface params {
   id: string;
@@ -32,9 +31,7 @@ const ProductEditPage = (props: Props) => {
 
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
-  const { updateSuccess, loading: processLoading, error: processError } = useSelector<IRootState, IAdminProductState>(
-    state => state.adminProduct,
-  );
+  const { updateSuccess, loading: processLoading } = useSelector<IRootState, IAdminProductState>(state => state.adminProduct);
   const { confirm, success: alertSuccess, error: alertError } = useAlertify();
 
   const [name, setName] = useState('');

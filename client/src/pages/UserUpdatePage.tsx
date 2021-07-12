@@ -7,9 +7,8 @@ import { updateUser } from '../store/user-auth/userAuthActions';
 //types
 import { IRootState } from '../store/store';
 import { IUserState } from '../store/user-auth/userAuthTypes';
-import Message from '../components/common/Message';
-import Loader from '../components/common/Loader';
-import FormContainer from '../components/common/FormContainer';
+//components
+import { Message, Loader, FormContainer } from '../components';
 
 const UserUpdatePage = () => {
   const [name, setName] = useState('');

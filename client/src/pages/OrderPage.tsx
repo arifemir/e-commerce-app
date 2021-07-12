@@ -5,18 +5,17 @@ import { useEffect, useState } from 'react';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrder, payOrder } from '../store/order/orderActions';
+import { orderDelivered } from '../store/admin/order/adminOrderActions';
 //stripe
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { addPaymentIntent } from '../services/paymentIntentService';
 //types
 import { IRootState } from '../store/store';
 import { IOrderState } from '../store/order/orderTypes';
-//components
-import Loader from '../components/common/Loader';
-import Message from '../components/common/Message';
 import { IAdminOrderState } from '../store/admin/order/adminOrderTypes';
-import { orderDelivered } from '../store/admin/order/adminOrderActions';
 import { IUserState } from '../store/user-auth/userAuthTypes';
+//components
+import { Loader, Message } from '../components';
 
 interface params {
   id: string;

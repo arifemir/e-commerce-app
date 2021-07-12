@@ -10,7 +10,7 @@ import { ICartState } from '../store/cart/cartTypes';
 import { IRootState } from '../store/store';
 import { History, Location } from 'history';
 //components
-import Message from '../components/common/Message';
+import { Message } from '../components';
 
 interface params {
   id: string;

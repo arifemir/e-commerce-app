@@ -10,10 +10,7 @@ import { History } from 'history';
 import { IRootState } from '../store/store';
 import { IProductDetailState } from '../store/product-detail/productDetailTypes';
 //components
-import Loader from '../components/common/Loader';
-import Message from '../components/common/Message';
-import Rating from '../components/product/Rating';
-import Reviews from '../components/product/Reviews';
+import { Loader, Message, Rating, Reviews } from '../components';
 
 interface params {
   id: string;
@@ -30,9 +27,7 @@ const ProductPage = (props: Props) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const { loading, error, product, reviews, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(
-    state => state.productDetail,
-  );
+  const { loading, error, product, createReviewSuccess } = useSelector<IRootState, IProductDetailState>(state => state.productDetail);
 
   useEffect(() => {
     if (!loading) dispatch(productDetail(match.params.id));

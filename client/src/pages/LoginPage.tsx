@@ -6,9 +6,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../store/user-auth/userAuthActions';
 //components
-import Message from '../components/common/Message';
-import Loader from '../components/common/Loader';
-import FormContainer from '../components/common/FormContainer';
+import { Message, Loader, FormContainer } from '../components';
 //types
 import { Location, History } from 'history';
 import { IRootState } from '../store/store';
