@@ -6,7 +6,7 @@ import { IUser } from '../models/userModel';
 
 const getAllProduct = a(async (req, res, next) => {
   let filter = {};
-  const pageSize = 2;
+  const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
 
   if (req.query.search)
