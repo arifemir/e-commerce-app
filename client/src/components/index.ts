@@ -9,6 +9,7 @@ import Message from './common/Message';
 import Meta from './common/Meta';
 import Paginate from './common/Paginate';
 import ProtectedRoute from './common/ProtectedRoute';
+import HeaderLink from './common/header/HeaderLink';
 //icons
 import EmptyBox from './icons/EmptyBox';
 //product
@@ -46,4 +47,5 @@ export {
   CheckoutSteps,
   ShippingLocations,
   ShippingLocationItem,
+  HeaderLink,
 };
