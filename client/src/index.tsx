@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'alertifyjs/build/css/alertify.css';
+import './reset.css';
 import './bootstrap.min.css';
 import './index.css';
+import 'animate.css';
 import App from './App';
 //redux
 import { Provider } from 'react-redux';

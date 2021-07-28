@@ -13,7 +13,6 @@ import { IRootState } from '../../store/store';
 import { IUserState } from '../../store/user-auth/userAuthTypes';
 //components
 import SearchBox from '../product/SearchBox';
-import HeaderLink from './header/HeaderLink';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();

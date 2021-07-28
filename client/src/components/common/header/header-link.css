@@ -1,0 +1,28 @@
+.header-link-container {
+  display: inline-flex;
+  border: 1px solid #000;
+  padding: 8px 16px 8px 8px;
+  max-width: 125px;
+  border-radius: 5px;
+  background-color: #fff;
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-link-container > h3 {
+  color: var(--text-primary-black);
+  font-size: var(--font-size-2);
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.header-link-container.own-page > h3,
+.header-link-container:focus > h3 {
+  color: black;
+}
+
+.header-link-container.own-page > svg,
+.header-link-container:focus > svg {
+  fill: black;
+}

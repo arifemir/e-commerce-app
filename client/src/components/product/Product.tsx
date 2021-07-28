@@ -30,7 +30,9 @@ const Product = (props: Props) => {
             <Rating rating={product.rating} numReviews={product.numReviews} />
           </div>
         </Text>
-        <Text as='h3'>${product.price}</Text>
+        <Text className='py-3' as='h3'>
+          ${product.price}
+        </Text>
       </Body>
     </Card>
   );

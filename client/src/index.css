@@ -1,13 +1,22 @@
+:root {
+  /*colors*/
+  --text-primary-black: rgba(0, 0, 0, 0.75);
+  /*font sizes*/
+  --font-size-1: 11px;
+  --font-size-2: 13px;
+  --font-size-3: 15px;
+  --font-size-4: 17px;
+  --font-size-5: 19px;
+  --font-size-6: 21px;
+  --font-size-main-header: 44px;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
 }
 
 main {
   min-height: 80vh;
-}
-
-h3 {
-  padding: 1rem 0;
 }
 
 .table-cell-align > td,
